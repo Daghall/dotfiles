@@ -5,7 +5,6 @@ set ruler
 set autoindent
 set backspace=indent,eol,start
 set incsearch
-syntax enable
 set background=dark
 set nomore
 set title
@@ -16,6 +15,7 @@ set ic
 set titlestring=%f%m\ %y\ b%n%a
 set smartcase
 set tabpagemax=50
+syntax enable
 
 colorscheme desert
 
@@ -28,10 +28,7 @@ au InsertEnter * match ExtraWhitespace /\(\s\+\%#\@<!$\|^ \{1,\}\)/
 au InsertLeave * match ExtraWhitespace /\(\s\+$\|^ \{1,\}\)/
 
 " Map ctrl-k to open the file under cursor in a new tab
-"set suffixesadd=.tmpl
 nmap <C-k> <C-w>gF<CR>
-"let root = system("pwd | cut -d \/ -f1-4 | tr '\n' '/'")
-"let &path=".,".root."templates,".root."php/common/include/,".root."www/js/site/,".root."regress/final/,".root."scripts/batch/,".root."conf/bconf/campaigns/"
 
 if version >= 700
 	set nofsync
@@ -77,18 +74,9 @@ imap <Down> <C-O>gj
 vmap <C-X> :g/./exe "norm \<C-X>"<CR>gv
 vmap <C-A> :g/./exe "norm \<C-A>"<CR>gv
 
-" WIP! DON'T USE!
-com Conf exec "tabe " . root ."conf/bconf/bconf.txt." <tab>
-
 " Parenthisis matching
 hi MatchParen cterm=none ctermbg=red ctermfg=black
 
-
-au BufNewFile,BufRead *.tmpl                    let b:match_words='<%:%>' | set mps+=<:>
-au BufNewFile,BufRead *.tmpl                    set filetype=templateparse
-au BufNewFile,BufRead *.html.tmpl               set filetype=htmltemplateparse
-au BufNewFile,BufRead *.sql.tmpl               	set filetype=sqltemplateparse
-au BufNewFile,BufRead *.bconf               	set filetype=conf
 au BufNewFile,BufRead *.less               	set filetype=less
 
 autocmd BufEnter * lcd %:p:h
@@ -126,11 +114,6 @@ com WA wa
 com Cend %s/\s\+$//
 com Ccurl %s/\t{/ {/
 
-" Match template tags
-source $VIMRUNTIME/macros/matchit.vim
-let b:match_words = '<%:%>,{:},(:),[:],<:>'
-let b:matchpairs = '<:>,{:},(:),[:]'
-
 " Clean CSS
 com CSS call CSS_cleanup()
 
@@ -143,4 +126,3 @@ function! CSS_cleanup()
 	catch
 	endtry
 endfunction
-
