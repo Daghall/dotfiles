@@ -1,0 +1,28 @@
+[user]
+	name = Markus Daghall
+	email = markus@blocket.se
+[push]
+	default = tracking
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	dis = diff --color-words --staged
+	di = diff --color-words
+	dix = diff --color-words --word-diff-regex='[a-zA-ZÂ‰ˆ≈ƒ÷0-9]+'
+	dixx = diff --color-words --word-diff-regex='[^[:space:]]'
+	showx = diff --color-words --word-diff-regex='[a-zA-ZÂ‰ˆ≈ƒ÷0-9]+'
+	showxx = diff --color-words --word-diff-regex='[^[:space:]]'
+	vimdiff = difftool --tool vimdiff --no-prompt
+	vimmerge = mergetool --tool vimdiff --no-prompt
+	switch = checkout
+[branch "master"]
+	mergeoptions = --no-ff --no-commit
+	diffoptions = --no-prefix
+[color]
+	ui = auto
+[diff]
+	noprefix = 1
+[rerere]
+	enabled = true
