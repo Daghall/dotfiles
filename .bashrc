@@ -15,7 +15,6 @@ alias s='stty -echoctl'
 
 # Screen colors
 force_color_prompt=yes
-PS1="[\[\e[33m\]\A\[\e[0m\]] \h \[\e[33m\]\$(__git_ps1 '%s ')\[\033[32m\]\W\[\e[0m\]$ "
 
 # Allow SSH to execute aliases
 shopt -s expand_aliases
@@ -29,6 +28,8 @@ alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
 alias g='grep -r'
 alias cal='cal -m'
 alias d='display'
+alias ll='ls -l'
+alias la='ls -lA'
 
 # Git stuff
 alias gup='git pull'
