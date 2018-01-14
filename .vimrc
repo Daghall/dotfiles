@@ -14,18 +14,51 @@ set number
 set ic
 set titlestring=%f%m\ %y\ b%n%a
 set smartcase
+set smartindent
 set tabpagemax=50
 syntax enable
 
 colorscheme desert
 
+let mapleader = " "
+highlight Search ctermbg=Yellow
+
+" Whitespace rendering (tab:▸\ ,trail:·,eol:¬,nbsp:_)
+set lcs=tab:▸\ ,trail:·,nbsp:_
+
+" Plugins
+execute pathogen#infect()
+
+" Syntastic
+let g:syntastic_javascript_checkers = ["eslint"]
+let g:syntastic_javascript_eslint_exec = "eslint_d"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Comments
+autocmd FileType javascript setlocal commentstring=//\ %s
+autocmd FileType conf setlocal commentstring=#\ %s
+
+" CommandT
+nmap <silent> <Leader>t <Plug>(CommandT)
+nmap <silent> <Leader>b <Plug>(CommandTBuffer)
+nmap <silent> <Leader>j <Plug>(CommandTJump)
+set wildignore+=node_modules,public,logs
+" TODO: Make this smarter
+let g:CommandTAcceptSelectionCommand="CommandTOpen tabe"
+set switchbuf=usetab
+
 " Highlight unwanted spacing
 highlight ExtraWhitespace ctermbg=red guibg=red
-au BufEnter * match ExtraWhitespace /\(\s\+$\|^ \{1,\}\)/
-"au BufEnter * match ExtraWhitespace /\(\s\+$\|^\( \{1,\}\(?![\# ]\)\)\)/
-"au BufEnter * match ExtraWhitespace /\(\s\+$\|^\( \{1,\}\(?![\# ]\)\)\)/
-au InsertEnter * match ExtraWhitespace /\(\s\+\%#\@<!$\|^ \{1,\}\)/
-au InsertLeave * match ExtraWhitespace /\(\s\+$\|^ \{1,\}\)/
+au BufEnter * match ExtraWhitespace /\s\+$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace //
 
 " Map ctrl-k to open the file under cursor in a new tab
 nmap <C-k> <C-w>gF<CR>
@@ -37,6 +70,12 @@ set ttym=xterm2
 set hlsearch
 set viminfo='25,\"50,n~/.viminfo
 set ve=block
+
+" Editing
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 
 " Search for the visually selected string
 vmap * "oy/\V<C-R>o<CR>
