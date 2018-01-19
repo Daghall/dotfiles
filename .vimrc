@@ -97,6 +97,12 @@ map <silent><F5> :set number!<CR>
 " Toggle "list mode"
 map <silent><F6> :set list!<CR>
 
+" Toggle paste mode
+map <F7> :set paste!<CR>
+
+" Turn of highlighting
+map <F8> :noh<CR>
+
 " Prev/next diff (vimdiff)
 map <F9> [c
 map <F10> ]c
