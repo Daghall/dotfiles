@@ -8,15 +8,16 @@
 	ci = commit
 	co = checkout
 	br = branch
-	dis = diff --color-words --staged
-	di = diff --color-words
+	di = diff
+	dis = diff --staged
 	dix = diff --color-words --word-diff-regex='[a-zA-ZåäöÅÄÖ0-9]+'
 	dixx = diff --color-words --word-diff-regex='[^[:space:]]'
 	showx = diff --color-words --word-diff-regex='[a-zA-ZåäöÅÄÖ0-9]+'
 	showxx = diff --color-words --word-diff-regex='[^[:space:]]'
 	vimdiff = difftool --tool vimdiff --no-prompt
 	vimmerge = mergetool --tool vimdiff --no-prompt
-	switch = checkout
+  puff = pull --ff
+  pure = pull --rebase
 [branch "master"]
 	mergeoptions = --no-ff --no-commit
 	diffoptions = --no-prefix
