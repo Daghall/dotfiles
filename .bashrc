@@ -110,3 +110,8 @@ function init() {
       ;;
   esac
 }
+
+# Fallback to npm command, if unknown command
+command_not_found_handle () {
+  npx --no-install $@
+}
