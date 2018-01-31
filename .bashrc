@@ -93,3 +93,20 @@ alias dock='defaults write com.apple.dock orientation bottom && killall -HUP Doc
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+function init() {
+  if [ -z $DEV_ENV ]; then
+    echo -n "Environment? (v/n/g): "
+    read env
+    export DEV_ENV=$env
+  fi
+
+  case $DEV_ENV in
+    n)
+      nodemon
+      ;;
+    g)
+      gulp
+      ;;
+  esac
+}
