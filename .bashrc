@@ -141,3 +141,5 @@ function cd {
 #
 #     MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
+# Fuzzy finder
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
