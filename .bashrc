@@ -31,6 +31,10 @@ alias d='display'
 alias ls='ls -G'
 alias ll='ls -l'
 alias la='ls -lA'
+alias ip='ipconfig getifaddr en0'
+alias ipw='ipconfig getifaddr en1'
+alias ipc='ipconfig getifaddr en0 | pbcopy'
+alias ipwc='ipconfig getifaddr en1 | pbcopy'
 
 # Git stuff
 alias gup='git pull'
