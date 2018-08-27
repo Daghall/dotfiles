@@ -77,20 +77,20 @@ function ponyo_svg {
 alias dock='defaults write com.apple.dock orientation bottom && killall -HUP Dock'
 
 # Function: UNIX timestamp to date
-#function ts2date() {
-#	local format="%F %R"
-#
-#	case $# in
-#		2 )
-#			format=$2 ;&
-#		1 )
-#			ts=$1 ;;
-#		0 )
-#			read ts ;;
-#	esac
-#
-#	awk "BEGIN { printf(\"%s\n\", strftime(\"$format\", $ts)) }"
-#}
+function ts2date() {
+	local format="%F %R"
+
+	case $# in
+		2 )
+			format=$2 ;&
+		1 )
+			ts=$1 ;;
+		0 )
+			read ts ;;
+	esac
+
+	gawk "BEGIN { printf(\"%s\n\", strftime(\"$format\", $ts)) }"
+}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
