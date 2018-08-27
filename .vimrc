@@ -36,6 +36,14 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" Autofix on write
+autocmd BufWritePre *.js execute "normal mFHmG" | silent execute "%!eslint_d --stdin --fix-to-stdout" | execute "normal 'Gzt`F"
+
+" Autofix entire buffer with eslint_d:
+nnoremap <leader>e mF:%!eslint_d --stdin --fix-to-stdout<CR>`F
+" Autofix visual selection with eslint_d:
+vnoremap <leader>e :!eslint_d --stdin --fix-to-stdout<CR>gv
+
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
