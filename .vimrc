@@ -48,6 +48,7 @@ vnoremap <leader>e :!eslint_d --stdin --fix-to-stdout<CR>gv
 "let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
 " Comments
 autocmd FileType javascript setlocal commentstring=//\ %s
