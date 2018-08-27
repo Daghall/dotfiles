@@ -37,13 +37,10 @@ alias ipc='ipconfig getifaddr en0 | pbcopy'
 alias ipwc='ipconfig getifaddr en1 | pbcopy'
 
 # Git stuff
-alias gup='git pull'
-alias gco='git checkout'
+alias gg='git grep'
 alias gst='git status'
 alias gdi='git di'
 alias gci='git commit'
-alias grevert='echo "git reset --hard <branch> path/file"'
-alias gg='git grep'
 
 # Tar helpers
 alias tarball="tar -cvf"
