@@ -71,6 +71,13 @@ au BufEnter * match ExtraWhitespace /\s\+$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace //
 
+" Help "Open file under cursor" understand file names without suffix
+set suffixesadd=.js,.json,.hbs
+
+" Add common paths to help locating files
+let project = system("pwd | cut -d \/ -f1-5 | tr '\n' '/'")
+let &path=".,".project."app/views/,".project."views/"
+
 " Map ctrl-k to open the file under cursor in a new tab
 nmap <C-k> <C-w>gF<CR>
 
