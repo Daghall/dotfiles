@@ -58,7 +58,7 @@ autocmd FileType vim setlocal commentstring="\ %s
 
 " CommandT
 nmap <silent> <Leader>t <Plug>(CommandT)
-nmap <silent> <Leader>b <Plug>(CommandTBuffer)
+nmap <silent> <Leader>b <Plug>(CommandTMRU)
 nmap <silent> <Leader>j <Plug>(CommandTJump)
 set wildignore+=node_modules,public,logs
 " TODO: Make this smarter
