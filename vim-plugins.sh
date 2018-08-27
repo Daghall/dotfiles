@@ -21,6 +21,9 @@ git clone git://github.com/wavded/vim-stylus.git
 
 ## PLUGINS
 
+printg "Ranger"
+git clone git@github.com:francoiscabrol/ranger.vim.git
+
 print "SnipMate"
 git clone https://github.com/tomtom/tlib_vim.git
 git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
