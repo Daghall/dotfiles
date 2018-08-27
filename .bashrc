@@ -93,8 +93,8 @@ function ts2date() {
 }
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 function init() {
   if [ -z $DEV_ENV ]; then
@@ -117,3 +117,15 @@ function init() {
 command_not_found_handle () {
   npx --no-install $@
 }
+
+function cd {
+  builtin cd "$@"
+  if [ $? -eq 0 ] && [ -f ".nvmrc" ]; then
+    # Use --latest-npm because the NPM version affects package-lock.json, so if we
+    # lock the Node.js version with NVM we should try to lock NPM too, and this
+    # option sort of does that: "After installing, attempt to upgrade to the latest
+    # working npm on the given node version"
+    nvm use --latest-npm
+  fi
+}
+
