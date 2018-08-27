@@ -4,6 +4,7 @@ set nocompatible
 set ruler
 set autoindent
 set backspace=indent,eol,start
+set smartindent
 set incsearch
 set background=dark
 set nomore
@@ -14,7 +15,6 @@ set number
 set ic
 set titlestring=%f%m\ %y\ b%n%a
 set smartcase
-set smartindent
 set tabpagemax=50
 syntax enable
 
