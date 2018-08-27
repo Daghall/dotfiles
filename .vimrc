@@ -53,6 +53,8 @@ let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 " Comments
 autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType conf setlocal commentstring=#\ %s
+autocmd FileType sh setlocal commentstring=#\ %s
+autocmd FileType vim setlocal commentstring="\ %s
 
 " CommandT
 nmap <silent> <Leader>t <Plug>(CommandT)
