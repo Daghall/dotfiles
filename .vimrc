@@ -137,6 +137,10 @@ imap <Down> <C-O>gj
 vmap <C-X> :g/./exe "norm \<C-X>"<CR>gv
 vmap <C-A> :g/./exe "norm \<C-A>"<CR>gv
 
+" Easy tab moving
+map <silent><C-L> :tabm +<CR>
+map <silent><C-H> :tabm -<CR>
+
 " Parenthisis matching
 hi MatchParen cterm=none ctermbg=red ctermfg=black
 
