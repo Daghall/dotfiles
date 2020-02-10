@@ -41,3 +41,7 @@ git clone --depth=1 https://github.com/vim-syntastic/syntastic.git
 
 print "FZF.vim"
 git clone git@github.com:junegunn/fzf.vim.git
+
+print "Fugitive"
+git clone https://github.com/tpope/vim-fugitive.git
+vim -u NONE -c "helptags vim-fugitive/doc" -c q
