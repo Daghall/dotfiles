@@ -39,8 +39,5 @@ git clone git://github.com/airblade/vim-gitgutter.git
 print "Syntastic"
 git clone --depth=1 https://github.com/vim-syntastic/syntastic.git
 
-print "CommandT"
-git clone https://github.com/wincent/command-t.git
-cd ~/.vim/bundle/command-t/ruby/command-t/ext/command-t
-ruby extconf.rb
-make
+print "FZF.vim"
+git clone git@github.com:junegunn/fzf.vim.git

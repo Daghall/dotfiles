@@ -55,15 +55,30 @@ autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType conf setlocal commentstring=#\ %s
 autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType vim setlocal commentstring="\ %s
+autocmd FileType php setlocal commentstring=#\ %s
 
-" CommandT
-nmap <silent> <Leader>t <Plug>(CommandT)
-nmap <silent> <Leader>b <Plug>(CommandTMRU)
-nmap <silent> <Leader>j <Plug>(CommandTJump)
-set wildignore+=node_modules,public,logs
-" TODO: Make this smarter
-let g:CommandTAcceptSelectionCommand="CommandTOpen tabe"
-set switchbuf=usetab
+" FZF
+set rtp+=/usr/local/opt/fzf
+let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git --exclude node_modules'
+nmap <silent> <Leader>t :Files!<CR>
+nmap <silent> <Leader>b :Buffers<CR>
+"nmap <silent> <Leader>p :HistoryFiles!<CR>
+nmap <silent> <Leader>a :Ag!<CR>
+nmap <silent> <Leader><Leader> :b#<CR>
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:50%', '?'), <bang>0)
+command! -bang -nargs=* HistoryFiles
+  \ call fzf#vim#history(fzf#vim#with_preview('right:50%', '?'), <bang>0)
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'), <bang>0)
+
+" Ranger
+nmap <silent> <Leader>r :Ranger<CR>
+
+" Misc.
+nmap <silent> <Leader>q :bd<CR>
+nmap <silent> <Leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 
 " Highlight unwanted spacing
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -143,10 +158,6 @@ map <silent><C-H> :tabm -<CR>
 
 " Parenthisis matching
 hi MatchParen cterm=none ctermbg=red ctermfg=black
-
-au BufNewFile,BufRead *.less               	set filetype=less
-
-autocmd BufEnter * lcd %:p:h
 
 " Store folds and other view related stuff
 autocmd BufWinLeave *.* mkview
