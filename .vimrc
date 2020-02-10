@@ -175,6 +175,8 @@ com Load source ~/.session.vim
 " Default session options but with "curdir" omitted; the BufEnter * lcd command brakes stuff
 set sessionoptions-=curdir
 
+" Marko syntax highlighting
+autocmd BufNewFile,BufRead *.marko set filetype=html
 
 " Git commands
 com Ga !git add %
