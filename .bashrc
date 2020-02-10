@@ -160,3 +160,15 @@ function cd {
 
 # Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+function urlparams () {
+  local url;
+
+  if [[ $# > 0 ]]; then
+    url=$1
+  else
+    url=$(pbpaste)
+  fi
+
+  echo $url | sed 's/=/ = /g' | tr "&" "\n" | tr "?" "\n"
+}
