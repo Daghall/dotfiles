@@ -165,6 +165,10 @@ hi MatchParen cterm=none ctermbg=red ctermfg=black
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
+" Spelling
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+
 " Session handling
 com Save mksession! ~/.session.vim
 com Load source ~/.session.vim
