@@ -181,10 +181,8 @@ autocmd BufNewFile,BufRead *.marko set filetype=html
 " Git commands
 com Ga !git add %
 com Gd !git di % | less -R
-com Gdiff !git diff --color % | less -R
 com Gr !git resolved %
 com Gl !git log % | less
-com Gb !git blame % | less
 
 " Fat fingers syndrome
 com W w
