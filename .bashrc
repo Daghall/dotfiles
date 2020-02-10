@@ -44,6 +44,9 @@ alias gst='git status'
 alias gdi='git di'
 alias gci='git commit'
 
+# OpenShift Client
+alias ocp='oc project $(oc projects | fzf)'
+
 # Tar helpers
 alias tarball="tar -cvf"
 alias tarunball="tar -xvf"
