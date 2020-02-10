@@ -13,7 +13,7 @@ cd ~/.vim/bundle
 ## SYNTAX
 
 print "Mustache/Handlebars"
-git clone git://github.com/mustache/vim-mustache-handlebars.git bundle/mustache
+git clone git://github.com/mustache/vim-mustache-handlebars.git mustache
 
 print "Stylus"
 git clone git://github.com/wavded/vim-stylus.git
