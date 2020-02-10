@@ -194,6 +194,9 @@ com QA qa
 com Wa wa
 com WA wa
 
+" Sort in dictionary order, ignoring case
+xnoremap <leader>s :!sort -df<CR>
+
 hi User1 ctermbg=black ctermfg=white
 hi User2 ctermbg=gray ctermfg=black
 hi User3 ctermbg=black ctermfg=yellow
