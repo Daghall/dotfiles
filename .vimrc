@@ -26,6 +26,10 @@ colorscheme desert
 let mapleader = " "
 highlight Search ctermbg=Yellow
 
+" Swap files and backups
+set directory:~/.vim/swapfiles//
+set backupdir:~/.vim/backup//
+
 " Whitespace rendering (tab:▸\ ,trail:·,eol:¬,nbsp:_)
 set lcs=tab:▸\ ,trail:·,nbsp:_
 
