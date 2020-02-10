@@ -47,6 +47,16 @@ alias gci='git commit'
 # OpenShift Client
 alias ocp='oc project $(oc projects | fzf)'
 
+function co() {
+  if [[ $# -ne 1 ]]; then
+    printf "usage:\n  co <commit-hash>\n";
+    return;
+  fi
+  local hash=$1;
+  local repo=$(git config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1);
+  open "https://github.com/$repo/commit/$hash";
+}
+
 # Tar helpers
 alias tarball="tar -cvf"
 alias tarunball="tar -xvf"
