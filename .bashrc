@@ -112,8 +112,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 function init() {
-  if [ -z $DEV_ENV ]; then
-    echo -n "Environment? (v/n/g): "
+  if [[ ! -z $1 ]]; then
+    export DEV_ENV=$1
+  elif [[ -z $DEV_ENV ]]; then
+    echo -n "Environment? (v/n/b): "
     read env
     export DEV_ENV=$env
   fi
@@ -122,8 +124,8 @@ function init() {
     n)
       nodemon
       ;;
-    g)
-      gulp
+    b)
+      npm run dev
       ;;
   esac
 }
