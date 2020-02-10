@@ -197,6 +197,13 @@ com WA wa
 " Sort in dictionary order, ignoring case
 xnoremap <leader>s :!sort -df<CR>
 
+" Copy/paste helper
+xnoremap <leader>y "ay
+nnoremap <leader>y "ay
+nnoremap <leader>yy "ayy
+xnoremap <leader>p "ap
+nnoremap <leader>p "ap
+
 hi User1 ctermbg=black ctermfg=white
 hi User2 ctermbg=gray ctermfg=black
 hi User3 ctermbg=black ctermfg=yellow
