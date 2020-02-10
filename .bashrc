@@ -172,3 +172,6 @@ function urlparams () {
 
   echo $url | sed 's/=/ = /g' | tr "&" "\n" | tr "?" "\n"
 }
+
+# Puppeteer
+alias killpptr='pgrep -f "puppeteer" | xargs kill -9'
