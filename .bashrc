@@ -35,8 +35,6 @@ alias ip='ipconfig getifaddr en0'
 alias ipw='ipconfig getifaddr en1'
 alias ipc='ipconfig getifaddr en0 | pbcopy'
 alias ipwc='ipconfig getifaddr en1 | pbcopy'
-alias eol='oc login console.elx.bonniernews.io -u markus.daghall && docker login -u $(oc whoami) -p $(oc whoami -t) docker-registry-default.internal.elx.ohoy.io'
-alias ol='oc login console.prod.bonniernews.io -u markus.daghall && docker login -u $(oc whoami) -p $(oc whoami -t) docker-registry-default.internal.elx.ohoy.io'
 
 # Git stuff
 alias gg='git grep'
@@ -176,3 +174,5 @@ function urlparams () {
 
 # Puppeteer
 alias killpptr='pgrep -f "puppeteer" | xargs kill -9'
+
+source .bashrc_local
