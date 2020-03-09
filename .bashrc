@@ -43,6 +43,7 @@ alias gg='git grep'
 alias gst='git status'
 alias gdi='git di'
 alias gci='git commit'
+alias gb='git checkout $(git branch | grep -v "*" | fzf)'
 
 # OpenShift Client
 alias ocp='oc project $(oc projects | fzf)'
