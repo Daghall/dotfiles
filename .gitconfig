@@ -19,6 +19,7 @@
 	vimmerge = mergetool --tool vimdiff --no-prompt
   puff = pull --ff
   pure = pull --rebase
+  uncommit = reset HEAD~ --soft
 [branch "master"]
 	mergeoptions = --no-ff --no-commit
 	diffoptions = --no-prefix
