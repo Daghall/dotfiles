@@ -176,4 +176,4 @@ function urlparams () {
 # Puppeteer
 alias killpptr='pgrep -f "puppeteer" | xargs kill -9'
 
-source .bashrc_local
+source ~/.bashrc_local
