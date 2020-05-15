@@ -45,7 +45,7 @@ alias gci='git commit'
 alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf)'
 
 # OpenShift Client
-alias ocp='oc project $(oc projects | fzf)'
+alias ocp='oc project $(oc projects | grep "^ " | sed "s/[ *]//g" | fzf)'
 
 function co() {
   if [[ $# -ne 1 ]]; then
