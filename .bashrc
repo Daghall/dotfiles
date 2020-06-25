@@ -22,12 +22,7 @@ shopt -s expand_aliases
 # User specific aliases and functions
 alias grep='grep --color=auto'
 alias less='less -R'
-alias vi='vim'
 alias vimresume='vim -p $(git status -s | egrep "^(A  | M )" | cut -d" " -f3 | xargs)'
-alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
-alias g='grep -r'
-alias cal='cal -m'
-alias d='display'
 alias ls='ls -G'
 alias ll='ls -l'
 alias la='ls -lA'
@@ -41,12 +36,12 @@ alias dockerrmi="docker images -q | xargs -n 1 docker rmi -f"
 alias gg='git grep'
 alias gst='git status'
 alias gdi='git di'
-alias gci='git commit'
 alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf)'
 
 # OpenShift Client
 alias ocp='oc project $(oc projects | grep "^ " | sed "s/[ *]//g" | fzf)'
 
+# Open commit on GitHub
 function co() {
   if [[ $# -ne 1 ]]; then
     printf "usage:\n  co <commit-hash>\n";
@@ -77,20 +72,6 @@ function f() {
 	fi
 }
 
-function ponyo_svg {
-  local output="public/tvspelare/assets/js/svgs.html"
-
-  echo "<body style='background: darkgray'>" > $output
-
-  for image in $(ls app/assets/img/*.svg); do
-    echo "<h2>$image</h2>" >> $output;
-    cat $image >> $output;
-  done
-}
-
-# Reset Mac OS dock...
-alias dock='defaults write com.apple.dock orientation bottom && killall -HUP Dock'
-
 # Function: UNIX timestamp to date
 function ts2date() {
 	local format="%F %R"
@@ -107,34 +88,18 @@ function ts2date() {
 	gawk "BEGIN { printf(\"%s\n\", strftime(\"$format\", $ts)) }"
 }
 
+# NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-function init() {
-  if [[ ! -z $1 ]]; then
-    export DEV_ENV=$1
-  elif [[ -z $DEV_ENV ]]; then
-    echo -n "Environment? (v/n/b): "
-    read env
-    export DEV_ENV=$env
-  fi
-
-  case $DEV_ENV in
-    n)
-      nodemon
-      ;;
-    b)
-      npm run dev
-      ;;
-  esac
-}
 
 # Fallback to npm command, if unknown command
 command_not_found_handle () {
   npx --no-install $@
 }
 
+# Execute "nvm use" if ".nvmrc" is found when entering directory
 function cd {
   builtin cd "$@"
   if [ $? -eq 0 ] && [ -f ".nvmrc" ]; then
@@ -161,6 +126,7 @@ function cd {
 # Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# Print URL in a more readable way
 function urlparams () {
   local url;
 
@@ -176,4 +142,5 @@ function urlparams () {
 # Puppeteer
 alias killpptr='pgrep -f "puppeteer" | xargs kill -9'
 
+# Local stuff
 source ~/.bashrc_local
