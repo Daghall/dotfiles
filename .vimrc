@@ -204,6 +204,9 @@ nnoremap <leader>yy "ayy
 xnoremap <leader>p "ap
 nnoremap <leader>p "ap
 
+" Misc
+com Ftjs set ft=javascript
+
 hi User1 ctermbg=black ctermfg=white
 hi User2 ctermbg=gray ctermfg=black
 hi User3 ctermbg=black ctermfg=yellow
