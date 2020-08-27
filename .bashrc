@@ -142,5 +142,11 @@ function urlparams () {
 # Puppeteer
 alias killpptr='pgrep -f "puppeteer" | xargs kill -9'
 
+# Mask every other pair of chars
+function obscure() {
+  read str;
+  echo $str | sed -E 's/(..)../\1**/g'
+}
+
 # Local stuff
 source ~/.bashrc_local
