@@ -52,6 +52,19 @@ function co() {
   open "https://github.com/$repo/commit/$hash";
 }
 
+# Open pull request on GitHub
+function gpr() {
+  local branch=$(git rev-parse --abbrev-ref HEAD);
+  local repo=$(git config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1);
+  open "https://github.com/$repo/compare/$branch?expand=1";
+}
+
+# Push branch to origin
+function gpu() {
+  local branch=$(git rev-parse --abbrev-ref HEAD);
+  git push --set-upstream origin $branch
+}
+
 # Tar helpers
 alias tarball="tar -cvf"
 alias tarunball="tar -xvf"
