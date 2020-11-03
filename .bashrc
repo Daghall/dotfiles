@@ -22,7 +22,7 @@ shopt -s expand_aliases
 # User specific aliases and functions
 alias grep='grep --color=auto'
 alias less='less -R'
-alias vimresume='vim -p $(git status -s | egrep "^(A  | M )" | cut -d" " -f3 | xargs)'
+alias vimresume='vim $(git status -s | egrep "^(A  | M )" | cut -d" " -f3 | xargs)'
 alias ls='ls -G'
 alias ll='ls -l'
 alias la='ls -lA'
