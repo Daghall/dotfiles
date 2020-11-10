@@ -39,7 +39,7 @@ alias gdi='git di'
 alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf)'
 
 # OpenShift Client
-alias ocp='oc project $(oc projects | grep "^ " | sed "s/[ *]//g" | fzf)'
+alias ocp='oc project $(oc projects -q | fzf)'
 
 # Open commit on GitHub
 function co() {
