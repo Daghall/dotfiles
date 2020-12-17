@@ -140,6 +140,7 @@ function cd {
 
 # Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_CTRL_T_COMMAND='fd --hidden --follow --exclude .git --exclude node_modules'
 
 # Print URL in a more readable way
 function urlparams () {
