@@ -2,7 +2,7 @@
 	name = Markus Daghall
 	email = markus@daghall.se
 [push]
-	default = tracking
+	default = current
 [alias]
 	st = status
 	ci = commit
