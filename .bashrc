@@ -54,6 +54,18 @@ function co() {
   open "https://github.com/$repo/commit/$hash";
 }
 
+# Open on GitHub
+function gh() {
+  local repo;
+  if [[ $1 == "." ]]; then
+    repo=$(git config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1);
+  else
+    local dir=$(ls ~/git | fzf)
+    repo=$(git config --file ~/git/$dir/.git/config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1);
+  fi
+  open "https://github.com/$repo";
+}
+
 # Open pull request on GitHub
 function gpr() {
   local branch=$(git rev-parse --abbrev-ref HEAD);
