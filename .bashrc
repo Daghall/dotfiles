@@ -164,5 +164,18 @@ function obscure() {
   echo $str | sed -E 's/(..)../\1**/g'
 }
 
+# Replace \n with literal newline
+function nl2nl () {
+  local str;
+
+  # If input is not from stdin, use pastebin
+  if [[ -t 0 ]]; then
+    str=$(pbpaste)
+  else
+    read -r str;
+  fi
+  echo $str | sed 's#\\n#\'$'\n''#g'
+}
+
 # Local stuff
 source ~/.bashrc_local
