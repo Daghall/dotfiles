@@ -38,6 +38,7 @@ alias gg='git grep'
 alias gst='git status'
 alias gdi='git di'
 alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf)'
+alias g='cd ~/git/$(ls ~/git | fzf)'
 
 # OpenShift Client
 alias ocp='oc project $(oc projects -q | fzf)'
