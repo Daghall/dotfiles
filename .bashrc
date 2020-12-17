@@ -30,7 +30,8 @@ alias ip='ipconfig getifaddr en0'
 alias ipw='ipconfig getifaddr en1'
 alias ipc='ipconfig getifaddr en0 | pbcopy'
 alias ipwc='ipconfig getifaddr en1 | pbcopy'
-alias dockerrmi="docker images -q | xargs -n 1 docker rmi -f"
+alias dockerrmi='docker images -q | xargs -n 1 docker rmi -f'
+alias rc='source ~/.bash_profile'
 
 # Git stuff
 alias gg='git grep'
