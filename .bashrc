@@ -126,15 +126,21 @@ command_not_found_handle () {
   npx --no-install $@
 }
 
-# Execute "nvm use" if ".nvmrc" is found when entering directory
 function cd {
   builtin cd "$@"
+
+  # Execute "nvm use" if ".nvmrc" is found when entering directory
   if [ $? -eq 0 ] && [ -f ".nvmrc" ]; then
     # Use --latest-npm because the NPM version affects package-lock.json, so if we
     # lock the Node.js version with NVM we should try to lock NPM too, and this
     # option sort of does that: "After installing, attempt to upgrade to the latest
     # working npm on the given node version"
     nvm use --latest-npm
+  fi
+
+  # Update iTerm2's tab title
+  if [[ $TERM_PROGRAM == "iTerm.app" ]]; then
+    echo -ne "\033]0;$(pwd | awk -F '/' '{print $NF}' | sed "s/$(whoami)/~/")\007"
   fi
 }
 
