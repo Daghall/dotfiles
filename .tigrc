@@ -1,0 +1,15 @@
+# Open commit on GitHub
+bind generic <Ctrl-G> @sh -c "open https://github.com/$(git config --get remote.origin.url | cut -d':' -f2 | cut -d'.' -f1)/commit/%(commit)"
+
+# Copy commit hash to clipboard
+bind generic 1 @sh -c "printf '%.8s' %(commit) | pbcopy"
+
+# Copy commit message to clipboard
+bind generic 2 @sh -c "echo $(git show -s --format=%s %(commit)) | pbcopy"
+
+# Append commit message to clipboard
+bind generic 3 @sh -c "echo $(pbpaste)$(git show -s --format=%s %(commit)) | pbcopy"
+
+# Reload ~/.tigrc when 'S' is pressed
+bind generic S none
+bind generic S :source ~/.tigrc
