@@ -168,6 +168,8 @@ autocmd BufWinEnter *.* silent loadview
 " Spelling
 autocmd FileType markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
+autocmd FileType vim setlocal spell
+autocmd FileType javascript setlocal spell
 
 " Session handling
 com Save mksession! ~/.session.vim
