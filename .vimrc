@@ -39,12 +39,15 @@ execute pathogen#infect()
 " Syntastic
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_javascript_eslint_exec = "eslint_d"
+let g:syntastic_javascript_eslint_args = ['--fix']
+set autoread
+au VimEnter *.js au BufWritePost *.js checktime
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " Autofix on write
-autocmd BufWritePre *.js silent! :undojoin | execute "normal mFHmG" | silent execute "%!eslint_d --stdin --fix-to-stdout" | execute "normal 'Gzt`F"
+"autocmd BufWritePre *.js silent! :undojoin | execute "normal mFHmG" | silent execute "%!eslint_d --stdin --fix-to-stdout" | execute "normal 'Gzt`F"
 
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
