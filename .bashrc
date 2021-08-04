@@ -124,7 +124,9 @@ export NVM_DIR="$HOME/.nvm"
 
 # Fallback to npm command, if unknown command
 command_not_found_handle () {
-  npx --no-install $@
+  if [[ $1 != "__git_complete" ]]; then
+    npx --no-install $@
+  fi
 }
 
 function cd {
