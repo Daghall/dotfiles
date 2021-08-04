@@ -174,6 +174,7 @@ autocmd FileType markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
 autocmd FileType vim setlocal spell
 autocmd FileType javascript setlocal spell
+set spelllang=en,sv
 
 " Session handling
 com Save mksession! ~/.session.vim
