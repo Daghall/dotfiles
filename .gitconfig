@@ -7,7 +7,7 @@
 	st = status
 	ci = commit
 	co = checkout
-  lg = log --oneline
+	lg = log --oneline
 	br = branch
 	di = diff
 	dis = diff --staged
@@ -15,11 +15,12 @@
 	dixx = diff --color-words --word-diff-regex='[^[:space:]]'
 	showx = diff --color-words --word-diff-regex='[a-zA-ZåäöÅÄÖ0-9]+'
 	showxx = diff --color-words --word-diff-regex='[^[:space:]]'
+	showfiles = show --name-only --format=
 	vimdiff = difftool --tool vimdiff --no-prompt
 	vimmerge = mergetool --tool vimdiff --no-prompt
-  puff = pull --ff
-  pure = pull --rebase
-  uncommit = reset HEAD~ --soft
+	puff = pull --ff
+	pure = pull --rebase
+	uncommit = reset HEAD~ --soft
 [branch "master"]
 	mergeoptions = --no-ff --no-commit
 	diffoptions = --no-prefix
