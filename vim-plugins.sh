@@ -18,10 +18,12 @@ git clone git://github.com/mustache/vim-mustache-handlebars.git mustache
 print "Stylus"
 git clone git://github.com/wavded/vim-stylus.git
 
+print "Jinja"
+git clone git://github.com/lepture/vim-jinja.git
 
 ## PLUGINS
 
-printg "Ranger"
+print "Ranger"
 git clone git@github.com:francoiscabrol/ranger.vim.git
 
 print "SnipMate"
