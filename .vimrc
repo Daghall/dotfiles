@@ -218,3 +218,5 @@ hi User1 ctermbg=black ctermfg=white
 hi User2 ctermbg=gray ctermfg=black
 hi User3 ctermbg=black ctermfg=yellow
 hi User4 ctermbg=black ctermfg=red
+
+let g:snipMate = { 'snippet_version' : 1 }
