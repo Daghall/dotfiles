@@ -30,7 +30,7 @@ highlight Search ctermbg=Yellow
 set directory:~/.vim/swapfiles//
 set backupdir:~/.vim/backup//
 
-" Whitespace rendering (tab:▸\ ,trail:·,eol:¬,nbsp:_)
+" White space rendering (tab:▸\ ,trail:·,eol:¬,nbsp:_)
 set lcs=tab:▸\ ,trail:·,nbsp:_
 
 " Plugins
@@ -127,7 +127,7 @@ map <F2> gt
 " Toggle line-wrapping
 map <silent><F3> :set wrap!<CR>
 
-" Toggle case-sensetivity
+" Toggle case-sensitivity
 map <F4> :set ic!<CR>
 
 " Toggle line numbers
