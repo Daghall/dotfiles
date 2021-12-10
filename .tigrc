@@ -13,3 +13,8 @@ bind generic 3 @sh -c "echo $(pbpaste)$(git show -s --format=%s %(commit)) | pb
 # Reload ~/.tigrc when 'S' is pressed
 bind generic S none
 bind generic S :source ~/.tigrc
+
+# Settings
+set main-view-commit-title-refs = false
+set main-view-commit-title-graph = no
+set main-options = --max-parents=1
