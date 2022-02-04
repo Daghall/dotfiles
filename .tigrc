@@ -10,6 +10,10 @@ bind generic 2 @sh -c "echo $(git show -s --format=%s %(commit)) | pbcopy"
 # Append commit message to clipboard
 bind generic 3 @sh -c "echo $(pbpaste)$(git show -s --format=%s %(commit)) | pbcopy"
 
+# Open the current file with the line number highlighted on GitHub
+# Tig interprets all # as a beginning of a comment, hence the xxd hack
+bind blame <Ctrl-L> @sh -c "open https://github.com/$(git config --get remote.origin.url | cut -d':' -f2 | cut -d'.' -f1)/blob/%(repo:head)/%(file)$(echo 23 | xxd -r -p)L%(lineno)"
+
 # Reload ~/.tigrc when 'S' is pressed
 bind generic S none
 bind generic S :source ~/.tigrc
@@ -18,3 +22,11 @@ bind generic S :source ~/.tigrc
 set main-view-commit-title-refs = false
 set main-view-commit-title-graph = no
 set main-options = --max-parents=1
+
+# Reference:
+#   !	Run the command in the foreground with output shown.
+#   @	Run the command in the background with no output.
+#   ?	Prompt the user before executing the command.
+#   +	Run the command synchronously, and echo the first line of output to the status bar.
+#   <	Exit Tig after executing the command.
+#   >	Re-open Tig instantly in the last displayed view after executing the command.
