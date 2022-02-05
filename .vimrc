@@ -137,6 +137,7 @@ nmap <silent> <Leader>r :Ranger<CR>
 " Misc.
 nmap <silent> <Leader>q :bd<CR>
 nmap <silent> <Leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
+nmap <Leader> o
 
 " Highlight unwanted spacing
 highlight ExtraWhitespace ctermbg=red guibg=red
