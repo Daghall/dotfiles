@@ -5,7 +5,12 @@ set ruler
 set autoindent
 set backspace=indent,eol,start
 set smartindent
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set incsearch
+set hlsearch
 set background=dark
 set nomore
 set title
@@ -17,24 +22,37 @@ set titlestring=%f%m\ %y\ b%n%a
 set smartcase
 set tabpagemax=50
 syntax enable
+highlight Search ctermbg=Yellow
+colorscheme desert
 
+
+" Status line
 set laststatus=2
 set statusline=%2*\ %n\ %1*\ %t\ %M%R%H%W%=%3*\ %F\ %4*\ %y\ %1*\ %5l:%-4c%2*%4P\ 
 
-colorscheme desert
 
+" Follow the leader
 let mapleader = " "
-highlight Search ctermbg=Yellow
+
 
 " Swap files and backups
 set directory:~/.vim/swapfiles//
 set backupdir:~/.vim/backup//
 
+
 " White space rendering (tab:▸\ ,trail:·,eol:¬,nbsp:_)
 set lcs=tab:▸\ ,trail:·,nbsp:_
 
-" Plugins
+
+" PLUGINS
+
+" Bootstrap plugins
 execute pathogen#infect()
+
+
+" Force snippet version 1
+let g:snipMate = { 'snippet_version' : 1 }
+
 
 " Syntastic
 let g:syntastic_javascript_checkers = ["eslint"]
@@ -48,14 +66,10 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" Autofix on write
-"autocmd BufWritePre *.js silent! :undojoin | execute "normal mFHmG" | silent execute "%!eslint_d --stdin --fix-to-stdout" | execute "normal 'Gzt`F"
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
+
 
 " Comments
 autocmd FileType javascript setlocal commentstring=//\ %s
@@ -64,17 +78,15 @@ autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType vim setlocal commentstring="\ %s
 autocmd FileType php setlocal commentstring=#\ %s
 
+
 " FZF
 set rtp+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git --exclude node_modules'
 nmap <silent> <Leader>t :Files!<CR>
-nmap <silent> <Leader>b :Buffers<CR>
-"nmap <silent> <Leader>p :HistoryFiles!<CR>
-nmap <silent> <Leader>a :Ag!<CR>
+nmap <silent> <Leader>b :Buffers!<CR>
+nmap <silent> <Leader>h :HistoryFiles!<CR>
 nmap <silent> <Leader><Leader> :b#<CR>
 nmap <silent> <Leader>l :silent :execute "!tig blame " . shellescape(expand("%")) . " +" . line(".") <CR>:redraw!<CR>
-nmap <silent> <Leader>i :silent :execute "!realpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed 's/\.js$//' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
-nmap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
 
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:50%', '?'), <bang>0)
@@ -121,6 +133,7 @@ let g:vimspector_sign_priority = {
   \    'vimspectorPC':         999,
   \ }
 
+
 " git-gutter
 highlight! link SignColumn LineNr
 highlight GitGutterAdd    guifg=#00ff00 ctermfg=2
@@ -134,10 +147,9 @@ let g:ranger_replace_netrw = 1  " Use Ranger when opening directories
 let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 nmap <silent> <Leader>r :Ranger<CR>
 
-" Misc.
-nmap <silent> <Leader>q :bd<CR>
-nmap <silent> <Leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
-nmap <Leader> o
+
+" MISCELLANEOUS
+
 
 " Highlight unwanted spacing
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -152,22 +164,17 @@ set suffixesadd=.js,.json,.hbs
 let project = system("pwd | cut -d \/ -f1-5 | tr '\n' '/'")
 let &path=".,".project."app/views/,".project."views/"
 
-" Map ctrl-k to open the file under cursor in a new tab
-nmap <C-k> <C-w>gF<CR>
+" Fuzzy find relative path from current file to another, and print
+nmap <silent> <Leader>i :silent :execute "!realpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed 's/\.js$//' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
 
-if version >= 700
-	set nofsync
-endif
-set ttym=xterm2
-set hlsearch
-set viminfo='25,\"50,n~/.viminfo
-set ve=block
+" Open tig blame
+nmap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
 
-" Editing
-set expandtab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+" Quickly delete buffer
+nmap <silent> <Leader>q :bd<CR>
+
+" Insert blank line bellow cursor
+nmap <Leader> o
 
 " Search for the visually selected string
 vmap * "oy/\V<C-R>o<CR>
@@ -195,7 +202,7 @@ map <F7> :set paste!<CR>
 " Turn of highlighting
 map <F8> :noh<CR>
 
-" Prev/next diff (vimdiff)
+" Prev/next diff
 map <F9> [c
 map <F10> ]c
 
@@ -211,7 +218,7 @@ vmap <C-A> :g/./exe "norm \<C-A>"<CR>gv
 map <silent><C-L> :tabm +<CR>
 map <silent><C-H> :tabm -<CR>
 
-" Parenthisis matching
+" Parenthesis matching
 hi MatchParen cterm=none ctermbg=red ctermfg=black
 
 " Store folds and other view related stuff
@@ -234,12 +241,6 @@ set sessionoptions-=curdir
 " Marko syntax highlighting
 autocmd BufNewFile,BufRead *.marko set filetype=html
 
-" Git commands
-com Ga !git add %
-com Gd !git di % | less -R
-com Gr !git resolved %
-com Gl !git log % | less
-
 " Fat fingers syndrome
 com W w
 com Q q
@@ -249,6 +250,10 @@ com Qa qa
 com QA qa
 com Wa wa
 com WA wa
+com Cq cq
+
+" Quickly reset filetype when lost due to swap file collision
+com Ftjs set ft=javascript
 
 " Sort in dictionary order, ignoring case
 xnoremap <leader>s :!sort -df<CR>
@@ -260,12 +265,16 @@ nnoremap <leader>yy "ayy
 xnoremap <leader>p "ap
 nnoremap <leader>p "ap
 
-" Misc
-com Ftjs set ft=javascript
-
+" Pretty colors
 hi User1 ctermbg=black ctermfg=white
 hi User2 ctermbg=gray ctermfg=black
 hi User3 ctermbg=black ctermfg=yellow
 hi User4 ctermbg=black ctermfg=red
 
-let g:snipMate = { 'snippet_version' : 1 }
+" No idea...
+if version >= 700
+	set nofsync
+endif
+set ttym=xterm2
+set viminfo='25,\"50,n~/.viminfo
+set ve=block
