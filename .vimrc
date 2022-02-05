@@ -196,8 +196,8 @@ map <silent><F5> :set number!<CR>
 " Toggle "list mode"
 map <silent><F6> :set list!<CR>
 
-" Toggle paste mode
-map <F7> :set paste!<CR>
+" Toggle spelling
+map <F7> :set spell!<CR>
 
 " Turn of highlighting
 map <F8> :noh<CR>
@@ -231,6 +231,7 @@ autocmd FileType gitcommit setlocal spell
 autocmd FileType vim setlocal spell
 autocmd FileType javascript setlocal spell
 set spelllang=en,sv
+set spellsuggest=fast,20
 
 " Session handling
 com Save mksession! ~/.session.vim
