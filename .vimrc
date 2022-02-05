@@ -257,7 +257,7 @@ com Cq cq
 com Ftjs set ft=javascript
 
 " Sort in dictionary order, ignoring case
-xnoremap <leader>s :!sort -df<CR>
+xnoremap <leader>s :!sed 's/{ /{/' \| sort -df<CR>
 
 " Copy/paste helper
 xnoremap <leader>y "ay
