@@ -84,6 +84,9 @@ command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'), <bang>0)
 
 " Ranger
+let g:ranger_map_keys = 0       " Do not map keys
+let g:ranger_replace_netrw = 1  " Use Ranger when opening directories
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 nmap <silent> <Leader>r :Ranger<CR>
 
 " Misc.
