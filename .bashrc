@@ -144,7 +144,13 @@ function urlparams () {
     url=$(pbpaste)
   fi
 
+  local cust_params=$(echo $url | grep 'cust_params=[^\&]*\&' -o)
   echo $url | sed 's/=/ = /g' | tr "&" "\n" | tr "?" "\n"
+  if [[ -n "$cust_params" ]]; then
+    local perdy_params=$(echo $cust_params | sed -e 's/%3D/ = /g' -e 's/%26/\& - /g')
+    echo " - - - - -"
+    echo $perdy_params | sed 's/cust_params=/cust_params: \& - /' | tr "&" "\n"
+  fi
 }
 
 # Puppeteer
