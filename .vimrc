@@ -84,6 +84,22 @@ command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'), <bang>0)
 
 
+" LSP
+nmap <silent> <Leader>d :LspDefinition<CR>
+nmap <silent> <Leader>R :LspRename<CR>
+nmap <silent> <Leader>e :LspDocumentDiagnostics<CR>
+nmap <silent> <Leader>w :LspHover<CR>
+
+" Autocomplete (C-j/C-K is bound to Down/up in BetterTouchTool
+inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" <C-@> is ctrl-space in Vim8
+imap <C-@> <Plug>(asyncomplete_force_refresh)
+
+
 " vimspector
 nmap <Leader>dd <Plug>VimspectorLaunch
 nmap <Leader>dc <Plug>VimspectorContinue
@@ -179,10 +195,6 @@ map <F10> ]c
 " Make k/j, up/down traverse wrapped lines
 map j gj
 map k gk
-map <Up> gk
-map <Down> gj
-imap <Up> <C-O>gk
-imap <Down> <C-O>gj
 
 " Make ctrl-x/ctrl-a work with selection
 vmap <C-X> :g/./exe "norm \<C-X>"<CR>gv

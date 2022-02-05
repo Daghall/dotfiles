@@ -53,3 +53,9 @@ git clone git@github.com:iamcco/markdown-preview.vim.git
 
 print "Vimspector"
 git clone git@github.com:puremourning/vimspector.git
+
+print "Language Server"
+git clone git@github.com:prabirshrestha/vim-lsp.git
+git clone git@github.com:mattn/vim-lsp-settings.git
+git clone git@github.com:prabirshrestha/asyncomplete.vim.git
+git clone git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
