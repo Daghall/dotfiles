@@ -83,6 +83,29 @@ command! -bang -nargs=* HistoryFiles
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'), <bang>0)
 
+
+" vimspector
+nmap <Leader>dd <Plug>VimspectorLaunch
+nmap <Leader>dc <Plug>VimspectorContinue
+nmap <Leader>dl <Plug>VimspectorStepInto
+nmap <Leader>dj <Plug>VimspectorStepOver
+nmap <Leader>dk <Plug>VimspectorStepOut
+nmap <Leader>dr <Plug>VimspectorRestart
+nmap <silent> <Leader>de :call vimspector#Reset()<CR>
+nmap <Leader>db <Plug>VimspectorToggleBreakpoint :echom "Toggle breakpoint"<CR>
+nmap <silent> <Leader>dbb :call vimspector#ListBreakpoints()<CR>
+nmap <silent> <Leader>dbc :call vimspector#ClearBreakpoints()<CR>
+nmap <silent> <Leader>di <Plug>VimspectorBalloonEval
+
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':         13,
+  \    'vimspectorBPCond':     12,
+  \    'vimspectorBPLog':      12,
+  \    'vimspectorBPDisabled': 11,
+  \    'vimspectorPC':         999,
+  \ }
+
+
 " Ranger
 let g:ranger_map_keys = 0       " Do not map keys
 let g:ranger_replace_netrw = 1  " Use Ranger when opening directories

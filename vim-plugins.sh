@@ -50,3 +50,6 @@ vim -u NONE -c "helptags vim-fugitive/doc" -c q
 
 print "Markdown preview"
 git clone git@github.com:iamcco/markdown-preview.vim.git
+
+print "Vimspector"
+git clone git@github.com:puremourning/vimspector.git
