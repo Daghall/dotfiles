@@ -73,6 +73,7 @@ nmap <silent> <Leader>b :Buffers<CR>
 nmap <silent> <Leader>a :Ag!<CR>
 nmap <silent> <Leader><Leader> :b#<CR>
 nmap <silent> <Leader>l :silent :execute "!tig blame " . shellescape(expand("%")) . " +" . line(".") <CR>:redraw!<CR>
+nmap <silent> <Leader>i :silent :execute "!realpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed 's/\.js$//' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
 nmap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
 
 command! -bang -nargs=? -complete=dir Files
