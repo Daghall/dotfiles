@@ -61,29 +61,11 @@ function co() {
   open "https://github.com/$repo/commit/$hash";
 }
 
-# Open on GitHub
-function gh() {
-  local repo;
-  if [[ $1 == "." ]]; then
-    repo=$(git config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1);
-  else
-    local dir=$(ls ~/git | fzf)
-    repo=$(git config --file ~/git/$dir/.git/config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1);
-  fi
-  open "https://github.com/$repo";
-}
-
 # Open pull request on GitHub
 function gpr() {
   local branch=$(git rev-parse --abbrev-ref HEAD);
   local repo=$(git config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1);
   open "https://github.com/$repo/compare/$branch?expand=1";
-}
-
-# Push branch to origin
-function gpu() {
-  local branch=$(git rev-parse --abbrev-ref HEAD);
-  git push --set-upstream origin $branch
 }
 
 # Tar helpers
@@ -96,15 +78,6 @@ alias tarzunball="tar -xvjf"
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-
-# Function: helper function for the "find" command, with grep-like param order
-function f() {
-	if [[ $2 == "" ]]; then
-		find . -name $1
-	else
-		find $2 -name $1
-	fi
-}
 
 # Function: UNIX timestamp to date
 function ts2date() {
@@ -126,14 +99,6 @@ function ts2date() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-
-# Fallback to npm command, if unknown command
-command_not_found_handle () {
-  if [[ $1 != "__git_complete" ]]; then
-    npx --no-install $@
-  fi
-}
 
 function cd {
   builtin cd "$@"
