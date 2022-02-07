@@ -22,8 +22,8 @@ set titlestring=%f%m\ %y\ b%n%a
 set smartcase
 set tabpagemax=50
 syntax enable
-highlight Search ctermbg=Yellow
 colorscheme desert
+highlight Search ctermbg=Yellow
 
 
 " Status line
@@ -110,6 +110,9 @@ inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " <C-@> is ctrl-space in Vim8
 imap <C-@> <Plug>(asyncomplete_force_refresh)
+"let g:asyncomplete_auto_popup = 0
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noinsert,noselect,preview
 
 
 " vimspector
