@@ -164,6 +164,7 @@ highlight! link SignColumn LineNr
 highlight GitGutterAdd    guifg=#00ff00 ctermfg=2
 highlight GitGutterChange guifg=#ffff00 ctermfg=3
 highlight GitGutterDelete guifg=#ff0000 ctermfg=1
+nmap <silent> <Leader>gq :GitGutterQuickFix<CR>:copen<CR>
 let g:gitgutter_sign_allow_clobber = 0
 let g:gitgutter_sign_priority = 9
 
