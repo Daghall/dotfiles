@@ -185,6 +185,9 @@ nmap <silent> <Leader>r :Ranger<CR>
 
 " MISCELLANEOUS
 
+" Open all TODOs in the quickfix window
+set grepprg=ag\ --nogroup\ --nocolor
+com TODO silent! grep TODO | cw | redraw!
 
 " Format JS/JSON with jq
 com -range JSON '<,'>!tr -d '\n' | xargs -0 printf "'\%s'" | xargs jq -n
