@@ -271,6 +271,20 @@ hi MatchParen cterm=none ctermbg=red ctermfg=black
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
+" Function to remove automagically created views
+function! DeleteFileView()
+    let path = fnamemodify(bufname("%"), ":p")
+    let path = substitute(path, "=", "==", "g")
+    if !empty($HOME)
+        let path = substitute(path, "^".$HOME, "\~", "")
+    endif
+    let path = substitute(path, "/", "=+", "g") . "="
+    let path = &viewdir . "/" . path
+    call delete(path)
+    echo "Deleted" path
+endfunction
+command Delview call DeleteFileView()
+
 " Spelling
 autocmd FileType markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
