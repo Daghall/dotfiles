@@ -104,8 +104,25 @@ command! -bang -nargs=* Ag
 " LSP
 nmap <silent> <Leader>d :LspDefinition<CR>
 nmap <silent> <Leader>R :LspRename<CR>
-nmap <silent> <Leader>e :LspDocumentDiagnostics<CR>
+nmap <silent> <Leader>E :LspDocumentDiagnostics<CR>
 nmap <silent> <Leader>w :LspHover<CR>
+" Settings: https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt
+let g:lsp_document_code_action_signs_enabled = 0
+let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_hover_conceal = 1
+let g:markdown_syntax_conceal = 1
+let g:markdown_fenced_languages = ["javascript"]
+set conceallevel=2
+let g:lsp_settings = {
+\   "typescript-language-server": {
+\     "workspace_config": {
+\       "diagnostics": {
+\         "ignoredCodes": [80001, 7016]
+\       }
+\     }
+\   }
+\ }
 
 " Autocomplete (C-j/C-K is bound to Down/up in BetterTouchTool
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
@@ -279,6 +296,8 @@ hi User1 ctermbg=black ctermfg=white
 hi User2 ctermbg=gray ctermfg=black
 hi User3 ctermbg=black ctermfg=yellow
 hi User4 ctermbg=black ctermfg=red
+hi Pmenu ctermbg=darkgray ctermfg=white
+hi PmenuSel ctermbg=Gray
 
 " No idea...
 if version >= 700
