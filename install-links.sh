@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
-for file in .bashrc .bash_profile .vimrc .gitconfig .tigrc; do
-  echo -n "Linking $file"
-  ln -s $(pwd)/$file ~/$file 2>/dev/null
+for file_destination in .bashrc .bash_profile .vimrc .gitconfig .tigrc .vim/bundle/vimspector/configurations/macos/_all/vimspector.json; do
+  filename=$(basename $file_destination)
+  echo -n "Linking $filename"
+  ln -s $(pwd)/$filename ~/$file_destination 2>/dev/null
+
   if [[ $? -ne 0 ]]; then
-    printf " (already exists)"
+    if [[ -f ~/$file_destination ]]; then
+      printf " (already exists)"
+    else
+      printf " (ERROR)"
+    fi
   fi
   echo ""
 done

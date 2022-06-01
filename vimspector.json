@@ -1,0 +1,42 @@
+{
+  "configurations": {
+    "Launch Program": {
+      "adapter": "vscode-node",
+      "configuration": {
+        "request": "launch",
+        "protocol": "auto",
+        "stopOnEntry": false,
+        "console": "integratedTerminal",
+        "program": "${cwd}/app.js",
+        "cwd": "${cwd}"
+      },
+      "breakpoints": {
+        "exception": {
+          "all": "N",
+          "uncaught": "Y"
+        }
+      }
+    },
+    "Mocha Current File": {
+      "adapter": "vscode-node",
+      "configuration": {
+        "request": "launch",
+        "protocol": "auto",
+        "stopOnEntry": false,
+        "console": "integratedTerminal",
+        "env": {
+          "NODE_OPTIONS": "--experimental-vm-modules --no-warnings"
+        },
+        "program": "${cwd}/node_modules/mocha/bin/_mocha",
+        "args": ["--timeout", "999999", "--colors", "--bail", "${file}"],
+        "cwd": "${cwd}"
+      },
+      "breakpoints": {
+        "exception": {
+          "all": "N",
+          "uncaught": "Y"
+        }
+      }
+    }
+  }
+}
