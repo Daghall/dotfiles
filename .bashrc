@@ -177,10 +177,5 @@ function nl2nl () {
   echo $str | sed 's#\\n#\'$'\n''#g'
 }
 
-# Rearange displays
-alias display_home='displayplacer "id:111A152E-C39C-C6F7-B8F8-7EEFADE8E03A res:1440x900 color_depth:8 scaling:on origin:(0,0) degree:0" "id:CDDB9073-6593-453D-6F87-A202FE1EFE6B res:2048x1152 hz:60 color_depth:8 scaling:off origin:(-2048,-148) degree:0"'
-alias display_work='displayplacer "id:111A152E-C39C-C6F7-B8F8-7EEFADE8E03A res:1440x900 color_depth:8 scaling:on origin:(0,0) degree:0" "id:D54C70FC-7B37-DF99-6923-29002DEAB776 res:2048x1152 hz:60 color_depth:8 scaling:off origin:(-305,-1152) degree:0"'
-
-
 # Local stuff
 source ~/.bashrc_local
