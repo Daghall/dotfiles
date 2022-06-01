@@ -256,6 +256,48 @@ map <F10> ]c
 map j gj
 map k gk
 
+" Speedy quick/location list handling
+nmap <silent><leader>j :call NextListItem()<CR>
+function NextListItem()
+  try
+    if IsQuickFixOpen()
+      cn
+    else
+      lnext
+    endif
+    norm zz
+  catch
+    echom "No more items (Bot)"
+  endtry
+endfunction
+
+nmap <silent><leader>k :call PrevListItem()<CR>
+function PrevListItem()
+  try
+    if IsQuickFixOpen()
+      cp
+    else
+      lprev
+    endif
+    norm zz
+  catch
+    echom "No more items (Top)"
+  endtry
+endfunction
+
+nmap <silent><leader>c :call CloseList()<CR>
+function CloseList()
+  if IsQuickFixOpen()
+    ccl
+  else
+    lcl
+  endif
+endfunction
+
+function IsQuickFixOpen()
+  return len(filter(getwininfo(), 'v:val.quickfix && !v:val.loclist')) != 0
+endfunction
+
 " Make ctrl-x/ctrl-a work with selection
 vmap <C-X> :g/./exe "norm \<C-X>"<CR>gv
 vmap <C-A> :g/./exe "norm \<C-A>"<CR>gv
