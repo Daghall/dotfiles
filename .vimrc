@@ -21,6 +21,7 @@ set ic
 set titlestring=%f%m\ %y\ b%n%a
 set smartcase
 set tabpagemax=50
+set updatetime=100
 syntax enable
 colorscheme desert
 highlight Search ctermbg=Yellow
