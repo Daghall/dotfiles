@@ -203,7 +203,7 @@ let project = system("pwd | cut -d \/ -f1-5 | tr '\n' '/'")
 let &path=".,".project."app/views/,".project."views/"
 
 " Fuzzy find relative path from current file to another, and print
-nmap <silent> <Leader>i :silent :execute "!realpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed 's/\.js$//' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
+nmap <silent> <Leader>i :silent :execute "!realpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed -E -e 's/\.js$//' -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
 
 " Open tig blame
 nmap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
