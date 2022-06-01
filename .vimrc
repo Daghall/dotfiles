@@ -79,7 +79,7 @@ nmap <silent> <Leader>ep :lprevious<CR>
 autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType conf setlocal commentstring=#\ %s
 autocmd FileType sh setlocal commentstring=#\ %s
-autocmd FileType vim setlocal commentstring="\ %s
+autocmd FileType vim setlocal commentstring=\"\ %s
 autocmd FileType php setlocal commentstring=#\ %s
 
 
