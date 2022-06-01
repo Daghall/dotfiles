@@ -59,3 +59,4 @@ git clone git@github.com:prabirshrestha/vim-lsp.git
 git clone git@github.com:mattn/vim-lsp-settings.git
 git clone git@github.com:prabirshrestha/asyncomplete.vim.git
 git clone git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
+git@github.com:preservim/vim-markdown.git

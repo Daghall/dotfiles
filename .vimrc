@@ -124,6 +124,12 @@ let g:lsp_settings = {
 \   }
 \ }
 
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
+" markdown-preview
+nmap <silent> <Leader>m :MarkdownPreview<CR>
+
 " Autocomplete (C-j/C-K is bound to Down/up in BetterTouchTool
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
