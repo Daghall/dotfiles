@@ -227,8 +227,16 @@ map <silent><F3> :set wrap!<CR>
 " Toggle case-sensitivity
 map <F4> :set ic!<CR>
 
-" Toggle line numbers
-map <silent><F5> :set number!<CR>
+" Toggle conceal level
+map <silent><F5> :call ToggleConcealLevel()<CR>
+
+function ToggleConcealLevel()
+  if (&conceallevel == 2)
+    set conceallevel=0
+  else
+    set conceallevel=2
+  endif
+endfunction
 
 " Toggle "list mode"
 map <silent><F6> :set list!<CR>
