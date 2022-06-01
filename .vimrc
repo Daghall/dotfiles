@@ -91,6 +91,7 @@ nmap <silent> <Leader>b :Buffers!<CR>
 nmap <silent> <Leader>h :HistoryFiles!<CR>
 nmap <silent> <Leader><Leader> :b#<CR>
 nmap <silent> <Leader>l :silent :execute "!tig blame " . shellescape(expand("%")) . " +" . line(".") <CR>:redraw!<CR>
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:50%', '?'), <bang>0)
