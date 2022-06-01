@@ -185,6 +185,9 @@ nmap <silent> <Leader>r :Ranger<CR>
 " MISCELLANEOUS
 
 
+" Format JS/JSON with jq
+com -range JSON '<,'>!tr -d '\n' | xargs -0 printf "'\%s'" | xargs jq -n
+
 " Highlight unwanted spacing
 highlight ExtraWhitespace ctermbg=red guibg=red
 au BufEnter * match ExtraWhitespace /\s\+$/
