@@ -33,6 +33,15 @@ bind status C !git commit -v
 
 # Add files using "intent to add"
 bind status n @git add -N %(file)
+
+# Vim-like bindings
+bind generic g  none
+bind generic gg move-first-line
+bind generic G  move-last-line
+bind generic w :view-next
+bind generic <C-w><C-w> view-next
+
+# Disable title refs and graph in main view
 set main-view-commit-title-refs = false
 set main-view-commit-title-graph = no
 set main-options = --max-parents=1
