@@ -30,6 +30,9 @@ set editor-line-number = true
 
 # Verbose commit
 bind status C !git commit -v
+
+# Add files using "intent to add"
+bind status n @git add -N %(file)
 set main-view-commit-title-refs = false
 set main-view-commit-title-graph = no
 set main-options = --max-parents=1
