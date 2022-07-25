@@ -27,6 +27,9 @@ bind generic V :show-version
 
 # Send line numbers to $EDITOR
 set editor-line-number = true
+
+# Verbose commit
+bind status C !git commit -v
 set main-view-commit-title-refs = false
 set main-view-commit-title-graph = no
 set main-options = --max-parents=1
