@@ -35,6 +35,7 @@ alias rc='source ~/.bash_profile'
 alias tailf='tail -f'
 alias docker-compose='docker-compose --env-file /dev/null'
 alias ocp='oc project $(oc projects -q | fzf)'
+alias nom='echo "😋 Om, nom, nom... 🤤"; npm'
 
 alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf)'
 alias g='cd ~/git/$(ls ~/git | fzf)'
