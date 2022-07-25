@@ -83,6 +83,8 @@ autocmd FileType conf setlocal commentstring=#\ %s
 autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType vim setlocal commentstring=\"\ %s
 autocmd FileType php setlocal commentstring=#\ %s
+autocmd FileType yaml setlocal commentstring=#\ %s
+autocmd FileType jinja setlocal commentstring={#\ %s\ #}
 
 
 " FZF
