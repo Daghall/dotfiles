@@ -46,7 +46,6 @@ set main-view-commit-title-refs = false
 set main-view-commit-title-graph = no
 set main-options = --max-parents=1
 
-
 # Custom date format
 set main-view-date = custom
 set main-view-date-format = "%F · %H:%M "
@@ -67,6 +66,11 @@ color "Author: "      default   default
 color "AuthorDate: "  default   default
 color "Commit: "      240       default         # Gray out committer info
 color "CommitDate: "  240       default         # Gray out committer info
+
+# Increase/decrease diff context
+bind generic - :toggle diff-context -1
+bind generic + :toggle diff-context +1
+
 # Reference:
 #   !	Run the command in the foreground with output shown.
 #   @	Run the command in the background with no output.
