@@ -34,6 +34,7 @@ alias dockerrmi='docker images -q | xargs -n 1 docker rmi -f'
 alias rc='source ~/.bash_profile'
 alias tailf='tail -f'
 alias docker-compose='docker-compose --env-file /dev/null'
+alias ocp='oc project $(oc projects -q | fzf)'
 # Generate a psuedo-UUID
 alias guid='node -p "[8, 4, 4, 4, 12].map(i => (Math.random()).toString(16).slice(-1 * i)).join(\"-\")"'
 
