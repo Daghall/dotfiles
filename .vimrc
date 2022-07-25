@@ -13,12 +13,12 @@ set incsearch
 set hlsearch
 set background=dark
 set nomore
-set title
 set wildmode=longest:list
 set mouse=a
 set number
 set ic
-set titlestring=%f%m\ %y\ b%n%a
+set title
+set titlestring=%f%m
 set smartcase
 set tabpagemax=50
 set updatetime=100
