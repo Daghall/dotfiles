@@ -98,11 +98,13 @@ nmap <silent> <Leader>l :silent :execute "!tig blame " . shellescape(expand("%")
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('right:50%', '?'), <bang>0)
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': '--cycle'}, 'right:50%', '?'), <bang>0)
+command! -bang -nargs=? -complete=dir Buffers
+  \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview({'options': '--cycle'}, 'right:50%', '?'), <bang>0)
 command! -bang -nargs=* HistoryFiles
-  \ call fzf#vim#history(fzf#vim#with_preview('right:50%', '?'), <bang>0)
+  \ call fzf#vim#history(fzf#vim#with_preview({'options': '--cycle'}, 'right:50%', '?'), <bang>0)
 command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 1 --tac'}, 'right:50%', '?'), <bang>1)
+  \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 1 --tac --cycle'}, 'right:50%', '?'), <bang>1)
 
 
 " LSP
