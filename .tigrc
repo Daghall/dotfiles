@@ -21,6 +21,12 @@ bind generic S :source ~/.tigrc
 # Refresh status view by pressing s
 bind status s :refresh
 
+# Less-like bindings
+bind generic v edit
+bind generic V :show-version
+
+# Send line numbers to $EDITOR
+set editor-line-number = true
 set main-view-commit-title-refs = false
 set main-view-commit-title-graph = no
 set main-options = --max-parents=1
