@@ -51,7 +51,7 @@ alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -
 alias g='cd ~/git/$(ls ~/git | fzf)'
 
 # Tig
-alias tigm='tig --max-parents=3'
+alias tigm='tig --max-parents=3 --graph'
 alias tigr='tig reflog'
 alias tigs='tig status'
 
