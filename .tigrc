@@ -18,7 +18,9 @@ bind blame <Ctrl-L> @sh -c "open https://github.com/$(git config --get remote.or
 bind generic S none
 bind generic S :source ~/.tigrc
 
-# Settings
+# Refresh status view by pressing s
+bind status s :refresh
+
 set main-view-commit-title-refs = false
 set main-view-commit-title-graph = no
 set main-options = --max-parents=1
