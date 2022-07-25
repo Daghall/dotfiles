@@ -23,6 +23,13 @@ set main-view-commit-title-refs = false
 set main-view-commit-title-graph = no
 set main-options = --max-parents=1
 
+
+# Custom date format
+set main-view-date = custom
+set main-view-date-format = "%F · %H:%M "
+set blame-view-date = custom
+set blame-view-date-format = "%F · %H:%M "
+
 # Reference:
 #   !	Run the command in the foreground with output shown.
 #   @	Run the command in the background with no output.
