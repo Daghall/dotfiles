@@ -53,6 +53,20 @@ set main-view-date-format = "%F · %H:%M "
 set blame-view-date = custom
 set blame-view-date-format = "%F · %H:%M "
 
+# Emulate git diff colors
+color diff-header     yellow    default   bold  # diff --git a/file b/file
+color diff-index      yellow    default   bold
+color diff-newmode    yellow    default   bold
+color diff-oldmode    yellow    default   bold
+color "---"           white     default         # Commit message and stat delimiter
+color "--- "          yellow    default   bold
+color "+++ "          yellow    default   bold
+color diff-chunk      cyan      default         # @@-stuff
+color diff-stat       default   default         # text after start of chunk
+color "Author: "      default   default
+color "AuthorDate: "  default   default
+color "Commit: "      240       default         # Gray out committer info
+color "CommitDate: "  240       default         # Gray out committer info
 # Reference:
 #   !	Run the command in the foreground with output shown.
 #   @	Run the command in the background with no output.
