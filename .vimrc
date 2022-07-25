@@ -105,6 +105,7 @@ command! -bang -nargs=* Ag
 
 " LSP
 nmap <silent> <Leader>d :LspDefinition<CR>
+nmap <silent> <Leader>D :LspPeekDefinition<CR>
 nmap <silent> <Leader>R :LspRename<CR>
 nmap <silent> <Leader>E :LspDocumentDiagnostics<CR>
 nmap <silent> <Leader>w :LspHover<CR>
