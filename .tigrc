@@ -12,7 +12,7 @@ bind generic 3 @sh -c "echo $(pbpaste)$(git show -s --format=%s %(commit)) | pb
 
 # Open the current file with the line number highlighted on GitHub
 # Tig interprets all # as a beginning of a comment, hence the xxd hack
-bind blame <Ctrl-L> @sh -c "open https://github.com/$(git config --get remote.origin.url | cut -d':' -f2 | cut -d'.' -f1)/blob/%(repo:head)/%(file)$(echo 23 | xxd -r -p)L%(lineno)"
+bind blame <Ctrl-L> @sh -c "open https://github.com/$(git config --get remote.origin.url | cut -d':' -f2 | cut -d'.' -f1)/blob/%(repo:head)/$(~/scripts/find-all-git-renames.sh %(file))$(echo 23 | xxd -r -p)L%(lineno)"
 
 # Reload ~/.tigrc when 'S' is pressed
 bind generic S none
