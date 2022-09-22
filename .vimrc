@@ -192,6 +192,9 @@ nmap <silent> <Leader>r :Ranger<CR>
 
 " MISCELLANEOUS
 
+" Reset filetype (hack to reactivate syntax highlighting)
+com Ftreset :let &ft=&ft
+
 " Open all TODOs in the quickfix window
 set grepprg=ag\ --nogroup\ --nocolor
 com TODO silent! grep TODO | cw | redraw!
