@@ -339,7 +339,9 @@ function! DeleteFileView()
     call delete(path)
     echo "Deleted" path
 endfunction
+
 command Delview call DeleteFileView()
+command Noq :noautocmd cq
 
 " Spelling
 autocmd FileType markdown setlocal spell
