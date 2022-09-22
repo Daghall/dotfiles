@@ -190,6 +190,28 @@ let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 nmap <silent> <Leader>r :Ranger<CR>
 
 
+" FOLDING
+
+set foldcolumn=3
+let foldinglevelstart=99
+set fillchars+=fold:\ ,foldsep:│,foldclose:>,foldopen:v
+set foldtext=Folding()
+
+function Folding()
+  let line = getline(v:foldstart)
+  if line =~# " Scenario"
+    let line = substitute(line, "(\"", ": ", "")
+    let line = substitute(line, "\",.*", "", "")
+    return line
+  endif
+
+  return substitute(line, "{$", "{…}", "")
+endfunction
+
+com FoldFunctions :exe "normal zE" | :g/\<function\>/ :normal $zf%za | :noh
+com FoldScenarios :exe "normal zE" | :g/ Scenario/ :normal zf% | :noh
+
+
 " MISCELLANEOUS
 
 " Reset filetype (hack to reactivate syntax highlighting)
