@@ -195,6 +195,10 @@ nmap <silent> <Leader>r :Ranger<CR>
 " Reset filetype (hack to reactivate syntax highlighting)
 com Ftreset :let &ft=&ft
 
+" Center search hits on screen
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 " Open all TODOs in the quickfix window
 set grepprg=ag\ --nogroup\ --nocolor
 com TODO silent! grep TODO | cw | redraw!
