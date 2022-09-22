@@ -55,8 +55,8 @@ alias gg='git grep'
 alias gst='git status'
 alias gdi='git di'
 alias gdis='git dis'
-alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf)'
-alias g='cd ~/git/$(ls ~/git | fzf)'
+alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf --cycle)'
+alias g='cd ~/git/$(ls ~/git | fzf --cycle)'
 
 # Tig
 alias tigm='tig --max-parents=3 --graph'
