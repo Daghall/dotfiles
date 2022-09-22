@@ -27,6 +27,6 @@
 [color]
 	ui = auto
 [diff]
-	noprefix = 1
+	mnemonicprefix = true
 [rerere]
 	enabled = true
