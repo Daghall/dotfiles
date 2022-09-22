@@ -36,9 +36,15 @@ alias tailf='tail -f'
 alias docker-compose='docker-compose --env-file /dev/null'
 alias ocp='oc project $(oc projects -q | fzf)'
 alias nom='echo "😋 Om, nom, nom... 🤤"; npm'
+alias twf='test_watch'
+alias tw='test_watch -b'
 
-alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf)'
-alias g='cd ~/git/$(ls ~/git | fzf)'
+function test_watch() {
+  clear;
+  echo -e "👀 \e[1mWatching... \e[0;30m‟Quis custodiet ipsos custodes?”\e[0m";
+  npm t -- $@
+  fswatch $(fd . -t d -d 1 -E logs -E public) --event Updated --one-per-batch | xargs -I _ npm t -- $@
+}
 
 # Generate a psuedo-UUID
 alias guid='node -p "[8, 4, 4, 4, 12].map(i => (Math.random()).toString(16).slice(-1 * i)).join(\"-\")"'
