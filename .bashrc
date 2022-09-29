@@ -111,6 +111,17 @@ function ts2date() {
 	gawk "BEGIN { printf(\"%s\n\", strftime(\"$format\", $ts)) }"
 }
 
+function ppwd () {
+  if [[ $# -ne 1 ]]; then
+    printf "Usage:\n  ppwd <program-name>\n";
+    return;
+  fi
+  for pid in $(pgrep $1); do
+    printf "$pid ";
+    lsof -p $pid | grep cwd | grep -o "/.*" | sed "s#$HOME#~#";
+  done
+}
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
