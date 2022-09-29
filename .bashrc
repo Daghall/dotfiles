@@ -44,7 +44,8 @@ function test_watch() {
   clear;
   echo -e "👀 \e[1mWatching... \e[0;30m‟Quis custodiet ipsos custodes?”\e[0m";
   npm t -- $@
-  fswatch $(fd . -t d -d 1 -E logs -E public) --event Updated --one-per-batch | xargs -I _ npm t -- $@
+  local dirs=$(printf "*.js\n%s\n" $(fd . -t d -E logs -E public -E node_modules));
+  fswatch $dirs --event Updated --one-per-batch | xargs -I _ npm t -- $@;
 }
 
 # Generate a psuedo-UUID
