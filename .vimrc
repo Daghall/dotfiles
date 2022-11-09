@@ -333,7 +333,7 @@ map <F8> :noh<CR>
 map <F9> [c
 map <F10> ]c
 
-" Make k/j, up/down traverse wrapped lines
+" Make k/j traverse wrapped lines
 map j gj
 map k gk
 
