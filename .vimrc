@@ -22,6 +22,7 @@ set titlestring=%f%m
 set smartcase
 set tabpagemax=50
 set updatetime=100
+set showcmd
 syntax enable
 colorscheme desert
 highlight Search ctermbg=Yellow
