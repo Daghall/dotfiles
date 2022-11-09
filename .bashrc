@@ -54,9 +54,12 @@ alias guid='node -p "[8, 4, 4, 4, 12].map(i => (Math.random()).toString(16).slic
 
 # Git stuff
 alias gg='git grep'
+alias ggl='GIT_PAGER=less git grep -l'
 alias gst='git status'
 alias gdi='git di'
+alias gds='git -c delta.side-by-side=true di'
 alias gdis='git dis'
+alias gdss='git -c delta.side-by-side=true dis'
 alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf --cycle)'
 alias g='cd ~/git/$(ls ~/git | fzf --cycle)'
 

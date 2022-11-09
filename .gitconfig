@@ -30,3 +30,14 @@
 	mnemonicprefix = true
 [rerere]
 	enabled = true
+[core]
+	pager = delta
+[delta]
+  line-numbers = true
+  navigate = true
+  color-moved = true
+  minus-style = "syntax #6c3434"
+  minus-emph-style = "syntax #952525"
+  plus-style = "syntax #346234"
+  plus-emph-style="syntax #259525"
+  plus-non-emph-style = "syntax #346234"
