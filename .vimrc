@@ -217,6 +217,9 @@ com FoldScenarios :exe "normal zE" | :g/ Scenario/ :normal zf% | :noh
 
 " MISCELLANEOUS
 
+" Remember English keyboard layout
+nnoremap Ö :echo "⚠️  Keyboard layout ⚠️"<CR>
+
 " Reset filetype (hack to reactivate syntax highlighting)
 com Ftreset :let &ft=&ft
 
