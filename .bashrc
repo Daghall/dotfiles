@@ -39,6 +39,7 @@ alias ocp='oc project $(oc projects -q | fzf)'
 alias nom='echo "😋 Om, nom, nom... 🤤"; npm'
 alias twf='test_watch'
 alias tw='test_watch -b'
+alias yk='~/scripts/yubikey-copy.sh'
 
 function test_watch() {
   clear;
