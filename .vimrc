@@ -219,6 +219,44 @@ com FoldScenarios :exe "normal zE" | :g/ Scenario/ :normal zf% | :noh
 " Reset filetype (hack to reactivate syntax highlighting)
 com Ftreset :let &ft=&ft
 
+" Toggle booleans
+nnoremap <silent> <Leader>a :call ToggleBoolean()<CR>
+
+function ToggleBoolean()
+  let l:toggleHash = {
+  \  "no": "yes",
+  \  "yes": "no",
+  \  "on": "off",
+  \  "off": "on",
+  \  "true": "false",
+  \  "false": "true",
+  \}
+  let cursor_pos = getpos(".")
+  let under_cursor = expand("<cword>")
+  let cursor_char = nr2char(strgetchar(getline("."), col(".") - 1))
+
+  " Set 'curswant' to make vertical movement after toggling work
+  call add(cursor_pos, col("."))
+
+  if !has_key(l:toggleHash, under_cursor)
+      echo "Cannot toggle '" .. under_cursor .. "'"
+    return
+  endif
+
+  " Jump to first character in matching toggle string
+  if cursor_char !~? "[a-z]"
+    let jump_to = nr2char(strgetchar(under_cursor, 0))
+    keepjumps execute ":normal f" .. jump_to
+  endif
+
+  " Toggle!
+  let substitution = l:toggleHash[under_cursor]
+  keepjumps execute ":normal ciw" .. substitution
+
+  " Jump back to previous cursor position
+  call setpos(".", cursor_pos)
+endfunction
+
 " Center search hits on screen
 nnoremap n nzzzv
 nnoremap N Nzzzv
