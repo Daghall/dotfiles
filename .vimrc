@@ -202,9 +202,9 @@ set foldtext=Folding()
 
 function Folding()
   let line = getline(v:foldstart)
-  if line =~# " Scenario"
-    let line = substitute(line, "(\"", ": ", "")
-    let line = substitute(line, "\",.*", "", "")
+  if line =~# "\\v(Scenario|describe|context|it|Given|When|Then|And|But)[.(]"
+    let line = substitute(line, "([\"'`]", ": ", "")
+    let line = substitute(line, "[\"'`],.*", "", "")
     return line
   endif
 
@@ -212,7 +212,7 @@ function Folding()
 endfunction
 
 com FoldFunctions :exe "normal zE" | :g/\<function\>/ :normal $zf%za | :noh
-com FoldScenarios :exe "normal zE" | :g/ Scenario/ :normal zf% | :noh
+com FoldScenarios :exe "normal zE" | :g/\(Scenario\|^describe\)[.(]/ :normal zf% | :noh
 
 
 " MISCELLANEOUS
