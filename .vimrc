@@ -63,6 +63,8 @@ let g:syntastic_javascript_eslint_args = ['--fix']
 let g:syntastic_cpp_compiler_options = " -std=c++11 -stdlib=libc++"
 au VimEnter *.js au BufWritePost *.js checktime
 au CursorHold *.js checktime
+autocmd BufWritePre *.js  call execute('LspCodeActionSync source.fixAll.ts')
+autocmd BufWritePre *.ts  call execute('LspCodeActionSync source.fixAll.ts')
 nnoremap <silent> <Leader>f :checktime<CR>
 set autoread
 set statusline+=%#warningmsg#
