@@ -186,10 +186,11 @@ let g:gitgutter_sign_priority = 9
 
 
 " Ranger
-let g:ranger_map_keys = 0       " Do not map keys
-let g:ranger_replace_netrw = 1  " Use Ranger when opening directories
 let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
-nmap <silent> <Leader>r :Ranger<CR>
+let g:ranger_map_keys = 0       " Do not map default keys
+let g:ranger_replace_netrw = 1  " Use Ranger when opening directories
+command! -bang Bclose :bd       " Required to use as netrw replacement
+nnoremap <silent> <Leader>r :Ranger<CR>
 
 
 " FOLDING
