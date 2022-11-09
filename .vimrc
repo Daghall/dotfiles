@@ -113,11 +113,14 @@ command! -bang -nargs=* Agi
 
 
 " LSP
+nmap <silent> K :LspHover<CR>
 nmap <silent> <Leader>d :LspDefinition<CR>
 nmap <silent> <Leader>D :LspPeekDefinition<CR>
 nmap <silent> <Leader>R :LspRename<CR>
 nmap <silent> <Leader>E :LspDocumentDiagnostics<CR>
 nmap <silent> <Leader>w :LspHover<CR>
+nmap <silent> <leader>A :LspCodeAction<CR>
+
 " Settings: https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt
 let g:lsp_document_code_action_signs_enabled = 0
 let g:lsp_diagnostics_float_cursor = 1
@@ -164,9 +167,10 @@ nmap <Leader>dk <Plug>VimspectorStepOut
 nmap <Leader>dr <Plug>VimspectorRestart
 nmap <silent> <Leader>de :call vimspector#Reset()<CR>
 nmap <Leader>db <Plug>VimspectorToggleBreakpoint :echom "Toggle breakpoint"<CR>
-nmap <silent> <Leader>dbb :call vimspector#ListBreakpoints()<CR>
-nmap <silent> <Leader>dbc :call vimspector#ClearBreakpoints()<CR>
+nmap <silent> <Leader>dB :call vimspector#ListBreakpoints()<CR>
+nmap <silent> <Leader>dC :call vimspector#ClearBreakpoints()<CR>
 nmap <silent> <Leader>di <Plug>VimspectorBalloonEval
+source ~/git/dotfiles/vimspector-bindings.vim
 
 let g:vimspector_sign_priority = {
   \    'vimspectorBP':         13,
