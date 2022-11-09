@@ -237,7 +237,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace //
 
 " Help "Open file under cursor" understand file names without suffix
-set suffixesadd=.js,.json,.hbs
+set suffixesadd=.js,.json,.hbs,.ts
 
 " Add common paths to help locating files
 let project = system("pwd | cut -d \/ -f1-5 | tr '\n' '/'")
