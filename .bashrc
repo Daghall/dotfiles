@@ -40,6 +40,7 @@ alias nom='echo "😋 Om, nom, nom... 🤤"; npm'
 alias twf='test_watch'
 alias tw='test_watch -b'
 alias yk='~/scripts/yubikey-copy.sh'
+alias ep='pbpaste | node ~/scripts/nord-pool.js SE3'
 
 function test_watch() {
   clear;
