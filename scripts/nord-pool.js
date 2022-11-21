@@ -2,16 +2,23 @@
 
 const fs = require("fs");
 const STDIN_FD = 0;
+const VAT_FACTOR = 1.25;
 
 try {
-  printZone(process.argv[2]);
+  const argv = process.argv.slice(2);
+  printZone(...argv);
 } catch ({message}) {
   process.stderr.write(`${message}\n`);
   process.exitCode = 1;
 }
 
-function printZone(zoneName) {
+function printZone(zoneName, fromRate, toRate) {
   const {date, zones} = parseData();
+
+  if (zoneName === "-l") {
+    process.stdout.write(Object.keys(zones).concat("").join("\n"));
+    return;
+  }
   const zone = zones[zoneName];
 
   if (!zone) {
@@ -19,12 +26,25 @@ function printZone(zoneName) {
   }
   const minTime = Object.entries(zone.times).find(([ , price ]) => price === zone.min).shift();
   const maxTime = Object.entries(zone.times).find(([ , price ]) => price === zone.max).shift();
+  const minPrice = reformatPrice(zone.min, 9);
+  const maxPrice = reformatPrice(zone.max, 9);
+  const averagePrice = reformatPrice(zone.average, 16);
 
-  process.stdout.write(`Date: ${date.split("-").reverse().join("-")}\n`);
+  process.stdout.write(`Date: ${flipDate(date)}\n`);
   process.stdout.write(`Zone: ${zoneName}\n`);
-  process.stdout.write(`Min:  ${minTime}${zone.min.padStart(9, " ")} EUR/MWh\n`);
-  process.stdout.write(`Max:  ${maxTime}${zone.max.padStart(9, " ")} EUR/MWh\n`);
-  process.stdout.write(`Avg:  ${zone.average.padStart(16, " ")} EUR/MWh\n`);
+  process.stdout.write(`Min:  ${minTime}${minPrice}\n`);
+  process.stdout.write(`Max:  ${maxTime}${maxPrice}\n`);
+  process.stdout.write(`Avg:  ${averagePrice}\n`);
+
+  function reformatPrice(price, padding) {
+    const usd = parseInt(price.replace(",", "")) / parseFloat(fromRate);
+    const cents = usd * parseFloat(toRate) / 1000 * VAT_FACTOR;
+    return `${cents.toFixed(0).padStart(padding, " ")} öre/kWh`;
+  }
+}
+
+function flipDate(date) {
+  return date.split("-").reverse().join("-");
 }
 
 function parseData() {

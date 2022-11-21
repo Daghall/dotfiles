@@ -40,7 +40,7 @@ alias nom='echo "😋 Om, nom, nom... 🤤"; npm'
 alias twf='test_watch'
 alias tw='test_watch -b'
 alias yk='~/scripts/yubikey-copy.sh'
-alias ep='pbpaste | node ~/scripts/nord-pool.js SE3'
+alias ep='~/scripts/nord-pool.sh'
 
 function test_watch() {
   clear;
@@ -101,7 +101,7 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# Function: UNIX timestamp to date
+# UNIX timestamp to date
 function ts2date() {
 	local format="%F %R"
 
@@ -116,6 +116,7 @@ function ts2date() {
 
 	gawk "BEGIN { printf(\"%s\n\", strftime(\"$format\", $ts)) }"
 }
+export -f ts2date
 
 function ppwd () {
   if [[ $# -ne 1 ]]; then
