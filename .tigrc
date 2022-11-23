@@ -34,6 +34,9 @@ bind status C !git commit -v
 # Add files using "intent to add"
 bind status n @git add -N %(file)
 
+# Filter main view on prompted author
+bind main a :set main-options = --max-parents=1 --author="%(prompt Filter on author: )"
+
 # Vim-like bindings
 bind generic g  none
 bind generic gg move-first-line
