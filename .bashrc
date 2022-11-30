@@ -41,6 +41,7 @@ alias twf='test_watch'
 alias tw='test_watch -b'
 alias yk='~/scripts/yubikey-copy.sh'
 alias ep='~/scripts/nord-pool.sh'
+alias rtf='~/scripts/run-till-fail.sh'
 
 function test_watch() {
   clear;
