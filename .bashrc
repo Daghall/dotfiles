@@ -106,23 +106,7 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# UNIX timestamp to date
-function ts2date() {
-	local format="%F %R"
-
-	case $# in
-		2 )
-			format=$2 ;&
-		1 )
-			ts=$1 ;;
-		0 )
-			read ts ;;
-	esac
-
-	gawk "BEGIN { printf(\"%s\n\", strftime(\"$format\", $ts)) }"
-}
-export -f ts2date
-
+# Print working directories for a given executable
 function ppwd () {
   if [[ $# -ne 1 ]]; then
     printf "Usage:\n  ppwd <program-name>\n";
@@ -213,6 +197,9 @@ function nl2nl () {
   fi
   echo $str | sed 's#\\n#\'$'\n''#g'
 }
+
+# Functions
+source ~/scripts/bash_functions.sh
 
 # Local stuff
 source ~/.bashrc_local
