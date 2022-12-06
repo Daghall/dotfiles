@@ -3,6 +3,7 @@
 	email = markus@daghall.se
 [push]
 	default = current
+	followTags = true
 [alias]
 	st = status
 	ci = commit
