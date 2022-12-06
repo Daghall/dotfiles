@@ -42,6 +42,7 @@ alias twf='test_watch'
 alias tw='test_watch -b'
 alias yk='~/scripts/yubikey-copy.sh'
 alias ep='~/scripts/nord-pool.sh'
+alias v='vim'
 alias rtf='~/scripts/run-till-fail.sh'
 alias runstats='~/scripts/run-stats.sh'
 
