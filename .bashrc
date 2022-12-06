@@ -137,7 +137,7 @@ function cd {
 
   # Update iTerm2's tab title
   if [[ $TERM_PROGRAM == "iTerm.app" ]]; then
-    echo -ne "\033]0;$(pwd | awk -F '/' '{print $NF}' | sed "s/$(whoami)/~/")\007"
+    echo -ne "\033]0;$(pwd | sed -e "s#/Users/$(whoami)#~#" -e 's#~/git/##')\007"
   fi
 }
 
