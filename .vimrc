@@ -288,6 +288,26 @@ endfunction
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+" Surround
+nnoremap S( lbi(<ESC>ea)<ESC>
+nnoremap S) lbi(<ESC>ea)<ESC>
+nnoremap S{ lbi{<ESC>ea}<ESC>
+nnoremap S} lbi{<ESC>ea}<ESC>
+nnoremap S" lbi"<ESC>ea"<ESC>
+vnoremap S( :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
+vnoremap S) :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
+vnoremap S{ :s/\%V.*\%V./{&}/<CR>`< :noh<CR>
+vnoremap S} :s/\%V.*\%V./{&}/<CR>`< :noh<CR>
+vnoremap S" :s/\%V.*\%V./"&"/<CR>`< :noh<CR>
+
+" Un-surround
+nnoremap SD( lF(xf)x
+nnoremap SD) hF(xf)x
+nnoremap SD{ lF{xf}x
+nnoremap SD} hF{xf}x
+nnoremap SD" hf"xF"x
+vnoremap SD :s/\%V.\(.*\)\%V./\1/<CR>`< :noh<CR>
+
 " Open all TODOs in the quickfix window
 set grepprg=ag\ --nogroup\ --nocolor
 com TODO silent! grep TODO | cw | redraw!
