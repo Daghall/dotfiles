@@ -208,7 +208,7 @@ set foldtext=Folding()
 
 function Folding()
   let line = getline(v:foldstart)
-  if line =~# "\\v(Scenario|describe|context|it|Given|When|Then|And|But)[.(]"
+  if line =~# "\\v\s(Scenario|describe|context|it|Given|When|Then|And|But)[.(]"
     let line = substitute(line, "([\"'`]", ": ", "")
     let line = substitute(line, "[\"'`],.*", "", "")
     return line
@@ -217,8 +217,25 @@ function Folding()
   return substitute(line, "{$", "{…}", "")
 endfunction
 
-com FoldFunctions :exe "normal zE" | :g/\<function\>/ :normal $zf%za | :noh
-com FoldScenarios :exe "normal zE" | :g/\(Scenario\|^describe\)[.(]/ :normal zf% | :noh
+nnoremap <Leader>ff :call FoldFunctions()<CR>
+nnoremap <Leader>fs :call FoldScenarios()<CR>
+nnoremap <Leader>fc :call FoldClass()<CR>
+
+function FoldFunctions()
+  exec "normal zE"
+  g/\<function\>/ :normal $zf%za
+endfunction
+
+function FoldScenarios()
+  exec "normal zE"
+  g/\s\(Scenario\|^describe\)[.(]/ :normal zf%
+endfunction
+
+function FoldClass()
+  exec "normal zE"
+  g/\v\s+[a-z0-9#_]+\([^)]*\) \{/ :normal $zf%
+  g/ static.*{$/ :normal $zf%
+endfunction
 
 
 " MISCELLANEOUS
