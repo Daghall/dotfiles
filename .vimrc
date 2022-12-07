@@ -469,11 +469,11 @@ com Ftjs set ft=javascript
 xnoremap <leader>s :!sed 's/{ /{/' \| sort -df<CR>
 
 " Copy/paste helper
-xnoremap <leader>y "ay
-nnoremap <leader>y "ay
-nnoremap <leader>yy "ayy
-xnoremap <leader>p "ap
-nnoremap <leader>p "ap
+xnoremap <leader>y "*y
+nnoremap <leader>y "*y
+nnoremap <leader>yy "*yy
+xnoremap <leader>p "*p
+nnoremap <leader>p "*p
 
 " Pretty colors
 hi User1 ctermbg=black ctermfg=white
