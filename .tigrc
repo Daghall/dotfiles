@@ -28,8 +28,11 @@ bind generic V :show-version
 # Send line numbers to $EDITOR
 set editor-line-number = true
 
-# Verbose commit
-bind status C !git commit -v
+# Regular commit
+bind status C >git commit
+
+# Amend commit
+bind status A >git commit --amend
 
 # Add files using "intent to add"
 bind status n @git add -N %(file)
