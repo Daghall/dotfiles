@@ -321,6 +321,10 @@ nmap <silent> <Leader>q :bd<CR>
 " Insert blank line bellow cursor
 nmap <Leader> o
 
+" Open a terminal
+nnoremap <Leader>T :terminal ++close<CR>
+nnoremap <Leader>Tn :terminal ++close node<CR>
+
 " Search for the visually selected string
 vmap * "oy/\V<C-R>o<CR>
 vmap # "oy?\V<C-R>o<CR>
