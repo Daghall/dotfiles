@@ -167,6 +167,7 @@ nmap <Leader>dk <Plug>VimspectorStepOut
 nmap <Leader>dr <Plug>VimspectorRestart
 nmap <silent> <Leader>de :call vimspector#Reset()<CR>
 nmap <Leader>db <Plug>VimspectorToggleBreakpoint :echom "Toggle breakpoint"<CR>
+nmap <Leader>dq <Plug>VimspectorToggleConditionalBreakpoint<CR>
 nmap <silent> <Leader>dB :call vimspector#ListBreakpoints()<CR>
 nmap <silent> <Leader>dC :call vimspector#ClearBreakpoints()<CR>
 nmap <silent> <Leader>di <Plug>VimspectorBalloonEval
