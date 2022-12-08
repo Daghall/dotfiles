@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
-for file_destination in .bashrc .bash_profile .vimrc .gitconfig .tigrc .vim/bundle/vimspector/configurations/macos/_all/vimspector.json; do
+for file_destination in \
+  .bashrc \
+  .bash_profile \
+  .vimrc \
+  .gitconfig \
+  .tigrc \
+  .vim/bundle/vimspector/configurations/macos/_all/vimspector.json \
+; do
   filename=$(basename $file_destination)
   echo -n "Linking $filename"
   ln -s $(pwd)/$filename ~/$file_destination 2>/dev/null
