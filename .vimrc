@@ -218,28 +218,31 @@ function Folding()
   return substitute(line, "{$", "{…}", "")
 endfunction
 
-nnoremap <Leader>ff :call FoldFunctions()<CR>
-nnoremap <Leader>fs :call FoldScenarios()<CR>
-nnoremap <Leader>fc :call FoldClass()<CR>
+nnoremap <silent> <Leader>ff :call FoldFunctions()<CR>
+nnoremap <silent> <Leader>fs :call FoldScenarios()<CR>
+nnoremap <silent> <Leader>fc :call FoldClass()<CR>
 
 function FoldFunctions()
-  exec "normal zE"
+  execute "normal zE"
   g/\<function\>/ :normal $zf%za
 endfunction
 
 function FoldScenarios()
-  exec "normal zE"
+  execute "normal zE"
   g/\s\(Scenario\|^describe\)[.(]/ :normal zf%
 endfunction
 
 function FoldClass()
-  exec "normal zE"
-  g/\v\s+[a-z0-9#_]+\([^)]*\) \{/ :normal $zf%
-  g/ static.*{$/ :normal $zf%
+  execute "normal zE"
+  g/\v^\s+[a-z0-9#_]+\([^)]*\) \{/ :normal $zf%
+  silent g/ static.*{$/ :normal $zf%
 endfunction
 
 
 " MISCELLANEOUS
+
+" Toggle relative row numbers
+nnoremap <Leader>n :set relativenumber!<CR>
 
 " Remember English keyboard layout
 nnoremap Ö :echo "⚠️  Keyboard layout ⚠️"<CR>
