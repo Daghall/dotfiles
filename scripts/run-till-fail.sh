@@ -2,7 +2,6 @@
 
 stats() {
   printf "Succesful runs: %d\n" $successful_runs;
-  exit 0
 }
 
 trap stats SIGINT
