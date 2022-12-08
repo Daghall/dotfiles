@@ -195,7 +195,7 @@ function nl2nl () {
   else
     read -r str;
   fi
-  echo $str | sed 's#\\n#\'$'\n''#g'
+  echo $str | sed -e's#\\n#\'$'\n''#g' -e 's#\\"#"#g'
 }
 
 # Functions
