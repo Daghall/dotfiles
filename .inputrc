@@ -1,0 +1,13 @@
+set show-mode-in-prompt on
+set vi-ins-mode-string " "
+set vi-cmd-mode-string "*"
+set emacs-mode-string ""
+
+set keymap emacs
+"\ee": vi-editing-mode
+
+set keymap vi-insert
+"\ee": emacs-editing-mode
+
+set keymap vi-command
+"\ee": emacs-editing-mode
