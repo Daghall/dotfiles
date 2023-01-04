@@ -198,6 +198,11 @@ function nl2nl () {
   echo $str | sed -e's#\\n#\'$'\n''#g' -e 's#\\"#"#g'
 }
 
+source ~/git/dotfiles/scripts/git-prompt.sh
+
+# Set PS1
+export PS1="[\[\e[33m\]\A\[\e[0m\]] \[\e[33m\]\$(__git_ps1 '·%s· ')\[\033[32m\]\W\[\e[0m\]$ "
+
 # Functions
 source ~/scripts/bash_functions.sh
 
