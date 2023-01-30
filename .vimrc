@@ -67,11 +67,16 @@ let g:snipMate = { 'snippet_version' : 1 }
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_javascript_eslint_exec = "eslint_d"
 let g:syntastic_javascript_eslint_args = ['--fix']
+let g:syntastic_javascriptreact_checkers = ["javascript/eslint"]
+let g:syntastic_javascriptreact_eslint_exec = "eslint_d"
+let g:syntastic_javascriptreact_eslint_args = ["--fix"]
 let g:syntastic_cpp_compiler_options = " -std=c++11 -stdlib=libc++"
-au VimEnter *.js au BufWritePost *.js checktime
-au CursorHold *.js checktime
-autocmd BufWritePre *.js  call execute('LspCodeActionSync source.fixAll.ts')
-autocmd BufWritePre *.ts  call execute('LspCodeActionSync source.fixAll.ts')
+autocmd VimEnter *.js autocmd BufWritePost *.js checktime
+autocmd CursorHold *.js checktime
+autocmd VimEnter *.jsx autocmd BufWritePost *.jsx checktime
+autocmd CursorHold *.jsx checktime
+autocmd BufWritePre *.js call execute('LspCodeActionSync source.fixAll.ts')
+autocmd BufWritePre *.ts call execute('LspCodeActionSync source.fixAll.ts')
 nnoremap <silent> <Leader>f :checktime<CR>
 set autoread
 set statusline+=%#warningmsg#
