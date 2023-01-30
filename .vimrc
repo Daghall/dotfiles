@@ -354,8 +354,27 @@ nmap <silent> <Leader>i :silent :execute "!realpath --relative-to " . shellescap
 nmap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
 nmap <silent> <Leader>l :silent :execute "!tig blame " . shellescape(expand("%")) . " +" . line(".") <CR>:redraw!<CR>
 
-" Quickly delete buffer
-nmap <silent> <Leader>q :bd<CR>
+" Delete buffer. Quit if no more open buffers {{{1
+nnoremap <silent> <Leader>q :call CloseOrQuit()<CR>
+function CloseOrQuit()
+  " let first_buffer = 1
+  " let last_buffer = bufnr('$')
+  " let unnamed_and_listed_buffers = filter(range(first_buffer, last_buffer), 'empty(bufname(v:val)) && buflisted(v:val)')
+  let current_buffer = bufnr()
+
+  " if len(unnamed_and_listed_buffers) == 1
+  try
+    if empty(bufname(current_buffer))
+      :q
+    else
+      :bd
+    endif
+  catch
+    echohl WarningMsg | echo "Unable to close, unsaved buffer? Try :cq" | echohl none
+  endtry
+endfunction
+
+nnoremap <silent> <Leader>w :w<CR>
 
 " Insert blank line bellow cursor
 nmap <Leader> o
