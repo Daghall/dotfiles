@@ -151,6 +151,10 @@ let g:lsp_settings = {
 \   }
 \ }
 
+" Logging
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
+
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
 
