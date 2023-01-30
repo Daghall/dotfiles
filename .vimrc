@@ -1,3 +1,6 @@
+" vi: fdm=marker
+
+" General settings {{{1
 set showmode
 set hidden
 set nocompatible
@@ -28,42 +31,42 @@ colorscheme desert
 highlight Search ctermbg=Yellow
 
 
-" Colors for vimdiff
+" Colors for vimdiff {{{1
 highlight DiffAdd      ctermfg=Green     ctermbg=NONE
 highlight DiffChange   ctermfg=None      ctermbg=Black
 highlight DiffDelete   ctermfg=Red       ctermbg=NONE
 highlight DiffText     ctermfg=Yellow    ctermbg=Black
 
 
-" Status line
+" Status line {{{1
 set laststatus=2
 set statusline=%2*\ %n\ %1*\ %t\ %M%R%H%W%=%3*\ %F\ %4*\ %y\ %1*\ %5l:%-4c%2*%4P\ 
 
 
-" Follow the leader
+" Follow the leader {{{1
 let mapleader = " "
 
 
-" Swap files and backups
+" Swap files and backups {{{1
 set directory:~/.vim/swapfiles//
 set backupdir:~/.vim/backup//
 
 
-" White space rendering (tab:▸\ ,trail:·,eol:¬,nbsp:_)
+" White space rendering (tab:▸\ ,trail:·,eol:¬,nbsp:_) {{{1
 set lcs=tab:▸\ ,trail:·,nbsp:_
-
+"}}}
 
 " PLUGINS
 
-" Bootstrap plugins
+" Bootstrap plugins {{{1
 execute pathogen#infect()
 
 
-" Force snippet version 1
+" Force snippet version 1 {{{1
 let g:snipMate = { 'snippet_version' : 1 }
 
 
-" Syntastic
+" Syntastic {{{1
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_javascript_eslint_exec = "eslint_d"
 let g:syntastic_javascript_eslint_args = ['--fix']
@@ -92,7 +95,7 @@ nmap <silent> <Leader>en :lnext<CR>
 nmap <silent> <Leader>ep :lprevious<CR>
 
 
-" Comments
+" Comments {{{1
 autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType conf setlocal commentstring=#\ %s
 autocmd FileType gitconfig setlocal commentstring=#\ %s
@@ -103,7 +106,7 @@ autocmd FileType yaml setlocal commentstring=#\ %s
 autocmd FileType jinja setlocal commentstring={#\ %s\ #}
 
 
-" FZF
+" FZF {{{1
 set rtp+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git --exclude node_modules'
 nmap <silent> <Leader>t :Files!<CR>
@@ -124,7 +127,7 @@ command! -bang -nargs=* Agi
   \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4 --tac --cycle'}, 'right:50%', '?'), <bang>1)
 
 
-" LSP
+" LSP {{{1
 nmap <silent> K :LspHover<CR>
 nmap <silent> <Leader>d :LspDefinition<CR>
 nmap <silent> <Leader>D :LspPeekDefinition<CR>
@@ -155,27 +158,26 @@ let g:lsp_settings = {
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = expand('~/vim-lsp.log')
 
-" vim-markdown
+" vim-markdown {{{1
 let g:vim_markdown_folding_disabled = 1
 
-" markdown-preview
+" markdown-preview {{{1
 nmap <silent> <Leader>m :MarkdownPreview<CR>
 
-" Completion: Cycling
+" Completion: Cycling {{{1
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
-" Completion: force refres (<C-@> is ctrl-space in Vim 8)
+" Completion: force refres (<C-@> is ctrl-space in Vim 8) {{{1
 imap <C-@> <Plug>(asyncomplete_force_refresh)
-"let g:asyncomplete_auto_popup = 0
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,noselect,preview
 
 
-" vimspector
+" vimspector {{{1
 nmap <Leader>dd <Plug>VimspectorLaunch
 nmap <Leader>dc <Plug>VimspectorContinue
 nmap <Leader>dl <Plug>VimspectorStepInto
@@ -199,7 +201,7 @@ let g:vimspector_sign_priority = {
   \ }
 
 
-" git-gutter
+" git-gutter {{{1
 highlight! link SignColumn LineNr
 highlight GitGutterAdd    guifg=#00ff00 ctermfg=2
 highlight GitGutterChange guifg=#ffff00 ctermfg=3
@@ -209,7 +211,7 @@ let g:gitgutter_sign_allow_clobber = 0
 let g:gitgutter_sign_priority = 9
 
 
-" Ranger
+" Ranger {{{1
 let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 let g:ranger_map_keys = 0       " Do not map default keys
 let g:ranger_replace_netrw = 1  " Use Ranger when opening directories
@@ -217,7 +219,7 @@ command! -bang Bclose :bd       " Required to use as netrw replacement
 nnoremap <silent> <Leader>r :Ranger<CR>
 
 
-" FOLDING
+" FOLDING {{{1
 
 set foldcolumn=3
 let foldinglevelstart=99
@@ -232,7 +234,10 @@ function Folding()
     return line
   endif
 
-  return substitute(line, "{$", "{…}", "")
+  let line = substitute(line, "{$", "{…}", "")
+  let line = substitute(line, "[$", "[…]", "")
+  let line = substitute(line, "[0-9]$", "", "")
+  return line
 endfunction
 
 nnoremap <silent> <Leader>ff :call FoldFunctions()<CR>
@@ -258,16 +263,16 @@ endfunction
 
 " MISCELLANEOUS
 
-" Toggle relative row numbers
+" Toggle relative row numbers {{{1
 nnoremap <Leader>n :set relativenumber!<CR>
 
-" Remember English keyboard layout
+" Remember English keyboard layout {{{1
 nnoremap Ö :echo "⚠️  Keyboard layout ⚠️"<CR>
 
-" Reset filetype (hack to reactivate syntax highlighting)
+" Reset filetype (hack to reactivate syntax highlighting) {{{1
 com Ftreset :let &ft=&ft
 
-" Toggle booleans
+" Toggle booleans {{{1
 nnoremap <silent> <Leader>a :call ToggleBoolean()<CR>
 
 function ToggleBoolean()
@@ -305,11 +310,11 @@ function ToggleBoolean()
   call setpos(".", cursor_pos)
 endfunction
 
-" Center search hits on screen
+" Center search hits on screen {{{1
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" Surround
+" Surround {{{1
 nnoremap S( lbi(<ESC>ea)<ESC>
 nnoremap S) lbi(<ESC>ea)<ESC>
 nnoremap S{ lbi{<ESC>ea}<ESC>
@@ -323,7 +328,7 @@ vnoremap S{ :s/\%V.*\%V./{&}/<CR>`< :noh<CR>
 vnoremap S} :s/\%V.*\%V./{&}/<CR>`< :noh<CR>
 vnoremap S" :s/\%V.*\%V./"&"/<CR>`< :noh<CR>
 
-" Un-surround
+" Un-surround {{{1
 nnoremap SD( lF(xf)x
 nnoremap SD) hF(xf)x
 nnoremap SD{ lF{xf}x
@@ -331,30 +336,30 @@ nnoremap SD} hF{xf}x
 nnoremap SD" hf"xF"x
 vnoremap SD :s/\%V.\(.*\)\%V./\1/<CR>`< :noh<CR>
 
-" Open all TODOs in the quickfix window
+" Open all TODOs in the quickfix window {{{1
 set grepprg=ag\ --nogroup\ --nocolor
 com TODO silent! grep TODO | cw | redraw!
 
-" Format JS/JSON with jq
+" Format JS/JSON with jq {{{1
 com -range JSON '<,'>!tr -d '\n' | xargs -0 printf "'\%s'" | xargs jq -n
 
-" Highlight unwanted spacing
+" Highlight unwanted spacing {{{1
 highlight ExtraWhitespace ctermbg=red guibg=red
 au BufEnter * match ExtraWhitespace /\s\+$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace //
 
-" Help "Open file under cursor" understand file names without suffix
+" Help "Open file under cursor" understand file names without suffix {{{1
 set suffixesadd=.js,.json,.hbs,.ts
 
-" Add common paths to help locating files
+" Add common paths to help locating files {{{1
 let project = system("pwd | cut -d \/ -f1-5 | tr '\n' '/'")
 let &path=".,".project."app/views/,".project."views/"
 
-" Fuzzy find relative path from current file to another, and print
+" Fuzzy find relative path from current file to another, and print {{{1
 nmap <silent> <Leader>i :silent :execute "!realpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed -E -e 's/\.js$//' -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
 
-" Open tig log and blame, respectively
+" Open tig log and blame, respectively {{{1
 nmap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
 nmap <silent> <Leader>l :silent :execute "!tig blame " . shellescape(expand("%")) . " +" . line(".") <CR>:redraw!<CR>
 
@@ -380,16 +385,19 @@ endfunction
 
 nnoremap <silent> <Leader>w :w<CR>
 
-" Insert blank line bellow cursor
+" Insert blank line below cursor {{{1
 nmap <Leader> o
 
-" Open a terminal
+" Open a terminal {{{1
 nnoremap <silent> <Leader>TT :terminal ++close<CR>
 nnoremap <silent> <Leader>Tn :terminal ++close node<CR>
 
-" Search for the visually selected string
+" Search for the visually selected string {{{1
 vmap * "oy/\V<C-R>o<CR>
 vmap # "oy?\V<C-R>o<CR>
+
+
+" F-KEYS BINDINGS {{{1
 
 " Prev/next tab
 map <F1> gT
@@ -429,7 +437,7 @@ map <F10> ]c
 map j gj
 map k gk
 
-" Speedy quick/location list handling
+" Speedy quick/location list handling {{{1
 nmap <silent><leader>j :call NextListItem()<CR>
 function NextListItem()
   try
@@ -471,22 +479,22 @@ function IsQuickFixOpen()
   return len(filter(getwininfo(), 'v:val.quickfix && !v:val.loclist')) != 0
 endfunction
 
-" Make ctrl-x/ctrl-a work with selection
+" Make ctrl-x/ctrl-a work with selection {{{1
 vmap <C-X> :g/./exe "norm \<C-X>"<CR>gv
 vmap <C-A> :g/./exe "norm \<C-A>"<CR>gv
 
-" Easy tab moving
+" Easy tab moving {{{1
 map <silent><C-L> :tabm +<CR>
 map <silent><C-H> :tabm -<CR>
 
-" Parenthesis matching
+" Parenthesis matching {{{1
 hi MatchParen cterm=none ctermbg=red ctermfg=black
 
-" Store folds and other view related stuff
+" Store folds and other view related stuff {{{1
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
-" Function to remove automagically created views
+" Function to remove automagically created views {{{1
 function! DeleteFileView()
     let path = fnamemodify(bufname("%"), ":p")
     let path = substitute(path, "=", "==", "g")
@@ -502,7 +510,7 @@ endfunction
 command Delview call DeleteFileView()
 command Noq :noautocmd cq
 
-" Spelling
+" Spelling {{{1
 autocmd FileType markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
 autocmd FileType vim setlocal spell
@@ -510,14 +518,14 @@ autocmd FileType javascript setlocal spell
 set spelllang=en,sv
 set spellsuggest=fast,20
 
-" Session handling
+" Session handling {{{1
 com Save mksession! ~/.session.vim
 com Load source ~/.session.vim
 
-" Marko syntax highlighting
+" Marko syntax highlighting {{{1
 autocmd BufNewFile,BufRead *.marko set filetype=html
 
-" Fat fingers syndrome
+" Fat fingers syndrome {{{1
 com W w
 com Q q
 com Wq wq
@@ -528,20 +536,20 @@ com Wa wa
 com WA wa
 com Cq cq
 
-" Quickly reset filetype when lost due to swap file collision
+" Quickly reset filetype when lost due to swap file collision {{{1
 com Ftjs set ft=javascript
 
-" Sort in dictionary order, ignoring case
+" Sort in dictionary order, ignoring case {{{1
 xnoremap <leader>s :!sed 's/{ /{/' \| sort -df<CR>
 
-" Copy/paste helper
+" Copy/paste helper {{{1
 xnoremap <leader>y "*y
 nnoremap <leader>y "*y
 nnoremap <leader>yy "*yy
 xnoremap <leader>p "*p
 nnoremap <leader>p "*p
 
-" Pretty colors
+" Pretty colors {{{1
 hi User1 ctermbg=black ctermfg=white
 hi User2 ctermbg=gray ctermfg=black
 hi User3 ctermbg=black ctermfg=yellow
@@ -549,7 +557,7 @@ hi User4 ctermbg=black ctermfg=red
 hi Pmenu ctermbg=darkgray ctermfg=white
 hi PmenuSel ctermbg=Gray
 
-" No idea...
+" No idea... {{{1
 if version >= 700
 	set nofsync
 endif
