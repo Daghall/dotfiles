@@ -310,6 +310,8 @@ nnoremap S( lbi(<ESC>ea)<ESC>
 nnoremap S) lbi(<ESC>ea)<ESC>
 nnoremap S{ lbi{<ESC>ea}<ESC>
 nnoremap S} lbi{<ESC>ea}<ESC>
+nnoremap S[ lbi[<ESC>ea]<ESC>
+nnoremap S] lbi[<ESC>ea]<ESC>
 nnoremap S" lbi"<ESC>ea"<ESC>
 vnoremap S( :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
 vnoremap S) :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
