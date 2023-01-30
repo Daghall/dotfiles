@@ -157,13 +157,14 @@ let g:vim_markdown_folding_disabled = 1
 " markdown-preview
 nmap <silent> <Leader>m :MarkdownPreview<CR>
 
-" Autocomplete (C-j/C-K is bound to Down/up in BetterTouchTool
-inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
-inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<C-j>"
+" Completion: Cycling
+inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <C-k>   pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-" <C-@> is ctrl-space in Vim8
+inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+
+" Completion: force refres (<C-@> is ctrl-space in Vim 8)
 imap <C-@> <Plug>(asyncomplete_force_refresh)
 "let g:asyncomplete_auto_popup = 0
 let g:asyncomplete_auto_completeopt = 0
