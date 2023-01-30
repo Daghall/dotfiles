@@ -380,8 +380,8 @@ nnoremap <silent> <Leader>w :w<CR>
 nmap <Leader> o
 
 " Open a terminal
-nnoremap <Leader>T :terminal ++close<CR>
-nnoremap <Leader>Tn :terminal ++close node<CR>
+nnoremap <silent> <Leader>TT :terminal ++close<CR>
+nnoremap <silent> <Leader>Tn :terminal ++close node<CR>
 
 " Search for the visually selected string
 vmap * "oy/\V<C-R>o<CR>
