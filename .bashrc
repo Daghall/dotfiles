@@ -118,6 +118,139 @@ function ppwd () {
   done
 }
 
+# GitHub pull-request TUI
+function gpr() {
+  local state_template='
+    {{- $state := .reviewDecision -}}
+    {{- if not $state -}}
+      {{- if .isDraft -}}
+        {{- $state = "DRAFT" -}}
+      {{- else -}}
+        {{- $state = .state -}}
+      {{- end -}}
+    {{- end -}}'
+
+  local list_template='
+    {{- range . -}}
+      '$state_template'
+      {{- .number -}}{{"\t"}}
+      {{- $state -}}{{"\t"}}
+      {{- .title}}{{"\t"}}
+      {{- .headRefName}}{{"\t"}}
+      {{- timeago .updatedAt}}{{"\t"}}
+      {{- .mergeable}}{{"\n"}}
+    {{- end}}'
+
+  local view_template='
+  '$state_template'
+    {{- .title -}}{{"\t"}}
+    {{- $state -}}
+    {{"\t"}}
+    {{- .headRefName -}}{{"\t"}}
+    {{- if .author.name -}}
+      {{- .author.name -}}
+    {{- else -}}
+      {{- .author.login -}}
+    {{- end -}}
+    {{"\t"}}
+    {{- .mergeable -}}{{"\t"}}
+    {{- .body}}'
+
+  FZF_DEFAULT_COMMAND="
+    gh pr list \
+      --state open \
+      --json number,title,isDraft,mergeable,state,reviewDecision,headRefName,updatedAt \
+      --template '$list_template' | \
+      awk -F '\t' ' \
+      { \
+        for (i = 1; i <= NF; ++i) { \
+          max[i] = length(\$i) > max[i] ? length(\$i) : max[i]; \
+          data[FNR][i] = \$i; \
+        } \
+      } \
+      END { \
+        while (NR > 0) { \
+          id_color = 32; \
+          status = 0; \
+          switch (data[NR][2]) { \
+            case \"DRAFT\": \
+              id_color = 30; \
+              status = 30; \
+              break; \
+            case \"APPROVED\": \
+              id_color = 32; \
+              status = 32; \
+              break; \
+            case \"CHANGES_REQUESTED\": \
+              id_color = 31; \
+              status = 31; \
+              break; \
+          } \
+          printf(\"\\033[%dm%*d  \\033[%dm%s\\033[31m%-*s\\033[0m  %-*s  \\033[33m%-*s  \\033[30m%-*s\n\", \
+            id_color, \
+            max[1], data[NR][1], \
+            status, \
+            data[NR][2], \
+            max[2] - length(data[NR][2]), data[NR][6] != \"MERGEABLE\" ? \"*\" : \"\", \
+            max[3], data[NR][3], \
+            max[4], data[NR][4], \
+            max[5], data[NR][5] \
+          ); \
+          --NR; \
+        } \
+      }' \
+    " \
+  fzf \
+    --ansi \
+    --layout reverse-list \
+    --print-query \
+    --bind 'R:execute(gh pr review {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
+    --bind 'X:execute(gh pr close {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
+    --bind 'M:execute(gh pr merge {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
+    --bind 'C:execute(gh pr checkout {1})+abort' \
+    --bind 'W:execute-silent(gh pr view {1} -w)' \
+    --bind 'j:down' \
+    --bind 'k:up' \
+    --bind 'q:close' \
+    --bind 'Q:abort' \
+    --bind 'ctrl-r:reload(eval "$FZF_DEFAULT_COMMAND")' \
+    --bind 'ctrl-e:preview-down' \
+    --bind 'ctrl-y:preview-up' \
+    --bind 'enter:toggle-preview' \
+    --disabled \
+    --bind='change:clear-query' \
+    --prompt '' \
+    --no-info \
+    --preview-window hidden \
+    --preview "gh pr view {1} --json title,isDraft,mergeable,reviewDecision,state,author,body,headRefName --template '$view_template' | \
+      awk -F'\t' ' \
+        {
+          if (FNR == 1) { \
+            switch (\$2) { \
+              case \"DRAFT\": \
+                status = 30; \
+                break; \
+              case \"APPROVED\": \
+                status = 32; \
+                break; \
+              case \"CHANGES_REQUESTED\": \
+                status = 31; \
+                break; \
+            } \
+            printf(\"\\033[33mTitle\\033[0m   %s\n\\033[33mStatus  \\033[%dm%s %s\n\\033[33mBranch  \\033[0m%s\n\\033[33mAuthor  \\033[0m%s\n\n\", \
+            \$1, \
+            status,
+            \$2, \
+            \$5 != \"MERGEABLE\" ? \"\\033[31m(conflicting)\" : \"\",
+            \$3, \
+            \$4); \
+        } else { \
+          print \$0;
+        } \
+      } \
+    ' | less -R"
+}
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
