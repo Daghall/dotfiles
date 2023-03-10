@@ -341,6 +341,10 @@ nnoremap SD} hF{xf}x
 nnoremap SD" hf"xF"x
 vnoremap SD :s/\%V.\(.*\)\%V./\1/<CR>`< :noh<CR>
 
+" camelCase <-> SNAKE_CASE {{{1
+nnoremap <leader>CC :normal viw<CR> :s/\%V./\l&/g<CR> `< :s/\%V_\(.\)/\u\1/g<CR>`< :noh<CR>
+nnoremap <leader>CS :normal viw<CR> :s/\%V[A-Z]/_&/g<CR> `< :s//\U&/g<CR> `< :noh<CR>
+
 " Open all TODOs in the quickfix window {{{1
 set grepprg=ag\ --nogroup\ --nocolor
 com TODO silent! grep TODO | cw | redraw!
