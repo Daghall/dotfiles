@@ -40,6 +40,10 @@ highlight DiffText     ctermfg=Yellow    ctermbg=Black
 
 " Status line {{{1
 set laststatus=2
+autocmd VimEnter * highlight User1 ctermfg=15 ctermbg=242
+autocmd VimEnter * highlight User2 ctermfg=0 ctermbg=248
+autocmd VimEnter * highlight User3 ctermfg=11 ctermbg=242
+autocmd VimEnter * highlight User4 ctermfg=9 ctermbg=242
 set statusline=%2*\ %n\ %1*\ %t\ %M%R%H%W%=%3*\ %F\ %4*\ %y\ %1*\ %5l:%-4c%2*%4P\ 
 
 
