@@ -23,7 +23,7 @@ successful_runs=0
 failed_runs=0
 
 while true; do
-  $@
+  "$@"
 
   if [[ $? -eq 0 ]]; then
     successful_runs=$(($successful_runs + 1))
