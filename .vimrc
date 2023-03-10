@@ -129,8 +129,8 @@ command! -bang -nargs=* Agi
 
 " LSP {{{1
 nmap <silent> K :LspHover<CR>
-nmap <silent> <Leader>d :LspDefinition<CR>
-nmap <silent> <Leader>D :LspPeekDefinition<CR>
+nmap <silent> gd :LspDefinition<CR>
+nmap <silent> gD :LspPeekDefinition<CR>
 nmap <silent> <Leader>R :LspRename<CR>
 nmap <silent> <Leader>E :LspDocumentDiagnostics<CR>
 nmap <silent> <Leader>w :LspHover<CR>
