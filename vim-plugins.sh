@@ -21,6 +21,9 @@ git clone git://github.com/wavded/vim-stylus.git
 print "Jinja"
 git clone git://github.com/lepture/vim-jinja.git
 
+print "JavaScript"
+git clone https://github.com/jelera/vim-javascript-syntax.git
+
 ## PLUGINS
 
 print "Ranger"
