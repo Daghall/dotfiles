@@ -5,6 +5,8 @@
 # that file, by stepping through its git history,
 # in reverse
 
+source ~/scripts/bash_functions.sh
+
 filename=$1
 new_filename=$1
 
