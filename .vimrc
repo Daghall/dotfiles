@@ -108,7 +108,7 @@ autocmd FileType vim setlocal commentstring=\"\ %s
 autocmd FileType php setlocal commentstring=#\ %s
 autocmd FileType yaml setlocal commentstring=#\ %s
 autocmd FileType jinja setlocal commentstring={#\ %s\ #}
-
+autocmd FileType scss setlocal commentstring=//\ %s
 
 " FZF {{{1
 set rtp+=/usr/local/opt/fzf
