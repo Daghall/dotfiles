@@ -275,6 +275,7 @@ nnoremap Ö :echo "⚠️  Keyboard layout ⚠️"<CR>
 
 " Reset filetype (hack to reactivate syntax highlighting) {{{1
 com Ftreset :let &ft=&ft
+autocmd VimResized * :Ftreset
 
 " Toggle booleans {{{1
 nnoremap <silent> <Leader>a :call ToggleBoolean()<CR>
