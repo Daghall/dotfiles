@@ -351,7 +351,17 @@ function nl2nl () {
 source ~/git/dotfiles/scripts/git-prompt.sh
 
 # Set PS1
-export PS1="[\[\e[33m\]\A\[\e[0m\]] \[\e[33m\]\$(__git_ps1 '·%s· ')\[\033[32m\]\W\[\e[0m\]$ "
+export PROMPT_COMMAND=__prompt_command
+
+__prompt_command() {
+  local exit_code=$?
+  local exit_code_string
+
+  if [[ $exit_code -ne 0 ]]; then
+    exit_code_string="\[\e[31m\]·${exit_code}·\[\e[0m\] "
+  fi
+  PS1="[\[\e[33m\]\A\[\e[0m\]] $exit_code_string\[\e[33m\]\$(__git_ps1 '·%s· ')\[\e[32m\]\W\[\e[0m\]\$ "
+}
 
 # Functions
 source ~/scripts/bash_functions.sh
