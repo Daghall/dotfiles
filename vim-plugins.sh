@@ -24,6 +24,9 @@ git clone git://github.com/lepture/vim-jinja.git
 print "JavaScript"
 git clone https://github.com/jelera/vim-javascript-syntax.git
 
+print "Terraform"
+git clone git@github.com:hashivim/vim-terraform.git
+
 ## PLUGINS
 
 print "Ranger"
