@@ -88,13 +88,6 @@ function co() {
   open "https://github.com/$repo/commit/$hash";
 }
 
-# Open pull request on GitHub
-function gpr() {
-  local branch=$(git rev-parse --abbrev-ref HEAD);
-  local repo=$(git config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1);
-  open "https://github.com/$repo/compare/$branch?expand=1";
-}
-
 # Tar helpers
 alias tarball="tar -cvf"
 alias tarunball="tar -xvf"
@@ -156,9 +149,14 @@ function gpr() {
     {{- .mergeable -}}{{"\t"}}
     {{- .body}}'
 
+    local state=$1
+    if ! [[ $1 =~ ^(open|closed|merged|all)$ ]]; then
+      state="open"
+    fi
+
   FZF_DEFAULT_COMMAND="
     gh pr list \
-      --state open \
+      --state $state \
       --json number,title,isDraft,mergeable,state,reviewDecision,headRefName,updatedAt \
       --template '$list_template' | \
       awk -F '\t' ' \
@@ -174,7 +172,7 @@ function gpr() {
           status = 0; \
           switch (data[NR][2]) { \
             case \"DRAFT\": \
-              id_color = 30; \
+              id_color = 29; \
               status = 30; \
               break; \
             case \"APPROVED\": \
@@ -186,12 +184,13 @@ function gpr() {
               status = 31; \
               break; \
           } \
-          printf(\"\\033[%dm%*d  \\033[%dm%s\\033[31m%-*s\\033[0m  %-*s  \\033[33m%-*s  \\033[30m%-*s\n\", \
+          printf(\"\\033[%dm%*d  \\033[%dm%s\\033[31m%-*s\\033[0m%-*s  \\033[33m%-*s  \\033[30m%-*s\n\", \
             id_color, \
             max[1], data[NR][1], \
             status, \
             data[NR][2], \
-            max[2] - length(data[NR][2]), data[NR][6] != \"MERGEABLE\" ? \"*\" : \"\", \
+            max[2] + 2 - length(data[NR][2]),
+            data[NR][6] == \"CONFLICTING\" ? \"* \" : \"  \", \
             max[3], data[NR][3], \
             max[4], data[NR][4], \
             max[5], data[NR][5] \
@@ -203,7 +202,9 @@ function gpr() {
   fzf \
     --ansi \
     --layout reverse-list \
-    --print-query \
+    --tac \
+    --exit-0 \
+    --header "Viewing $state pull-requests" \
     --bind 'R:execute(gh pr review {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
     --bind 'X:execute(gh pr close {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
     --bind 'M:execute(gh pr merge {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
@@ -241,7 +242,7 @@ function gpr() {
             \$1, \
             status,
             \$2, \
-            \$5 != \"MERGEABLE\" ? \"\\033[31m(conflicting)\" : \"\",
+            \$5 == \"CONFLICTING\" ? \"\\033[31m(conflicting)\" : \"\",
             \$3, \
             \$4); \
         } else { \
@@ -249,8 +250,23 @@ function gpr() {
         } \
       } \
     ' | less -R"
+
+    if [[ $? -eq 1 ]]; then
+      echo $state | awk '{ printf("No %spull-requests found\n", $1 == "all" ? "" : $1 " ") }'
+      return 1
+    fi
 }
 
+function _gpr_complete() {
+  local length=${#COMP_WORDS[@]}
+  local last=${COMP_WORDS[-1]}
+
+  if [[ $length -eq 2 ]]; then
+    COMPREPLY=($(compgen -W "open closed merged all" -- $last))
+  fi
+}
+
+complete -F _gpr_complete gpr
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
