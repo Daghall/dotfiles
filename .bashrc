@@ -63,7 +63,7 @@ alias guid='node -p "[8, 4, 4, 4, 12].map(i => (Math.random()).toString(16).slic
 alias gg='git grep'
 alias ggl='GIT_PAGER=less git grep -l'
 alias gst='git status'
-alias gdi='git di'
+alias gdi='git diff -- ":!package-lock.json"'
 alias gds='git -c delta.side-by-side=true di'
 alias gdis='git dis'
 alias gdss='git -c delta.side-by-side=true dis'
