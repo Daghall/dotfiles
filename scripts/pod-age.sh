@@ -17,7 +17,7 @@ while true; do
   echo "";
   oc get pods | grep $project | while read line; do
     if [[ $line =~ [0-9] ]]; then
-      printf "%s – %13s\n" \
+      printf "%-23s – %13s\n" \
         $(echo $line | awk '{ print $1 }') \
         $(echo $line | awk '{ print $NF }' | normalize_time)
     fi
