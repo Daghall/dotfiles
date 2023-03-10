@@ -5,6 +5,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
 export PAGER=less
+export BAT_THEME=desert
 
 # Remove the annoying echoing of ^C when hitting CTRL-C
 if [[ $- == *i* ]]
