@@ -5,6 +5,7 @@
 	default = current
 	followTags = true
 [alias]
+	an = add -N
 	st = status
 	ci = commit
 	co = checkout
