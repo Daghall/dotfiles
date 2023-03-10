@@ -39,9 +39,9 @@ alias docker-compose='docker-compose --env-file /dev/null'
 alias podage='~/scripts/pod-age.sh'
 alias ocp='oc project $(oc projects -q | fzf)'
 alias nom='echo "😋 Om, nom, nom... 🤤"; npm'
-alias tw='test_watch t -- -b'
-alias twf='test_watch t'
-alias twe='test_watch run test:e2e -- -b'
+alias tw='test_watch npm t -- -b'
+alias twf='test_watch npm t'
+alias twe='test_watch npm run test:e2e -- -b'
 alias yk='~/scripts/yubikey-copy.sh'
 alias ep='~/scripts/nord-pool.sh'
 alias v='vim'
@@ -51,9 +51,9 @@ alias runstats='~/scripts/run-stats.sh'
 function test_watch() {
   clear;
   echo -e "👀 \e[1mWatching... \e[0;30m‟Quis custodiet ipsos custodes?”\e[0m";
-  npm "$@"
-  local dirs=$(printf "*.js\n%s\n" $(fd . -t d -E logs -E public -E node_modules));
-  fswatch $dirs --event Updated --one-per-batch | xargs -I _ npm "$@";
+  "$@"
+  local dirs=$(fd . -t d -E logs -E public -E node_modules);
+  fswatch $dirs -e .*\.log --event Updated --one-per-batch | xargs -I _ "$@";
 }
 
 # Generate a psuedo-UUID
