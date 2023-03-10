@@ -6,6 +6,7 @@ for file_destination in \
   .vimrc \
   .gitconfig \
   .tigrc \
+  .inputrc \
   .vim/bundle/vimspector/configurations/macos/_all/vimspector.json \
 ; do
   filename=$(basename $file_destination)
