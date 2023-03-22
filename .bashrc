@@ -48,6 +48,29 @@ alias v='vim'
 alias rtf='~/scripts/run-till-fail.sh'
 alias runstats='~/scripts/run-stats.sh'
 
+# Use fzf to search for command arguments and replace the command line
+function replace_command() {
+  case $READLINE_LINE in
+    "nr")
+      if [[ ! -e package.json ]]; then
+        printf "\e[33mpackage.json\e[0m not found\n"
+        return
+      fi
+      READLINE_LINE="npm run $(jq ".scripts | keys | .[]" -r < package.json | fzf --prompt 'npm run ')"
+      ;;
+    "te")
+      if [[ ! -d test/e2e ]]; then
+        printf "\e[34mtest/e2e\e[0m not found\n"
+        return
+      fi
+      READLINE_LINE="npm run test:e2e -- -g \"$(git grep Feature test/e2e/ | cut -d\" -f2 | fzf --prompt 'run e2e test: ')\""
+      ;;
+  esac
+
+  READLINE_POINT=${#READLINE_LINE}
+}
+bind -x '"\C-n": replace_command'
+
 function test_watch() {
   clear;
   echo -e "👀 \e[1mWatching... \e[0;30m‟Quis custodiet ipsos custodes?”\e[0m";
