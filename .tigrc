@@ -40,6 +40,9 @@ bind status n @git add -N %(file)
 # Filter main view on prompted author
 bind main a :set main-options = --max-parents=1 --author="%(prompt Filter on author: )"
 
+# Interactive rebase from selected commit
+bind main R >git rebase -i %(commit)~
+
 # Check out branch of the selected main view item
 bind main C >git checkout %(branch)
 
