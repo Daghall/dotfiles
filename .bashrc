@@ -138,12 +138,13 @@ function ppwd () {
 # GitHub pull-request TUI
 function gpr() {
   local state_template='
-    {{- $state := .reviewDecision -}}
-    {{- if not $state -}}
-      {{- if .isDraft -}}
-        {{- $state = "DRAFT" -}}
-      {{- else -}}
-        {{- $state = .state -}}
+    {{- $state := "" -}}
+    {{- if .isDraft -}}
+      {{- $state = "DRAFT" -}}
+    {{- else -}}
+      {{- $state = .reviewDecision -}}
+      {{- if not $state -}}
+          {{- $state = .state -}}
       {{- end -}}
     {{- end -}}'
 
@@ -196,7 +197,7 @@ function gpr() {
           status = 0; \
           switch (data[NR][2]) { \
             case \"DRAFT\": \
-              id_color = 29; \
+              id_color = 30; \
               status = 30; \
               break; \
             case \"APPROVED\": \
@@ -232,6 +233,7 @@ function gpr() {
     --bind 'R:execute(gh pr review {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
     --bind 'X:execute(gh pr close {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
     --bind 'M:execute(gh pr merge {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
+    --bind 'D:execute(gh pr ready {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
     --bind 'C:execute(gh pr checkout {1})+abort' \
     --bind 'W:execute-silent(gh pr view {1} -w)' \
     --bind 'j:down' \
