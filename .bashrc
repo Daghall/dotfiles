@@ -37,7 +37,7 @@ alias tailf='tail -f'
 alias tl='tail -f logs/test.log'
 alias docker-compose='docker-compose --env-file /dev/null'
 alias podage='~/scripts/pod-age.sh'
-alias ocp='oc project $(oc projects -q | fzf)'
+alias ocp='oc project $(oc projects -q | fzf --prompt "switch project: ")'
 alias nom='echo "😋 Om, nom, nom... 🤤"; npm'
 alias tw='test_watch npm t -- -b'
 alias twf='test_watch npm t'
@@ -90,16 +90,13 @@ alias gdi='git diff -- ":!package-lock.json"'
 alias gds='git -c delta.side-by-side=true di'
 alias gdis='git dis'
 alias gdss='git -c delta.side-by-side=true dis'
-alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf --cycle)'
-alias g='cd ~/git/$(ls ~/git | fzf --cycle)'
+alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" | sort -u | fzf --cycle  --prompt "checkout branch: ")'
+alias g='cd ~/git/$(ls ~/git | fzf --cycle --prompt "select git project: ")'
 
 # Tig
 alias tigm='tig --max-parents=3 --graph'
 alias tigr='tig reflog'
 alias tigs='tig status'
-
-# OpenShift Client
-alias ocp='oc project $(oc projects -q | fzf)'
 
 # Open commit on GitHub
 function co() {
