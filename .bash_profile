@@ -12,3 +12,5 @@ if [ -f '/Users/markus.daghall/Downloads/google-cloud-sdk/path.bash.inc' ]; then
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/markus.daghall/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/markus.daghall/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+complete -C /usr/local/bin/terraform terraform
