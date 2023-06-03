@@ -384,6 +384,35 @@ au BufEnter * match ExtraWhitespace /\s\+$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace //
 
+" Matching helper {{{1
+function Match(number, visual_mode)
+
+  " Visual mode? (`mode()` is always 'n', so this is ugly, but works...)
+  if (a:visual_mode)
+    let [ line_number, start_column ] = getpos("'<")[1:2]
+    let end_column = getpos("'>")[2]
+    let line = getline(line_number)
+    let highlight_string = line[start_column - 1:end_column - 1]
+  else
+    " Default to word under cursor
+    let highlight_string = expand("<cword>")
+  endif
+
+  execute ":" .. a:number .. "match User" .. (a:number ? a:number : "1") .. " /" .. highlight_string .. "/"
+  echomsg "Highlighting \"" .. highlight_string .. "\" (" .. (a:number ? a:number : "1") .. ")"
+endfunction
+
+noremap <Leader>mm :call Match("", v:false)<CR>
+noremap <Leader>m1 :call Match("", v:false)<CR>
+noremap <Leader>m2 :call Match(2, v:false)<CR>
+noremap <Leader>m3 :call Match(3, v:false)<CR>
+xnoremap <Leader>mm :call Match("", v:true)<CR>
+xnoremap <Leader>m1 :call Match("", v:true)<CR>
+xnoremap <Leader>m2 :call Match(2, v:true)<CR>
+xnoremap <Leader>m3 :call Match(3, v:true)<CR>
+
+command Matchoff :match | :2match | :3match
+
 " Help "Open file under cursor" understand file names without suffix {{{1
 set suffixesadd=.js,.json,.hbs,.ts
 
