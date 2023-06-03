@@ -2,6 +2,7 @@ set show-all-if-ambiguous on
 set menu-complete-display-prefix on
 set completion-ignore-case off
 set colored-completion-prefix on
+set blink-matching-paren on
 set show-mode-in-prompt on
 set vi-ins-mode-string " "
 set vi-cmd-mode-string "*"
