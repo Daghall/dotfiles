@@ -51,6 +51,7 @@ set statusline+=\ %M        " Modified flag
 set statusline+=%R          " Read only flag
 set statusline+=%H          " Help buffer flag
 set statusline+=%W          " Preview window flag
+set statusline+=\ %3*%{NearestMethodOrFunction()}
 set statusline+=%=          " Separation between left and right alignment
 set statusline+=\ %F     " Full path of file in the buffer
 set statusline+=\ %4*\ %y   " File type
@@ -236,6 +237,24 @@ let g:ranger_replace_netrw = 1  " Use Ranger when opening directories
 command! -bang Bclose :bd       " Required to use as netrw replacement
 nnoremap <silent> <Leader>r :Ranger<CR>
 
+" Vista – outline {{{1
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+autocmd FileType vista,vista_kind nnoremap <buffer> <silent> / :<c-u>call vista#finder#fzf#Run()<CR>
+
+let g:vista#renderer#enable_icon = 1
+let g:vista_keep_fzf_colors = 1
+
+nnoremap <silent> <Leader>/ :call vista#finder#fzf#Run()<CR>
+nnoremap <silent> <Leader>o :Vista!!<CR>
+
+function! NearestMethodOrFunction() abort
+  let name = get(b:, "vista_nearest_method_or_function", "")
+  if name != ""
+    return " ƒ " .. name
+  endif
+  return ""
+endfunction
+"}}}
 
 " MISCELLANEOUS
 
