@@ -229,6 +229,9 @@ nmap <silent> <Leader>gq :GitGutterQuickFix<CR>:copen<CR>
 let g:gitgutter_sign_allow_clobber = 0
 let g:gitgutter_sign_priority = 9
 
+" Terraform {{{1
+let g:terraform_fmt_on_save = 1
+
 
 " Ranger {{{1
 let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
