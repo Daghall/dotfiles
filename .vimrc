@@ -582,6 +582,7 @@ autocmd FileType vim setlocal spell
 autocmd FileType javascript setlocal spell
 set spelllang=en,sv
 set spellsuggest=fast,20
+set spelloptions=camel
 
 " Session handling {{{1
 com Save mksession! ~/.session.vim
