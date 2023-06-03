@@ -304,6 +304,8 @@ autocmd VimResized * :Ftreset
 " Toggle booleans {{{1
 nnoremap <silent> <Leader>a :call ToggleBoolean()<CR>
 
+command Only :norm wi.onlyO// eslint-disable-next-line no-only-tests/no-only-tests
+
 function ToggleBoolean()
   let l:toggleHash = {
   \  "no": "yes",
