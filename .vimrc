@@ -124,7 +124,7 @@ autocmd FileType scss setlocal commentstring=//\ %s
 
 " FZF {{{1
 set rtp+=/usr/local/opt/fzf
-let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git --exclude node_modules'
+let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git; echo .env'
 nmap <silent> <Leader>t :Files!<CR>
 nmap <silent> <Leader>b :Buffers!<CR>
 nmap <silent> <Leader>h :HistoryFiles!<CR>
