@@ -223,8 +223,22 @@ command! -bang Bclose :bd       " Required to use as netrw replacement
 nnoremap <silent> <Leader>r :Ranger<CR>
 
 
-" FOLDING {{{1
+" MISCELLANEOUS
 
+" Git jump {{{1
+command! -bar -nargs=+ -complete=custom,Complete_git_jump GitJump cexpr system("git jump --stdout " . expand(<q-args>)) | :copen | :let w:quickfix_title = "[git jump " .. expand(<q-args>) .. "]"
+abbreviate gj GitJump
+
+function Complete_git_jump(ArgLead, CmdLine, CursorPos)
+  let words = split(a:CmdLine, " ")
+  if len(words) == 2 && len(a:ArgLead) > 0
+    return system("compgen -W 'diff merge grep ws' -- " .. a:ArgLead)
+  endif
+
+  return ""
+endfunction
+
+" Folding {{{1
 set foldcolumn=3
 let foldinglevelstart=99
 set fillchars+=fold:\ ,foldsep:│,foldclose:>,foldopen:v
@@ -263,9 +277,6 @@ function FoldClass()
   g/\v^\s+[a-z0-9#_]+\([^)]*\) \{/ :normal $zf%
   silent g/ static.*{$/ :normal $zf%
 endfunction
-
-
-" MISCELLANEOUS
 
 " Toggle relative row numbers {{{1
 nnoremap <Leader>n :set relativenumber!<CR>

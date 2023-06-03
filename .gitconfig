@@ -5,6 +5,7 @@
 	default = current
 	followTags = true
 [alias]
+	jump = !~/scripts/git-jump.sh
 	an = add -N
 	st = status
 	ci = commit
