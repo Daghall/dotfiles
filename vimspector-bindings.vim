@@ -13,6 +13,7 @@ function! s:OnJumpToFrame() abort
   nmap <silent> <buffer> I <Plug>VimspectorBalloonEval
   nmap <silent> <buffer> E :call vimspector#Reset()<CR>
   nmap <silent> <buffer> R <Plug>VimspectorRestart
+  nmap <silent> <buffer> W :VimspectorWatch <CR>
 
   let s:mapped[ string( bufnr() ) ] = { 'modifiable': &modifiable }
 
@@ -42,6 +43,7 @@ function! s:OnDebugEnd() abort
         silent! nunmap <buffer> I
         silent! nunmap <buffer> E
         silent! nunmap <buffer> R
+        silent! nunmap <buffer> W
 
         let &l:modifiable = s:mapped[ bufnr ][ 'modifiable' ]
       endtry
