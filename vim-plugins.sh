@@ -12,6 +12,8 @@ cd ~/.vim/bundle
 
 ## SYNTAX
 
+print "SYNTAX:"
+
 print "Mustache/Handlebars"
 git clone git://github.com/mustache/vim-mustache-handlebars.git mustache
 
@@ -26,6 +28,10 @@ git clone https://github.com/jelera/vim-javascript-syntax.git
 
 print "Terraform"
 git clone git@github.com:hashivim/vim-terraform.git
+
+print "Bash"
+git clone git@github.com:kovetskiy/vim-bash.git
+
 
 ## PLUGINS
 
