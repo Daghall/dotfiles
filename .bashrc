@@ -182,7 +182,7 @@ function gpr() {
       --state $state \
       --json number,title,isDraft,mergeable,state,reviewDecision,headRefName,updatedAt \
       --template '$list_template' | \
-      awk -F '\t' ' \
+      gawk -F '\t' ' \
       { \
         for (i = 1; i <= NF; ++i) { \
           max[i] = length(\$i) > max[i] ? length(\$i) : max[i]; \
@@ -248,7 +248,7 @@ function gpr() {
     --no-info \
     --preview-window hidden \
     --preview "gh pr view {1} --json title,isDraft,mergeable,reviewDecision,state,author,body,headRefName --template '$view_template' | \
-      awk -F'\t' ' \
+      gawk -F'\t' ' \
         {
           if (FNR == 1) { \
             switch (\$2) { \
