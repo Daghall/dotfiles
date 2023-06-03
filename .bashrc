@@ -1,5 +1,3 @@
-# .bashrc
-
 # Exports
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -11,7 +9,7 @@ export LS_COLORS="*.readline-colored-completion-prefix=1;31"
 # Remove the annoying echoing of ^C when hitting CTRL-C
 if [[ $- == *i* ]]
 then
-	stty -echoctl
+  stty -echoctl
 fi
 alias s='stty -echoctl'
 
@@ -21,7 +19,7 @@ force_color_prompt=yes
 # Allow SSH to execute aliases
 shopt -s expand_aliases
 
-# User specific aliases and functions
+# Aliases
 alias grep='grep --color=auto'
 alias less='less -R'
 alias vimresume='vim $(git status -s | egrep "^( ?A | M )" | cut -d" " -f3 | xargs)'
@@ -72,12 +70,13 @@ function replace_command() {
 }
 bind -x '"\C-n": replace_command'
 
+# Run a command when certain files are uppdated
 function test_watch() {
   clear;
   echo -e "👀 \e[1mWatching... \e[0;30m‟Quis custodiet ipsos custodes?”\e[0m";
   "$@"
-  local dirs=$(fd . -t d -E logs -E public -E node_modules);
-  fswatch $dirs -e .*\.log --event Updated --one-per-batch | xargs -I _ "$@";
+  local dirs=$(fd . -t d --max-depth 1 -E logs -E public -E node_modules -E tmp);
+  fswatch $dirs -e .*\.log$ --event Updated --one-per-batch | xargs -I _ "$@";
 }
 
 # Generate a psuedo-UUID
