@@ -46,6 +46,7 @@ alias ep='~/scripts/nord-pool.sh'
 alias v='vim'
 alias rtf='~/scripts/run-till-fail.sh'
 alias runstats='~/scripts/run-stats.sh'
+alias reset='\reset; s'
 
 # Use fzf to search for command arguments and replace the command line
 function replace_command() {
