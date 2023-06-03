@@ -151,6 +151,7 @@ nmap <silent> <Leader>R :LspRename<CR>
 nmap <silent> <Leader>E :LspDocumentDiagnostics<CR>
 nmap <silent> <Leader>w :LspHover<CR>
 nmap <silent> <leader>A :LspCodeAction<CR>
+xnoremap <silent> <leader>A :LspCodeAction<CR>
 
 " Settings: https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt
 let g:lsp_document_code_action_signs_enabled = 0
