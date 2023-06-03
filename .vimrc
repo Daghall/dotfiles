@@ -44,7 +44,19 @@ autocmd VimEnter * highlight User1 ctermfg=15 ctermbg=242
 autocmd VimEnter * highlight User2 ctermfg=0 ctermbg=248
 autocmd VimEnter * highlight User3 ctermfg=11 ctermbg=242
 autocmd VimEnter * highlight User4 ctermfg=9 ctermbg=242
-set statusline=%2*\ %n\ %1*\ %t\ %M%R%H%W%=%3*\ %F\ %4*\ %y\ %1*\ %5l:%-4c%2*%4P\ 
+set statusline=%2*\ %n      " Buffer number
+set statusline+=\ %1*\ %t   " File name
+set statusline+=\ %M        " Modified flag
+set statusline+=%R          " Read only flag
+set statusline+=%H          " Help buffer flag
+set statusline+=%W          " Preview window flag
+set statusline+=%=          " Separation between left and right alignment
+set statusline+=\ %F     " Full path of file in the buffer
+set statusline+=\ %4*\ %y   " File type
+set statusline+=\ %1*\ %5l: " Row
+set statusline+=%-4c        " Column
+set statusline+=%2*%4P      " Percentage
+set statusline+=\ 
 
 
 " Follow the leader {{{1
