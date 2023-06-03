@@ -29,6 +29,7 @@ set showcmd
 syntax enable
 colorscheme desert
 highlight Search ctermbg=Yellow
+filetype plugin on
 
 
 " Colors for vimdiff {{{1
