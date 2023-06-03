@@ -282,7 +282,7 @@ endfunction
 
 function FoldScenarios()
   execute "normal zE"
-  g/\s\(Scenario\|^describe\)[.(]/ :normal zf%
+  g/\v\s(Scenario|describe)[.(]/ :normal zf%
 endfunction
 
 function FoldClass()
