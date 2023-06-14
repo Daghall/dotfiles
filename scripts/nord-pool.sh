@@ -21,7 +21,7 @@ else
   fi
 fi
 
-zone=${1:-SE3}
+zone="SE3"
 euro_rate=$(jq .rates.EUR $currency_file)
 sek_rate=$(jq .rates.SEK $currency_file)
 
@@ -30,4 +30,19 @@ DEBUG_LOG "1 USD = $euro_rate EUR"
 DEBUG_LOG "1 USD = $sek_rate SEK"
 DEBUG_LOG "------"
 
-pbpaste | node ~/scripts/nord-pool.js $zone $euro_rate $sek_rate
+format="compact"
+
+for arg in "$@"; do
+  case $arg in
+    -a)
+    format="all"
+      ;;
+    -l)
+      ;&
+    *)
+    zone=$arg
+      ;;
+  esac
+done
+
+pbpaste | node ~/scripts/nord-pool.js $zone $euro_rate $sek_rate $format

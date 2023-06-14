@@ -12,7 +12,7 @@ try {
   process.exitCode = 1;
 }
 
-function printZone(zoneName, fromRate, toRate) {
+function printZone(zoneName, fromRate, toRate, format) {
   const {date, zones} = parseData();
 
   if (zoneName === "-l") {
@@ -24,17 +24,36 @@ function printZone(zoneName, fromRate, toRate) {
   if (!zone) {
     throw new Error(`Unknown zone: ${zoneName}`);
   }
-  const minTime = Object.entries(zone.times).find(([ , price ]) => price === zone.min).shift();
-  const maxTime = Object.entries(zone.times).find(([ , price ]) => price === zone.max).shift();
+
+  const times = Object.entries(zone.times);
+
+  const minTime = times.find(([ , price ]) => price === zone.min)[0];
+  const maxTime = times.find(([ , price ]) => price === zone.max)[0];
   const minPrice = reformatPrice(zone.min, 9);
   const maxPrice = reformatPrice(zone.max, 9);
   const averagePrice = reformatPrice(zone.average, 16);
 
   process.stdout.write(`Date: ${flipDate(date)}\n`);
   process.stdout.write(`Zone: ${zoneName}\n`);
-  process.stdout.write(`Min:  ${minTime}${minPrice}\n`);
-  process.stdout.write(`Max:  ${maxTime}${maxPrice}\n`);
-  process.stdout.write(`Avg:  ${averagePrice}\n`);
+
+  if (format === "all") {
+    times.forEach(([time, price]) => {
+      process.stdout.write(`${time}${reformatPrice(price, 7)} `);
+      if (time === minTime) {
+        process.stdout.write("MIN");
+      } else if (time === maxTime) {
+        process.stdout.write("MAX");
+      } else {
+        process.stdout.write(price > zone.average ? "+" : "-");
+      }
+      process.stdout.write("\n");
+    });
+
+  } else {
+    process.stdout.write(`Min:  ${minTime}${minPrice}\n`);
+    process.stdout.write(`Max:  ${maxTime}${maxPrice}\n`);
+    process.stdout.write(`Avg:  ${averagePrice}\n`);
+  }
 
   function reformatPrice(price, padding) {
     const usd = parseInt(price.replace(",", "")) / parseFloat(fromRate);
