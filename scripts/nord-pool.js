@@ -3,6 +3,12 @@
 const fs = require("fs");
 const STDIN_FD = 0;
 const VAT_FACTOR = 1.25;
+const TIME_AND_PRICE_WIDTH = 23;
+const MAX_BAR_WIDTH = process.stdout.columns - TIME_AND_PRICE_WIDTH;
+const RESET = "\x1b[0m";
+const GREEN = "\x1b[1m\x1b[32m";
+const YELLOW = "\x1b[0m\x1b[33m";
+const RED = "\x1b[0m\x1b[31m";
 
 try {
   const argv = process.argv.slice(2);
@@ -31,25 +37,39 @@ function printZone(zoneName, fromRate, toRate, format) {
   const maxTime = times.find(([ , price ]) => price === zone.max)[0];
   const minPrice = reformatPrice(zone.min, 9);
   const maxPrice = reformatPrice(zone.max, 9);
-  const averagePrice = reformatPrice(zone.average, 16);
+  const averageFloat = toFloat(zone.average);
 
   process.stdout.write(`Date: ${flipDate(date)}\n`);
   process.stdout.write(`Zone: ${zoneName}\n`);
 
-  if (format === "all") {
+  if (["all", "graph"].includes(format)) {
     times.forEach(([time, price]) => {
-      process.stdout.write(`${time}${reformatPrice(price, 7)} `);
       if (time === minTime) {
-        process.stdout.write("MIN");
+        process.stdout.write(GREEN);
       } else if (time === maxTime) {
-        process.stdout.write("MAX");
-      } else {
-        process.stdout.write(price > zone.average ? "+" : "-");
+        process.stdout.write(RED);
+      } else if (toFloat(price) > averageFloat) {
+        process.stdout.write(YELLOW);
       }
-      process.stdout.write("\n");
+
+      process.stdout.write(`${time}${reformatPrice(price, 7)} `);
+
+      if (format === "graph") {
+        printBar(price, zone.max);
+      } else {
+        if (time === minTime) {
+          process.stdout.write("MIN");
+        } else if (time === maxTime) {
+          process.stdout.write("MAX");
+        } else {
+          process.stdout.write(toFloat(price) > averageFloat ? "+" : "-");
+        }
+      }
+      process.stdout.write(`${RESET}\n`);
     });
 
   } else {
+    const averagePrice = reformatPrice(zone.average, 16);
     process.stdout.write(`Min:  ${minTime}${minPrice}\n`);
     process.stdout.write(`Max:  ${maxTime}${maxPrice}\n`);
     process.stdout.write(`Avg:  ${averagePrice}\n`);
@@ -60,6 +80,19 @@ function printZone(zoneName, fromRate, toRate, format) {
     const cents = usd * parseFloat(toRate) / 1000 * VAT_FACTOR;
     return `${cents.toFixed(0).padStart(padding, " ")} öre/kWh`;
   }
+}
+
+function printBar(price, max) {
+  const priceFloat = toFloat(price);
+  const maxFloat = toFloat(max);
+  const bar = Array(Math.floor((priceFloat / maxFloat) * MAX_BAR_WIDTH))
+    .fill("▇")
+    .join("");
+  process.stdout.write(bar);
+}
+
+function toFloat(numberString) {
+  return parseFloat(numberString.replace(",", "."));
 }
 
 function flipDate(date) {
