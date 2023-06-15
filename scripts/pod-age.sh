@@ -3,7 +3,11 @@
 printf "Checking pods in "
 oc project -q
 
-project=$(basename $(pwd) | sed 's/^bnl-//')
+if [[ $# -gt 0 ]]; then
+  project=$1
+else
+  project=$(basename $(pwd) | sed -e 's/^bnl-//' -e 's/mrss/rss/')
+fi
 
 trap exit SIGINT
 
