@@ -83,9 +83,18 @@ function test_watch() {
 # Generate a psuedo-UUID
 alias guid='node -p "[8, 4, 4, 4, 12].map(i => (Math.random()).toString(16).slice(-1 * i)).join(\"-\")"'
 
-# Git stuff
-alias gg='git grep'
-alias ggl='GIT_PAGER=less git grep -l'
+# GIT STUFF
+
+# Git grep all arguments as a single string
+function gg() {
+  local search="$@"
+  git grep "$search"
+}
+# List files from `git grep` using `less` as pager, since `delta` can't process the output correcty
+function ggl() {
+  local search="$@"
+  GIT_PAGER=less git grep "$search"
+}
 alias gst='git status'
 alias gdi='git diff -- ":!package-lock.json"'
 alias gds='git -c delta.side-by-side=true di'
