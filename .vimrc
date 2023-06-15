@@ -444,7 +444,7 @@ let project = system("pwd | cut -d \/ -f1-5 | tr '\n' '/'")
 let &path=".,".project."app/views/,".project."views/"
 
 " Fuzzy find relative path from current file to another, and print {{{1
-nmap <silent> <Leader>i :silent :execute "!realpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed -E -e 's/\.js$//' -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
+nmap <silent> <Leader>i :silent :execute "!grealpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed -E  -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
 
 " Open tig log and blame, respectively {{{1
 nmap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
