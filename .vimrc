@@ -60,6 +60,8 @@ set statusline+=%-4c        " Column
 set statusline+=%2*%4P      " Percentage
 set statusline+=\ 
 
+autocmd BufWinEnter,BufReadPost,BufWritePost quickfix setlocal statusline=%2*\ %Y\ %1*%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}%=\%4*%q\ %1*%(%5l/%-4L%)\ %2*%4P\ 
+
 
 " Follow the leader {{{1
 let mapleader = " "
@@ -92,6 +94,7 @@ let g:syntastic_javascriptreact_checkers = ["javascript/eslint"]
 let g:syntastic_javascriptreact_eslint_exec = "eslint_d"
 let g:syntastic_javascriptreact_eslint_args = ["--fix"]
 let g:syntastic_cpp_compiler_options = " -std=c++11 -stdlib=libc++"
+let g:syntastic_always_populate_loc_list = 1
 autocmd VimEnter *.js autocmd BufWritePost *.js checktime
 autocmd CursorHold *.js checktime
 autocmd VimEnter *.jsx autocmd BufWritePost *.jsx checktime
@@ -108,9 +111,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-nmap <silent> <Leader>e :Errors<CR> :lfirst<CR>
-nmap <silent> <Leader>en :lnext<CR>
-nmap <silent> <Leader>ep :lprevious<CR>
+nmap <silent> <Leader>e :SyntasticCheck<CR> :Errors<CR> :lopen<CR> :let w:quickfix_title = "Syntastic check"<CR> :lfirst<CR>
 
 
 " Comments {{{1
@@ -150,7 +151,7 @@ nmap <silent> K :LspHover<CR>
 nmap <silent> gd :LspDefinition<CR>
 nmap <silent> gD :LspPeekDefinition<CR>
 nmap <silent> <Leader>R :LspRename<CR>
-nmap <silent> <Leader>E :LspDocumentDiagnostics<CR>
+nmap <silent> <Leader>E :LspDocumentDiagnostics<CR> :lopen<CR> :let w:quickfix_title = "LSP Diagnostics"<CR> :lfirst<CR>
 nmap <silent> <Leader>w :LspHover<CR>
 nmap <silent> <leader>A :LspCodeAction<CR>
 xnoremap <silent> <leader>A :LspCodeAction<CR>
@@ -396,7 +397,7 @@ nnoremap <leader>CS :normal viw<CR> :s/\%V[A-Z]/_&/g<CR> `< :s//\U&/g<CR> `< :
 
 " Open all TODOs in the quickfix window {{{1
 set grepprg=ag\ --nogroup\ --nocolor
-com TODO silent! grep TODO | cw | redraw!
+command! TODO silent! grep TODO | cw | :let w:quickfix_title = "TODO list" | redraw!
 
 " Format JS/JSON with jq {{{1
 com -range JSON '<,'>!tr -d '\n' | xargs -0 printf "'\%s'" | xargs jq -n
