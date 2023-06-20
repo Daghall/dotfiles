@@ -85,16 +85,26 @@ alias guid='node -p "[8, 4, 4, 4, 12].map(i => (Math.random()).toString(16).slic
 
 # GIT STUFF
 
-# Git grep all arguments as a single string
+# Git grep pattern as a single string, parameters in arbitrary order
 function gg() {
-  local search="$@"
-  git grep "$search"
+  local flags=""
+  local pattern=""
+  local pager="delta"
+
+  for word in $@; do
+    if [[ $word == -* ]]; then
+      flags="$flags $word"
+      if [[ $word == "-l" ]]; then
+        pager="less"
+      fi
+    else
+      pattern="$pattern $word"
+    fi
+  done
+
+  GIT_PAGER=$pager git grep $flags "${pattern:1}"
 }
-# List files from `git grep` using `less` as pager, since `delta` can't process the output correcty
-function ggl() {
-  local search="$@"
-  GIT_PAGER=less git grep "$search"
-}
+
 alias gst='git status'
 alias gdi='git diff -- ":!package-lock.json"'
 alias gds='git -c delta.side-by-side=true di'
