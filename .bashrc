@@ -310,6 +310,22 @@ function _gpr_complete() {
 }
 
 complete -F _gpr_complete gpr
+
+
+# Smooth handling of GitHub gists
+function gists() {
+  gh gist list -L 1000 | \
+    tr "\t" ":" | \
+    sed -E \
+      -e 's/^([^:]+:)([^:]+:)/\2\1/' | \
+    column -t -s ":" | \
+    fzf \
+      --bind 'enter:become(gh gist view -w {2})' \
+      --bind 'ctrl-e:become(gh gist edit {2})' \
+  ;
+}
+
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
