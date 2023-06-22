@@ -112,7 +112,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-nmap <silent> <Leader>e :SyntasticCheck<CR> :Errors<CR> :lopen<CR> :let w:quickfix_title = "Syntastic check"<CR> :lfirst<CR>
+nnoremap <silent> <Leader>e :SyntasticCheck<CR> :Errors<CR> :lopen<CR> :let w:quickfix_title = "Syntastic check"<CR> :lfirst<CR>
 
 
 " Comments {{{1
@@ -129,12 +129,12 @@ autocmd FileType scss setlocal commentstring=//\ %s
 " FZF {{{1
 set runtimepath+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git; echo .env'
-nmap <silent> <Leader>t :Files!<CR>
-nmap <silent> <Leader>. :Files! %:h<CR>
-nmap <silent> <Leader>b :Buffers!<CR>
-nmap <silent> <Leader>g :GFiles!?<CR>
-nmap <silent> <Leader>h :HistoryFiles!<CR>
-nmap <silent> <Leader><Leader> :b#<CR>
+nnoremap <silent> <Leader>t :Files!<CR>
+nnoremap <silent> <Leader>. :Files! %:h<CR>
+nnoremap <silent> <Leader>b :Buffers!<CR>
+nnoremap <silent> <Leader>g :GFiles!?<CR>
+nnoremap <silent> <Leader>h :HistoryFiles!<CR>
+nnoremap <silent> <Leader><Leader> :b#<CR>
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 command! -bang -nargs=? -complete=dir Files
@@ -150,13 +150,13 @@ command! -bang -nargs=* Agi
 
 
 " LSP {{{1
-nmap <silent> K :LspHover<CR>
-nmap <silent> gd :LspDefinition<CR>
-nmap <silent> gD :LspPeekDefinition<CR>
-nmap <silent> <Leader>R :LspRename<CR>
-nmap <silent> <Leader>E :LspDocumentDiagnostics<CR> :lopen<CR> :let w:quickfix_title = "LSP Diagnostics"<CR> :lfirst<CR>
-nmap <silent> <Leader>w :LspHover<CR>
-nmap <silent> <leader>A :LspCodeAction<CR>
+nnoremap <silent> K :LspHover<CR>
+nnoremap <silent> gd :LspDefinition<CR>
+nnoremap <silent> gD :LspPeekDefinition<CR>
+nnoremap <silent> <Leader>R :LspRename<CR>
+nnoremap <silent> <Leader>E :LspDocumentDiagnostics<CR> :lopen<CR> :let w:quickfix_title = "LSP Diagnostics"<CR> :lfirst<CR>
+nnoremap <silent> <Leader>w :LspHover<CR>
+nnoremap <silent> <leader>A :LspCodeAction<CR>
 xnoremap <silent> <leader>A :LspCodeAction<CR>
 
 " Settings: https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt
@@ -185,7 +185,7 @@ let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:vim_markdown_folding_disabled = 1
 
 " markdown-preview {{{1
-nmap <silent> <Leader>m :MarkdownPreview<CR>
+nnoremap <silent> <Leader>m :MarkdownPreview<CR>
 
 " Completion: Cycling {{{1
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<Down>"
@@ -207,11 +207,12 @@ nmap <Leader>dl <Plug>VimspectorStepInto
 nmap <Leader>dj <Plug>VimspectorStepOver
 nmap <Leader>dk <Plug>VimspectorStepOut
 nmap <Leader>dr <Plug>VimspectorRestart
-nmap <silent> <Leader>de :call vimspector#Reset()<CR>
-nmap <Leader>db <Plug>VimspectorToggleBreakpoint :echom "Toggle breakpoint"<CR>
+nnoremap <silent> <Leader>de :call vimspector#Reset()<CR>
+nmap <Leader>db <Plug>VimspectorToggleBreakpoint :echo "Toggle breakpoint"<CR>
+nmap <Leader>db <Plug>VimspectorToggleBreakpoint :echo "Toggle breakpoint"<CR>
 nmap <Leader>dq <Plug>VimspectorToggleConditionalBreakpoint<CR>
-nmap <silent> <Leader>dB :call vimspector#ListBreakpoints()<CR>
-nmap <silent> <Leader>dC :call vimspector#ClearBreakpoints()<CR>
+nnoremap <silent> <Leader>dB :call vimspector#ListBreakpoints()<CR>
+nnoremap <silent> <Leader>dC :call vimspector#ClearBreakpoints()<CR>
 nmap <silent> <Leader>di <Plug>VimspectorBalloonEval
 source ~/git/dotfiles/vimspector-bindings.vim
 
@@ -229,7 +230,7 @@ highlight! link SignColumn LineNr
 highlight GitGutterAdd    guifg=#00ff00 ctermfg=2
 highlight GitGutterChange guifg=#ffff00 ctermfg=3
 highlight GitGutterDelete guifg=#ff0000 ctermfg=1
-nmap <silent> <Leader>gq :GitGutterQuickFix<CR>:copen<CR>
+nnoremap <silent> <Leader>gq :GitGutterQuickFix<CR>:copen<CR>
 let g:gitgutter_sign_allow_clobber = 0
 let g:gitgutter_sign_priority = 9
 
@@ -448,11 +449,11 @@ let project = system("pwd | cut -d \/ -f1-5 | tr '\n' '/'")
 let &path=".,".project."app/views/,".project."views/"
 
 " Fuzzy find relative path from current file to another, and print {{{1
-nmap <silent> <Leader>i :silent :execute "!grealpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed -E  -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
+nnoremap <silent> <Leader>i :silent :execute "!grealpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed -E  -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
 
 " Open tig log and blame, respectively {{{1
-nmap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
-nmap <silent> <Leader>l :silent :execute "!tig blame " . shellescape(expand("%")) . " +" . line(".") <CR>:redraw!<CR>
+nnoremap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
+nnoremap <silent> <Leader>l :silent :execute "!tig blame " . shellescape(expand("%")) . " +" . line(".") <CR>:redraw!<CR>
 
 " Delete buffer. Quit if no more open buffers {{{1
 nnoremap <silent> <Leader>q :call CloseOrQuit()<CR>
@@ -473,31 +474,31 @@ endfunction
 nnoremap <silent> <Leader>w :w<CR>
 
 " Insert blank line below cursor {{{1
-nmap <Leader> o
+nnoremap <Leader> o
 
 " Open a terminal {{{1
 nnoremap <silent> <Leader>TT :terminal ++close<CR>
 nnoremap <silent> <Leader>Tn :terminal ++close node<CR>
 
 " Search for the visually selected string {{{1
-vmap * "oy/\V<C-R>o<CR>
-vmap # "oy?\V<C-R>o<CR>
+vnoremap * "oy/\V<C-R>o<CR>
+vnoremap # "oy?\V<C-R>o<CR>
 
 
 " F-KEYS BINDINGS {{{1
 
 " Prev/next tab
-map <F1> gT
-map <F2> gt
+noremap <F1> gT
+noremap <F2> gt
 
 " Toggle line-wrapping
-map <silent><F3> :set wrap!<CR>
+noremap <silent><F3> :set wrap!<CR>
 
 " Toggle case-sensitivity
-map <F4> :set ic!<CR>
+noremap <F4> :set ic!<CR>
 
 " Toggle conceal level
-map <silent><F5> :call ToggleConcealLevel()<CR>
+noremap <silent><F5> :call ToggleConcealLevel()<CR>
 
 function ToggleConcealLevel()
   if (&conceallevel == 2)
@@ -508,24 +509,24 @@ function ToggleConcealLevel()
 endfunction
 
 " Toggle "list mode"
-map <silent><F6> :set list!<CR>
+noremap <silent><F6> :set list!<CR>
 
 " Toggle spelling
-map <F7> :set spell!<CR>
+noremap <F7> :set spell!<CR>
 
 " Turn of highlighting
-map <F8> :noh<CR>
+noremap <F8> :noh<CR>
 
 " Prev/next diff
-map <F9> [c
-map <F10> ]c
+noremap <F9> [c
+noremap <F10> ]c
 
 " Make k/j traverse wrapped lines
-map j gj
-map k gk
+noremap j gj
+noremap k gk
 
 " Speedy quick/location list handling {{{1
-nmap <silent><leader>j :call NextListItem()<CR>
+nnoremap <silent><leader>j :call NextListItem()<CR>
 function NextListItem()
   try
     if IsQuickFixOpen()
@@ -539,7 +540,7 @@ function NextListItem()
   endtry
 endfunction
 
-nmap <silent><leader>k :call PrevListItem()<CR>
+nnoremap <silent><leader>k :call PrevListItem()<CR>
 function PrevListItem()
   try
     if IsQuickFixOpen()
@@ -553,7 +554,7 @@ function PrevListItem()
   endtry
 endfunction
 
-nmap <silent><leader>c :call CloseList()<CR>
+nnoremap <silent><leader>c :call CloseList()<CR>
 function CloseList()
   if IsQuickFixOpen()
     cclose
@@ -567,12 +568,12 @@ function IsQuickFixOpen()
 endfunction
 
 " Make ctrl-x/ctrl-a work with selection {{{1
-vmap <C-X> :g/./exe "norm \<C-X>"<CR>gv
-vmap <C-A> :g/./exe "norm \<C-A>"<CR>gv
+vnoremap <C-X> :g/./exe "norm \<C-X>"<CR>gv
+vnoremap <C-A> :g/./exe "norm \<C-A>"<CR>gv
 
 " Easy tab moving {{{1
-map <silent><C-L> :tabm +<CR>
-map <silent><C-H> :tabm -<CR>
+noremap <silent><C-L> :tabm +<CR>
+noremap <silent><C-H> :tabm -<CR>
 
 " Parenthesis matching {{{1
 highlight MatchParen cterm=none ctermbg=red ctermfg=black
