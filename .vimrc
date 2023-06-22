@@ -162,7 +162,11 @@ xnoremap <silent> <leader>A :LspCodeAction<CR>
 " Settings: https://github.com/prabirshrestha/vim-lsp/blob/master/doc/vim-lsp.txt
 let g:lsp_document_code_action_signs_enabled = 0
 let g:lsp_diagnostics_float_cursor = 1
+let g:lsp_diagnostics_float_delay = 150
+let g:lsp_diagnostics_float_insert_mode_enabled = 0
 let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_highlights_delay = 0
+let g:lsp_diagnostics_signs_delay = 0
 let g:lsp_hover_conceal = 1
 let g:markdown_syntax_conceal = 1
 let g:markdown_fenced_languages = ["javascript"]
