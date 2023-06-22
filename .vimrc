@@ -291,7 +291,7 @@ function Folding()
 
   let line = substitute(line, "{$", "{…}", "")
   let line = substitute(line, "[$", "[…]", "")
-  let line = substitute(line, "[0-9]$", "", "")
+  let line = substitute(line, "{[{]{[0-9]$", "", "") " Weird hack because three { folds here, otherwise…
   return line
 endfunction
 
