@@ -19,13 +19,14 @@ set nomore
 set wildmode=longest:list
 set mouse=a
 set number
-set ic
+set ignorecase
 set title
 set titlestring=%f%m
 set smartcase
 set tabpagemax=50
 set updatetime=100
 set showcmd
+set virtualedit=block
 syntax enable
 colorscheme desert
 highlight Search ctermbg=Yellow
@@ -126,7 +127,7 @@ autocmd FileType jinja setlocal commentstring={#\ %s\ #}
 autocmd FileType scss setlocal commentstring=//\ %s
 
 " FZF {{{1
-set rtp+=/usr/local/opt/fzf
+set runtimepath+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git; echo .env'
 nmap <silent> <Leader>t :Files!<CR>
 nmap <silent> <Leader>. :Files! %:h<CR>
@@ -324,7 +325,7 @@ nnoremap <Leader>n :set relativenumber!<CR>
 nnoremap Ö :echo "⚠️  Keyboard layout ⚠️"<CR>
 
 " Reset filetype (hack to reactivate syntax highlighting) {{{1
-com Ftreset :let &ft=&ft
+command Ftreset :let &ft=&ft
 autocmd VimResized * :Ftreset
 
 " Toggle booleans {{{1
@@ -402,13 +403,13 @@ set grepprg=ag\ --nogroup\ --nocolor
 command! TODO silent! grep TODO | cw | :let w:quickfix_title = "TODO list" | redraw!
 
 " Format JS/JSON with jq {{{1
-com -range JSON '<,'>!tr -d '\n' | xargs -0 printf "'\%s'" | xargs jq -n
+command -range JSON '<,'>!tr -d '\n' | xargs -0 printf "'\%s'" | xargs jq -n
 
 " Highlight unwanted spacing {{{1
 highlight ExtraWhitespace ctermbg=red guibg=red
-au BufEnter * match ExtraWhitespace /\s\+$/
-au InsertLeave * match ExtraWhitespace /\s\+$/
-au InsertEnter * match ExtraWhitespace //
+autocmd BufEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace //
 
 " Matching helper {{{1
 function Match(number, visual_mode)
@@ -456,12 +457,8 @@ nmap <silent> <Leader>l :silent :execute "!tig blame " . shellescape(expand("%")
 " Delete buffer. Quit if no more open buffers {{{1
 nnoremap <silent> <Leader>q :call CloseOrQuit()<CR>
 function CloseOrQuit()
-  " let first_buffer = 1
-  " let last_buffer = bufnr('$')
-  " let unnamed_and_listed_buffers = filter(range(first_buffer, last_buffer), 'empty(bufname(v:val)) && buflisted(v:val)')
   let current_buffer = bufnr()
 
-  " if len(unnamed_and_listed_buffers) == 1
   try
     if empty(bufname(current_buffer))
       :q
@@ -532,7 +529,7 @@ nmap <silent><leader>j :call NextListItem()<CR>
 function NextListItem()
   try
     if IsQuickFixOpen()
-      cn
+      cnext
     else
       lnext
     endif
@@ -546,7 +543,7 @@ nmap <silent><leader>k :call PrevListItem()<CR>
 function PrevListItem()
   try
     if IsQuickFixOpen()
-      cp
+      cprev
     else
       lprev
     endif
@@ -559,9 +556,9 @@ endfunction
 nmap <silent><leader>c :call CloseList()<CR>
 function CloseList()
   if IsQuickFixOpen()
-    ccl
+    cclose
   else
-    lcl
+    lclose
   endif
 endfunction
 
@@ -578,7 +575,7 @@ map <silent><C-L> :tabm +<CR>
 map <silent><C-H> :tabm -<CR>
 
 " Parenthesis matching {{{1
-hi MatchParen cterm=none ctermbg=red ctermfg=black
+highlight MatchParen cterm=none ctermbg=red ctermfg=black
 
 " Store folds and other view related stuff {{{1
 autocmd BufWinLeave *.* mkview
@@ -610,25 +607,25 @@ set spellsuggest=fast,20
 set spelloptions=camel
 
 " Session handling {{{1
-com Save mksession! ~/.session.vim
-com Load source ~/.session.vim
+command Save mksession! ~/.session.vim
+command Load source ~/.session.vim
 
 " Marko syntax highlighting {{{1
 autocmd BufNewFile,BufRead *.marko set filetype=html
 
 " Fat fingers syndrome {{{1
-com W w
-com Q q
-com Wq wq
-com WQ wq
-com Qa qa
-com QA qa
-com Wa wa
-com WA wa
-com Cq cq
+command W w
+command Q q
+command Wq wq
+command WQ wq
+command Qa qa
+command QA qa
+command Wa wa
+command WA wa
+command Cq cq
 
 " Quickly reset filetype when lost due to swap file collision {{{1
-com Ftjs set ft=javascript
+command Ftjs set ft=javascript
 
 " Sort in dictionary order, ignoring case {{{1
 xnoremap <leader>s :!sed 's/{ /{/' \| sort -df<CR>
@@ -641,12 +638,12 @@ xnoremap <leader>p "*p
 nnoremap <leader>p "*p
 
 " Pretty colors {{{1
-hi User1 ctermbg=black ctermfg=white
-hi User2 ctermbg=gray ctermfg=black
-hi User3 ctermbg=black ctermfg=yellow
-hi User4 ctermbg=black ctermfg=red
-hi Pmenu ctermbg=darkgray ctermfg=white
-hi PmenuSel ctermbg=Gray
+highlight User1 ctermbg=black ctermfg=white
+highlight User2 ctermbg=gray ctermfg=black
+highlight User3 ctermbg=black ctermfg=yellow
+highlight User4 ctermbg=black ctermfg=red
+highlight Pmenu ctermbg=darkgray ctermfg=white
+highlight PmenuSel ctermbg=Gray
 
 " No idea... {{{1
 if version >= 700
@@ -654,4 +651,3 @@ if version >= 700
 endif
 set ttym=xterm2
 set viminfo='25,\"50,n~/.viminfo
-set ve=block
