@@ -131,6 +131,7 @@ let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git; echo .env'
 nmap <silent> <Leader>t :Files!<CR>
 nmap <silent> <Leader>. :Files! %:h<CR>
 nmap <silent> <Leader>b :Buffers!<CR>
+nmap <silent> <Leader>g :GFiles!?<CR>
 nmap <silent> <Leader>h :HistoryFiles!<CR>
 nmap <silent> <Leader><Leader> :b#<CR>
 imap <c-x><c-l> <plug>(fzf-complete-line)
