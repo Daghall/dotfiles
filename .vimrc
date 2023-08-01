@@ -73,8 +73,8 @@ set directory:~/.vim/swapfiles//
 set backupdir:~/.vim/backup//
 
 
-" White space rendering (tab:▸\ ,trail:·,eol:¬,nbsp:_) {{{1
-set lcs=tab:▸\ ,trail:·,nbsp:_
+" White space rendering {{{1
+set listchars=tab:▸\ ,trail:·,nbsp:_
 "}}}
 
 " PLUGINS
