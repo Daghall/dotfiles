@@ -267,6 +267,7 @@ function gpr() {
     --no-info \
     --preview-window hidden \
     --preview "gh pr view {1} --json title,isDraft,mergeable,reviewDecision,state,author,body,headRefName --template '$view_template' | \
+      sed 's/\r//g' | \
       gawk -F'\t' ' \
         {
           if (FNR == 1) { \
@@ -288,9 +289,14 @@ function gpr() {
             \$5 == \"CONFLICTING\" ? \"\\033[31m(conflicting)\" : \"\",
             \$3, \
             \$4); \
+          body = \$6; \
         } else { \
-          print \$0;
+          body = body \"\n\" \$0; \
         } \
+      } \
+      END { \
+        command = \"termd --color=always --string \047\042\" body \"\042\047\"; \
+        system(command); \
       } \
     ' | less -R"
 
