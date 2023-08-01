@@ -522,8 +522,8 @@ noremap <F7> :set spell!<CR>
 noremap <F8> :noh<CR>
 
 " Prev/next diff
-noremap <F9> [c
-noremap <F10> ]c
+nmap <F9> [c
+nmap <F10> ]c
 
 " Make k/j traverse wrapped lines
 noremap j gj
