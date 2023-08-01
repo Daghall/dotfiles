@@ -189,7 +189,7 @@ let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:vim_markdown_folding_disabled = 1
 
 " markdown-preview {{{1
-nnoremap <silent> <Leader>m :MarkdownPreview<CR>
+nnoremap <silent> <Leader>mp :MarkdownPreview<CR>
 
 " Completion: Cycling {{{1
 inoremap <expr> <C-j>   pumvisible() ? "\<C-n>" : "\<Down>"
