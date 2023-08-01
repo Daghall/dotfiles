@@ -396,6 +396,8 @@ nnoremap SD( lF(xf)x
 nnoremap SD) hF(xf)x
 nnoremap SD{ lF{xf}x
 nnoremap SD} hF{xf}x
+nnoremap SD[ lF[xf]x
+nnoremap SD] hF[xf]x
 nnoremap SD" hf"xF"x
 vnoremap SD :s/\%V.\(.*\)\%V./\1/<CR>`< :noh<CR>
 
