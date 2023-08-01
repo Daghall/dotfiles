@@ -415,7 +415,7 @@ function urlparams () {
     echo $perdy_params | \
       sed 's/cust_params=/cust_params: \& - /' | \
       tr "&" "\n" | \
-      sed -E 's/([a-z0-9_]*) =/[32m\1 [34m=[0m/'
+      sed -E 's/([a-z0-9_]*) =/[32m\1 [34m=[0m/i'
   fi
 }
 
