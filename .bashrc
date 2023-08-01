@@ -90,6 +90,7 @@ function gg() {
   local flags=""
   local pattern=""
   local pager="delta"
+  local dir="."
 
   for word in $@; do
     if [[ $word == -* ]]; then
@@ -98,11 +99,15 @@ function gg() {
         pager="less"
       fi
     else
-      pattern="$pattern $word"
+      if [[ -e $word ]]; then
+        dir="$dir $word"
+      else
+        pattern="$pattern $word"
+      fi
     fi
   done
 
-  GIT_PAGER=$pager git grep $flags "${pattern:1}"
+  GIT_PAGER=$pager git grep $flags "${pattern:1}" ${dir:2}
 }
 
 alias gst='git status'
