@@ -326,13 +326,30 @@ complete -F _gpr_complete gpr
 # Smooth handling of GitHub gists
 function gists() {
   gh gist list -L 1000 | \
-    tr "\t" ":" | \
-    sed -E \
-      -e 's/^([^:]+:)([^:]+:)/\2\1/' | \
-    column -t -s ":" | \
+    gawk -F'\t' '{ \
+      sub("T.*", "", $5);\
+      printf("\033[33m%s\033[0m\t%s\t\033[%dm%s\033[30m\t%s\t%s\n",
+        $2, \
+        $3, \
+        ($4 == "secret" ? 31 : 32), \
+        $4, \
+        $5,
+        $1\
+      ); \
+      ;
+    }' | \
+    sort -t'	' -k4  | \
+    column -t -s '	' | \
     fzf \
-      --bind 'enter:become(gh gist view -w {2})' \
-      --bind 'ctrl-e:become(gh gist edit {2})' \
+      --ansi \
+      --cycle \
+      --delimiter '  ' \
+      --nth 1 \
+      --tac \
+      --bind 'enter:become(gh gist view -w {-1})' \
+      --bind 'ctrl-e:become(gh gist edit {-1})' \
+      --bind 'ctrl-p:preview(gh gist view {-1} | bat --color=always -p -l $(sed "s/[^.]*\.//" <<< {1} | awk '\''{ if (length($0) > 4){ print "sh"} else { print $0 } }'\''))' \
+      --bind 'ctrl-c:close' \
   ;
 }
 
