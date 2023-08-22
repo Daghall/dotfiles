@@ -49,6 +49,7 @@ alias v='vim'
 alias rtf='~/scripts/run-till-fail.sh'
 alias runstats='~/scripts/run-stats.sh'
 alias reset='\reset; s'
+alias glow='~/scripts/glow.sh'
 
 # Use fzf to search for command arguments and replace the command line
 function replace_command() {
@@ -302,7 +303,8 @@ function gpr() {
         } \
       } \
       END { \
-        command = \"termd --color=always --string \047\042\" body \"\042\047\"; \
+        gsub(/\047/, \"\047\042\047\042\047\", body); \
+        command = \"~/scripts/glow.sh <<< \047\" body \"\047\"; \
         system(command); \
       } \
     ' | less -R"
