@@ -197,6 +197,14 @@ function gpr() {
     {{- end -}}
     {{"\t"}}
     {{- .mergeable -}}{{"\t"}}
+    {{- if len .labels -}}
+      {{- range $i, $val := .labels -}}
+        {{- if $i}}, {{end -}}
+        {{- .name -}}
+      {{- end -}}
+    {{- else -}}
+      –
+    {{- end -}}{{"\t"}}
     {{- .body}}'
 
     local state=$1
@@ -274,7 +282,7 @@ function gpr() {
     --prompt '' \
     --no-info \
     --preview-window hidden \
-    --preview "gh pr view {1} --json title,isDraft,mergeable,reviewDecision,state,author,body,headRefName --template '$view_template' | \
+    --preview "gh pr view {1} --json title,isDraft,mergeable,reviewDecision,state,author,labels,body,headRefName --template '$view_template' | \
       sed 's/\r//g' | \
       gawk -F'\t' ' \
         {
@@ -290,14 +298,15 @@ function gpr() {
                 status = 31; \
                 break; \
             } \
-            printf(\"\\033[33mTitle\\033[0m   %s\n\\033[33mStatus  \\033[%dm%s %s\n\\033[33mBranch  \\033[0m%s\n\\033[33mAuthor  \\033[0m%s\n\n\", \
+            printf(\"\\033[33mTitle\\033[0m   %s\n\\033[33mStatus  \\033[%dm%s %s\n\\033[33mBranch  \\033[0m%s\n\\033[33mAuthor  \\033[0m%s\n\\033[33mLabels  \\033[0m%s\n\n\", \
             \$1, \
             status,
             \$2, \
             \$5 == \"CONFLICTING\" ? \"\\033[31m(conflicting)\" : \"\",
             \$3, \
-            \$4); \
-          body = \$6; \
+            \$4, \
+            \$6); \
+          body = \$7; \
         } else { \
           body = body \"\n\" \$0; \
         } \
