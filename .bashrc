@@ -416,7 +416,7 @@ function urlparams () {
     url=$(pbpaste)
   fi
 
-  local cust_params=$(echo $url | grep 'cust_params=[^\&]*\&' -o)
+  local cust_params=$(echo $url | grep -E 'cust_params=[^\&]*\&?' -o)
   echo $url | \
     sed 's/=/ = /g' | \
     tr "&" "\n" | \
