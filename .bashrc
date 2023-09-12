@@ -162,6 +162,8 @@ function ppwd () {
 
 # GitHub pull-request TUI
 function gpr() {
+  local git_origin=$(git config --local remote.origin.url | sed -e 's/[^:]*://' -e 's/\.git$//')
+
   local state_template='
     {{- $state := "" -}}
     {{- if .isDraft -}}
@@ -313,8 +315,11 @@ function gpr() {
       } \
       END { \
         gsub(/\047/, \"\047\042\047\042\047\", body); \
-        command = \"~/scripts/glow.sh <<< \047\" body \"\047\"; \
-        system(command); \
+        body = \"~/scripts/glow.sh <<< \047\" body \"\047\"; \
+        comments = \"gh api /repos/BonnierNews/kraken/pulls/{1}/comments --jq \047if (length > 0) then .[] | \042\033[32m\134(.user.login)\033[0m\n\134(.body)\n\042 else \042–\042 end\047\";
+        system(body); \
+        printf(\"\n\033[33mComments\033[0m\n\n\"); \
+        system(comments); \
       } \
     ' | less -R"
 
