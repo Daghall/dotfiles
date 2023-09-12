@@ -84,7 +84,7 @@ function test_watch() {
 }
 
 # Generate a psuedo-UUID
-alias guid='node -p "[8, 4, 4, 4, 12].map(i => (Math.random()).toString(16).slice(-1 * i)).join(\"-\")"'
+alias guid='node -p "require(\"crypto\").randomUUID()"'
 
 # GIT STUFF
 
