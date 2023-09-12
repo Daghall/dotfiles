@@ -50,6 +50,7 @@ alias rtf='~/scripts/run-till-fail.sh'
 alias runstats='~/scripts/run-stats.sh'
 alias reset='\reset; s'
 alias glow='~/scripts/glow.sh'
+alias strip_colors='sed -E '\''s/\x1b\[[0-9]{1,3}(;[0-9]{1,3})*m//g'\'''
 
 # Use fzf to search for command arguments and replace the command line
 function replace_command() {
