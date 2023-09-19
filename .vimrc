@@ -117,6 +117,7 @@ nnoremap <silent> <Leader>e :SyntasticCheck<CR> :Errors<CR> :lopen<CR> :let w:qu
 
 " Comments {{{1
 autocmd FileType javascript setlocal commentstring=//\ %s
+autocmd FileType javascriptreact setlocal commentstring={/*\ %s\ */}
 autocmd FileType conf setlocal commentstring=#\ %s
 autocmd FileType gitconfig setlocal commentstring=#\ %s
 autocmd FileType sh setlocal commentstring=#\ %s
@@ -455,7 +456,7 @@ let project = system("pwd | cut -d \/ -f1-5 | tr '\n' '/'")
 let &path=".,".project."app/views/,".project."views/"
 
 " Fuzzy find relative path from current file to another, and print {{{1
-nnoremap <silent> <Leader>i :silent :execute "!grealpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.js$' \| fzf) \| sed -E  -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
+nnoremap <silent> <Leader>i :silent :execute "!grealpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.jsx?$' \| fzf) \| sed -E  -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
 
 " Open tig log and blame, respectively {{{1
 nnoremap <silent> <Leader>L :silent !tig %<CR>:redraw!<CR>
