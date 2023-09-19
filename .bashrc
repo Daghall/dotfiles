@@ -437,7 +437,7 @@ function urlparams () {
     sed 's/=/ = /g' | \
     tr "&" "\n" | \
     tr "?" "\n" | \
-    sed -E 's/([a-z0-9_]*) =/[32m\1 [34m=[0m/'
+    sed -E 's/([a-z0-9_]*) =/[32m\1 [34m=[0m/i'
   if [[ -n "$cust_params" ]]; then
     local perdy_params=$(echo $cust_params | sed -e 's/%3D/ = /g' -e 's/%26/\& - /g')
     echo " - - - - -"
