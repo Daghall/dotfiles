@@ -204,8 +204,8 @@ function gpr() {
     {{- .mergeable -}}{{"\t"}}
     {{- if len .labels -}}
       {{- range $i, $val := .labels -}}
-        {{- if $i}}, {{end -}}
-        {{- .name -}}
+        {{- if $i}} {{end -}}
+       [48;2;0x{{ slice .color 0 2 }};0x{{ slice .color 2 4 }};0x{{ slice .color 4 6 }}m {{- .name -}} [0m
       {{- end -}}
     {{- else -}}
       –
@@ -290,7 +290,14 @@ function gpr() {
     --preview "gh pr view {1} --json title,isDraft,mergeable,reviewDecision,state,author,labels,body,headRefName --template '$view_template' | \
       sed 's/\r//g' | \
       gawk -F'\t' ' \
-        {
+        function parse_hex(input) { \
+          while (match(input, /0x[0-9a-f][0-9a-f]/)) { \
+            hex = substr(input, RSTART, RLENGTH); \
+            sub(hex, strtonum(hex), input) \
+          } \
+          return input; \
+        } \
+        { \
           if (FNR == 1) { \
             switch (\$2) { \
               case \"DRAFT\": \
@@ -304,13 +311,14 @@ function gpr() {
                 break; \
             } \
             printf(\"\\033[33mTitle\\033[0m   %s\n\\033[33mStatus  \\033[%dm%s %s\n\\033[33mBranch  \\033[0m%s\n\\033[33mAuthor  \\033[0m%s\n\\033[33mLabels  \\033[0m%s\n\n\", \
-            \$1, \
-            status,
-            \$2, \
-            \$5 == \"CONFLICTING\" ? \"\\033[31m(conflicting)\" : \"\",
-            \$3, \
-            \$4, \
-            \$6); \
+              \$1, \
+              status,
+              \$2, \
+              \$5 == \"CONFLICTING\" ? \"\\033[31m(conflicting)\" : \"\",
+              \$3, \
+              \$4, \
+              parse_hex(\$6) \
+            ); \
           body = \$7; \
         } else { \
           body = body \"\n\" \$0; \
