@@ -379,28 +379,46 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " Surround {{{1
-nnoremap S( lbi(<ESC>ea)<ESC>
-nnoremap S) lbi(<ESC>ea)<ESC>
-nnoremap S{ lbi{<ESC>ea}<ESC>
-nnoremap S} lbi{<ESC>ea}<ESC>
-nnoremap S[ lbi[<ESC>ea]<ESC>
-nnoremap S] lbi[<ESC>ea]<ESC>
-nnoremap S" lbi"<ESC>ea"<ESC>
-vnoremap S( :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
-vnoremap S) :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
-vnoremap S{ :s/\%V.*\%V./{&}/<CR>`< :noh<CR>
-vnoremap S} :s/\%V.*\%V./{&}/<CR>`< :noh<CR>
-vnoremap S" :s/\%V.*\%V./"&"/<CR>`< :noh<CR>
+nnoremap gs( lbi(<ESC>ea)<ESC>
+nnoremap gs) lbi(<ESC>ea)<ESC>
+nnoremap gs{ lbi{<ESC>ea}<ESC>
+nnoremap gs} lbi{<ESC>ea}<ESC>
+nnoremap gs[ lbi[<ESC>ea]<ESC>
+nnoremap gs] lbi[<ESC>ea]<ESC>
+nnoremap gs" lbi"<ESC>ea"<ESC>
+nnoremap gs' lbi'<ESC>ea'<ESC>
+nnoremap gs/ lbi/<ESC>ea/<ESC>
+nnoremap gs_ lbi_<ESC>ea_<ESC>
+nnoremap gs* lbi*<ESC>ea*<ESC>
+nnoremap gs` lbi`<ESC>ea`<ESC>
+vnoremap gs( :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
+vnoremap gs) :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
+vnoremap gs{ :s/\%V.*\%V./{&}/<CR>`< :noh<CR>
+vnoremap gs} :s/\%V.*\%V./{&}/<CR>`< :noh<CR>
+vnoremap gs[ :s/\%V.*\%V./[&]/<CR>`< :noh<CR>
+vnoremap gs] :s/\%V.*\%V./[&]/<CR>`< :noh<CR>
+vnoremap gs" :s/\%V.*\%V./"&"/<CR>`< :noh<CR>
+vnoremap gs' :s/\%V.*\%V./'&'/<CR>`< :noh<CR>
+vnoremap gs/ :s/\%V.*\%V.//&//<CR>`< :noh<CR>
+vnoremap gs_ :s/\%V.*\%V./_&_/<CR>`< :noh<CR>
+vnoremap gs* :s/\%V.*\%V./*&*/<CR>`< :noh<CR>
+vnoremap gs` :s/\%V.*\%V./`&`/<CR>`< :noh<CR>
 
 " Un-surround {{{1
-nnoremap SD( lF(xf)x
-nnoremap SD) hF(xf)x
-nnoremap SD{ lF{xf}x
-nnoremap SD} hF{xf}x
-nnoremap SD[ lF[xf]x
-nnoremap SD] hF[xf]x
-nnoremap SD" hf"xF"x
-vnoremap SD :s/\%V.\(.*\)\%V./\1/<CR>`< :noh<CR>
+nnoremap gsd( lF(xf)x
+nnoremap gsd) hF(xf)x
+nnoremap gsd{ lF{xf}x
+nnoremap gsd} hF{xf}x
+nnoremap gsd[ lF[xf]x
+nnoremap gsd] hF[xf]x
+nnoremap gsd" hf"xF"x
+nnoremap gsd' hf'xF'x
+nnoremap gsd/ hf/xF/x
+nnoremap gsd_ hf_xF_x
+nnoremap gsd* hf*xF*x
+nnoremap gsd` hf`xF`x
+
+vnoremap gsd :s/\%V.\(.*\)\%V./\1/<CR>`< :noh<CR>
 
 " camelCase <-> SNAKE_CASE {{{1
 nnoremap <leader>CC :normal viw<CR> :s/\%V./\l&/g<CR> `< :s/\%V_\(.\)/\u\1/g<CR>`< :noh<CR>
