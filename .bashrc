@@ -5,6 +5,7 @@ export EDITOR=vim
 export PAGER=less
 export BAT_THEME=desert
 export LS_COLORS="*.readline-colored-completion-prefix=1;31"
+export TLDR_AUTO_UPDATE_DISABLED=1
 
 # Remove the annoying echoing of ^C when hitting CTRL-C
 if [[ $- == *i* ]]
