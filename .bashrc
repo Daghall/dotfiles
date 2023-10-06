@@ -71,7 +71,7 @@ function replace_command() {
         printf "\e[34mtest/e2e\e[0m not found\n"
         return
       fi
-      READLINE_LINE="npm run test:e2e -- -g \"$(git grep Feature test/e2e/ | cut -d\" -f2 | fzf --prompt 'run e2e test: ')\""
+      READLINE_LINE="npm run test:e2e -- -g \"$(grep -r Feature test/e2e/ | cut -d\" -f2 | fzf --prompt 'run e2e test: ')\""
       ;;
   esac
 
