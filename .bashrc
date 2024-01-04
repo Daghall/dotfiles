@@ -104,6 +104,9 @@ function gg() {
   for word in $@; do
     if [[ $word == -* ]]; then
       flags="$flags $word"
+
+      # `delta` can't parse list output correctly. Since the only output is
+      # filenames and line numbers, `less` is a sufficient pager
       if [[ $word == "-l" ]]; then
         pager="less"
       fi
@@ -119,7 +122,7 @@ function gg() {
   GIT_PAGER=$pager git grep $flags "${pattern:1}" ${dir:2}
 }
 
-alias gst='git status'
+alias gst='git status -sb'
 alias gdi='git diff -- ":!package-lock.json"'
 alias gds='git -c delta.side-by-side=true di'
 alias gdis='git dis'
