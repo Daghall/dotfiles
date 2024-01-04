@@ -325,7 +325,7 @@ function FoldClass()
 endfunction
 
 " Toggle relative row numbers {{{1
-nnoremap <Leader>n :set relativenumber!<CR>
+nnoremap <C-n> :set relativenumber!<CR>
 
 " Remember English keyboard layout {{{1
 nnoremap Ö :echo "⚠️  Keyboard layout ⚠️"<CR>
