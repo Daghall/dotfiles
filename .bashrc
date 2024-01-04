@@ -346,6 +346,26 @@ function gpr() {
     fi
 }
 
+function dkr() {
+  FZF_DEFAULT_COMMAND="docker container list --all --format 'table {{.Names}}\t{{.ID}}\t{{.Image}}\t{{.Command}}\t{{.RunningFor}}\t{{.Status}}'" \
+    fzf \
+      --reverse \
+      --prompt '' \
+      --no-info \
+      --disabled \
+      --header-lines 1 \
+      --nth 1 \
+      --delimiter="  +" \
+      --bind='change:clear-query' \
+      --bind 'j:down' \
+      --bind 'k:up' \
+      --bind 'q:close' \
+      --bind 'ctrl-s:execute-silent(docker start {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
+      --bind 'ctrl-x:execute-silent(docker stop {1})+reload(eval "$FZF_DEFAULT_COMMAND")' \
+      --bind 'ctrl-e:become(docker container exec -it {1} sh)' \
+      --bind 'ctrl-r:+reload(eval "$FZF_DEFAULT_COMMAND")'
+}
+
 function _gpr_complete() {
   local length=${#COMP_WORDS[@]}
   local last=${COMP_WORDS[-1]}
