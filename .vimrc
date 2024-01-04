@@ -19,10 +19,11 @@ set nomore
 set wildmode=longest:list
 set mouse=a
 set number
-set ignorecase
 set title
 set titlestring=%f%m
+set ignorecase
 set smartcase
+set infercase
 set tabpagemax=50
 set updatetime=100
 set showcmd
