@@ -97,7 +97,7 @@ async function getData(zoneName, date) {
   formatedData.times = data.reduce((acc, hour) => {
     const startTime = hour.time_start.split("T").pop().split(":").shift();
     const endTime = hour.time_end.split("T").pop().split(":").shift();
-    acc[`${startTime} - ${endTime}`] = hour.SEK_per_kWh * 100;
+    acc[`${startTime} - ${endTime}`] = hour.SEK_per_kWh * 125;
     return acc;
   }, {});
 
