@@ -131,6 +131,7 @@ autocmd FileType scss setlocal commentstring=//\ %s
 " FZF {{{1
 set runtimepath+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git; echo .env'
+let $FZF_DEFAULT_OPTS='--bind ctrl-a:select-all,ctrl-d:deselect-all'
 nnoremap <silent> <Leader>t :Files!<CR>
 nnoremap <silent> <Leader>. :Files! %:h<CR>
 nnoremap <silent> <Leader>b :Buffers!<CR>
