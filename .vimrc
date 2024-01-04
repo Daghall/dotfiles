@@ -156,7 +156,7 @@ nnoremap <silent> gd :LspDefinition<CR>
 nnoremap <silent> gD :LspPeekDefinition<CR>
 nnoremap <silent> <Leader>R :LspRename<CR>
 nnoremap <silent> <Leader>E :LspDocumentDiagnostics<CR> :lopen<CR> :let w:quickfix_title = "LSP Diagnostics"<CR> :lfirst<CR>
-nnoremap <silent> <Leader>w :LspHover<CR>
+nnoremap <silent> <Leader>W :LspHover<CR>
 nnoremap <silent> <leader>A :LspCodeAction<CR>
 xnoremap <silent> <leader>A :LspCodeAction<CR>
 
