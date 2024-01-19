@@ -529,7 +529,29 @@ noremap <F2> gt
 noremap <silent><F3> :set wrap!<CR>
 
 " Toggle case-sensitivity
-noremap <F4> :set ic!<CR>
+noremap <silent><F4> :call ToggleCase()<CR>
+
+function ToggleCase()
+  let ignore_case = &ignorecase
+  let smart_case = &smartcase
+  set noignorecase " Needed for the regex match to work
+
+  if (getreg("/") =~ '[A-Z]')
+    set ignorecase
+    if (smart_case == 0)
+      set smartcase
+    else
+      set nosmartcase
+    endif
+  else
+    set smartcase
+    if (ignore_case == 0)
+      set ignorecase
+    else
+      set noignorecase " Redundant, kept for clarity
+    endif
+  endif
+endfunction
 
 " Toggle conceal level
 noremap <silent><F5> :call ToggleConcealLevel()<CR>
