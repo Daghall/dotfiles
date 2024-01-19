@@ -85,7 +85,7 @@ function test_watch() {
   clear;
   echo -e "👀 \e[1mWatching... \e[0;30m‟Quis custodiet ipsos custodes?”\e[0m";
   "$@"
-  local dirs=$(fd . -t d --max-depth 1 -E logs -E public -E node_modules -E tmp);
+  local dirs=$(fd . -t d --max-depth 1 -E logs -E public -E node_modules -E tmp -E npm-review.dSYM/);
   fswatch $dirs -e .*\.log$ --event Updated --one-per-batch | xargs -I _ "$@";
 }
 
