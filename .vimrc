@@ -628,9 +628,6 @@ endfunction
 vnoremap <C-X> :g/./exe "norm \<C-X>"<CR>gv
 vnoremap <C-A> :g/./exe "norm \<C-A>"<CR>gv
 
-" Easy tab moving {{{1
-noremap <silent><C-L> :tabm +<CR>
-noremap <silent><C-H> :tabm -<CR>
 
 " Parenthesis matching {{{1
 highlight MatchParen cterm=none ctermbg=red ctermfg=black
