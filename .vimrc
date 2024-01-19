@@ -526,7 +526,7 @@ noremap <F1> gT
 noremap <F2> gt
 
 " Toggle line-wrapping
-noremap <silent><F3> :set wrap!<CR>
+noremap <silent><F3> :set wrap!<CR>:echo (&wrap == 0 ? "No wrap" : "Wrapping")<CR>
 
 " Toggle case-sensitivity
 noremap <silent><F4> :call ToggleCase()<CR>
@@ -562,6 +562,7 @@ function ToggleConcealLevel()
   else
     set conceallevel=2
   endif
+  echo "Conceal level: " . &conceallevel
 endfunction
 
 " Toggle "list mode"
