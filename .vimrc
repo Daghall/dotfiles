@@ -95,7 +95,7 @@ let g:syntastic_javascript_eslint_args = ['--fix']
 let g:syntastic_javascriptreact_checkers = ["javascript/eslint"]
 let g:syntastic_javascriptreact_eslint_exec = "eslint_d"
 let g:syntastic_javascriptreact_eslint_args = ["--fix"]
-let g:syntastic_cpp_compiler_options = " -std=c++11 -stdlib=libc++"
+let g:syntastic_cpp_compiler_options = " -std=c++11 -stdlib=libc++ -Wall"
 let g:syntastic_always_populate_loc_list = 1
 autocmd VimEnter *.js autocmd BufWritePost *.js checktime
 autocmd CursorHold *.js checktime
