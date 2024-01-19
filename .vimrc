@@ -322,8 +322,9 @@ endfunction
 
 function FoldClass()
   execute "normal zE"
-  g/\v^\s+[a-z0-9#_]+\([^)]*\) \{/ :normal $zf%
+  g/\v^\s+(async )?[a-z0-9#_]+\([^)]*\) \{/ :normal $zf%
   silent g/ static.*{$/ :normal $zf%
+  :nohlsearch
 endfunction
 
 " Toggle relative row numbers {{{1
