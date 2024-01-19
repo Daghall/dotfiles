@@ -169,6 +169,30 @@ function ppwd () {
   done
 }
 
+
+# Print working directories for a given executable, and send it a signal
+function kpwd () {
+  if [[ $# -ne 1 ]]; then
+    printf "Usage:\n  kpwd <program-name>\n";
+    return;
+  fi
+  pid=$(ppwd $1 | \
+    fzf \
+      --bind 'enter:become(echo {1})' \
+      --cycle \
+  );
+  signal=$(kill -l | \
+    sed -e 's/\t/\n/g' | \
+    fzf \
+      --header 'Select signal' | \
+    grep -Eo '\d+' \
+  );
+
+  echo kill -$signal $pid;
+  kill -$signal $pid;
+}
+
+
 # GitHub pull-request TUI
 function gpr() {
   local git_origin=$(git config --local remote.origin.url | sed -e 's/[^:]*://' -e 's/\.git$//')
