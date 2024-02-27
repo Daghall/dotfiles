@@ -11,11 +11,12 @@ const config = require(`${cwd}/config/production.json`);
 
 function printNode(node, path = "config") {
   return Object.keys(node).map((key) => {
-    const current = node[key];
-    if (typeof current === "object") {
-      return printNode(current, `${path}.${key}`);
+    const currentNode = node[key];
+    const currentString = `${path}.${key}`;
+    if (typeof currentNode === "object") {
+      return printNode(currentNode, currentString);
     } else {
-      return `${path}.${key}`;
+      return currentString;
     }
   })
     .flat();
