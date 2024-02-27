@@ -60,7 +60,7 @@ alias pb64='awk '\''{ printf("%s%.*s", $0, length($0) % 4, "==") }'\'''
 # Use fzf to search for command arguments and replace the command line
 function replace_command() {
   case $READLINE_LINE in
-    "nr")
+    "")
       if [[ ! -e package.json ]]; then
         printf "\e[33mpackage.json\e[0m not found\n"
         return
