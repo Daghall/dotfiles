@@ -180,6 +180,7 @@ let g:lsp_diagnostics_signs_delay = 0
 let g:lsp_hover_conceal = 1
 let g:markdown_syntax_conceal = 1
 let g:markdown_fenced_languages = ["javascript"]
+let g:lsp_diagnostics_virtual_text_enabled = 0
 set conceallevel=2
 let g:lsp_settings = {
 \   "typescript-language-server": {
