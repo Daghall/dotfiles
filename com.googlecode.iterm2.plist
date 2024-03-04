@@ -14,8 +14,6 @@
 	<real>0.5</real>
 	<key>BadgeTopMargin</key>
 	<integer>2</integer>
-	<key>Coprocess MRU</key>
-	<array/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Desert</key>
@@ -621,7 +619,7 @@
 			<key>Columns</key>
 			<integer>80</integer>
 			<key>Command</key>
-			<string></string>
+			<string>/opt/homebrew/bin/bash</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -654,7 +652,7 @@
 				<real>0.0</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>No</string>
+			<string>Custom Shell</string>
 			<key>Custom Directory</key>
 			<string>Advanced</string>
 			<key>Custom Tab Title</key>

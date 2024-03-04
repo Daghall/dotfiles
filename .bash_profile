@@ -16,3 +16,10 @@ if [ -f '/Users/markus.daghall/google-cloud-sdk/path.bash.inc' ]; then . '/Users
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/markus.daghall/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/markus.daghall/google-cloud-sdk/completion.bash.inc'; fi
+
+# General bash completions (brew install bash-completion@2)
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
+# Completion for git/tig
+[[ -r "/opt/homebrew/etc/bash_completion.d/git-completion.bash" ]] && . "/opt/homebrew/etc/bash_completion.d/git-completion.bash"
+[[ -r "/opt/homebrew/etc/bash_completion.d/tig-completion.bash" ]] && . "/opt/homebrew/etc/bash_completion.d/tig-completion.bash"

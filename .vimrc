@@ -129,7 +129,7 @@ autocmd FileType jinja setlocal commentstring={#\ %s\ #}
 autocmd FileType scss setlocal commentstring=//\ %s
 
 " FZF {{{1
-set runtimepath+=/usr/local/opt/fzf
+set runtimepath+=/opt/homebrew/opt/fzf
 let $FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git; echo .env'
 let $FZF_DEFAULT_OPTS='--bind ctrl-a:select-all,ctrl-d:deselect-all'
 nnoremap <silent> <Leader>t :Files!<CR>
