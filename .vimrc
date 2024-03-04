@@ -710,7 +710,6 @@ highlight PmenuSel ctermbg=Gray
 
 " No idea... {{{1
 if version >= 700
-	set nofsync
+  set nofsync
 endif
-set ttym=xterm2
 set viminfo='25,\"50,n~/.viminfo
