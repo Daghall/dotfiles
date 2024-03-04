@@ -41,6 +41,12 @@ highlight DiffDelete   ctermfg=Red       ctermbg=NONE
 highlight DiffText     ctermfg=Yellow    ctermbg=Black
 
 
+" Cursor line {{{1
+set cursorline
+set cursorlineopt=both
+highlight CursorLine ctermbg=237 cterm=none
+highlight CursorLineNr ctermbg=237 cterm=bold ctermfg=yellow
+
 " Status line {{{1
 set laststatus=2
 autocmd VimEnter * highlight User1 ctermfg=15 ctermbg=242
@@ -169,6 +175,7 @@ let g:lsp_diagnostics_float_delay = 150
 let g:lsp_diagnostics_float_insert_mode_enabled = 0
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_diagnostics_highlights_delay = 0
+highlight lspReference ctermbg=242 ctermfg=yellow
 let g:lsp_diagnostics_signs_delay = 0
 let g:lsp_hover_conceal = 1
 let g:markdown_syntax_conceal = 1
