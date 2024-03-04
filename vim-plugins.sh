@@ -75,5 +75,6 @@ git clone git@github.com:prabirshrestha/asyncomplete.vim.git
 git clone git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
 git clone git@github.com:preservim/vim-markdown.git
 
-print "Visma"
+print "Vista"
+brew install universal-ctags
 git clone git@github.com:liuchengxu/vista.vim.git
