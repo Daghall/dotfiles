@@ -78,3 +78,6 @@ git clone git@github.com:preservim/vim-markdown.git
 print "Vista"
 brew install universal-ctags
 git clone git@github.com:liuchengxu/vista.vim.git
+
+print "Quick-Scope"
+git clone https://github.com/unblevable/quick-scope

@@ -277,6 +277,9 @@ function! NearestMethodOrFunction() abort
   endif
   return ""
 endfunction
+
+" Quick-Scope {{{1
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 "}}}
 
 " MISCELLANEOUS
