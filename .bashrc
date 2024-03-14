@@ -357,7 +357,7 @@ function gpr() {
       END { \
         gsub(/\047/, \"\047\042\047\042\047\", body); \
         body = \"~/scripts/glow.sh <<< \047\" body \"\047\"; \
-        comments = \"gh api /repos/BonnierNews/kraken/pulls/{1}/comments --jq \047if (length > 0) then .[] | \042\033[32m\134(.user.login)\033[0m\n\134(.body)\n\042 else \042–\042 end\047\";
+        comments = \"gh api /repos/$git_origin/pulls/{1}/comments --jq \047if (length > 0) then .[] | \042\033[32m\134(.user.login)\033[0m\n\134(.body)\n\042 else \042–\042 end\047\";
         system(body); \
         printf(\"\n\033[33mComments\033[0m\n\n\"); \
         system(comments); \
