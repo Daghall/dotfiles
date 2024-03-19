@@ -7,10 +7,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-complete -C /usr/local/bin/terraform terraform
-
-export CLOUDSDK_PYTHON=/usr/local/bin/python3.10
-
+complete -C /opt/homebrew/bin/terraform terraform
+:
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/markus.daghall/google-cloud-sdk/path.bash.inc' ]; then . '/Users/markus.daghall/google-cloud-sdk/path.bash.inc'; fi
 
