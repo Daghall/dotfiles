@@ -89,7 +89,14 @@ function test_watch() {
   fswatch $dirs -e .*\.log$ --event Updated --one-per-batch | xargs -I _ "$@";
 }
 
-# Generate a psuedo-UUID
+# Release message
+function dm() {
+  local project=$(basename $(pwd))
+  local message=$(pbpaste | sed -E -e 's/[]/\n– /g' -e 's/^/– /')
+  printf "Team: Core\nProduct: %s\n%s" "$project" "$message" | pbcopy
+}
+
+# Generate a UUID
 alias guid='node -p "require(\"crypto\").randomUUID()"'
 
 # GIT STUFF
