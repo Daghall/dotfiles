@@ -141,7 +141,8 @@ function gg() {
 }
 
 alias gst='git status -sb'
-alias gdi='git diff -- ":!package-lock.json"'
+alias gdi='git diff -w -- ":!package-lock.json"'
+alias gdiw='git diff -- ":!package-lock.json"'
 alias gds='git -c delta.side-by-side=true di'
 alias gdis='git dis'
 alias gdss='git -c delta.side-by-side=true dis'
