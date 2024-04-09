@@ -47,7 +47,6 @@ alias twe='test_watch npm run test:e2e -- -b'
 alias yk='~/scripts/yubikey-copy.sh'
 alias ep='~/scripts/elpriser.js'
 alias tri='for dir in $(find terraform -name "*.hcl" | xargs dirname); do rm -rf $dir/.terraform; terraform -chdir=$dir init; done'
-alias v='vim'
 alias rtf='~/scripts/run-till-fail.sh'
 alias runstats='~/scripts/run-stats.sh'
 alias reset='\reset; s'
@@ -56,6 +55,18 @@ alias strip_colors='sed -E '\''s/\x1b\[[0-9]{1,3}(;[0-9]{1,3})*m//g'\'''
 alias disp_home='displayplacer "id:A80222CB-3967-759E-4FE4-1C33EBAD8040 res:2560x1440 hz:60 color_depth:8 scaling:off origin:(0,0) degree:0" "id:111A152E-C39C-C6F7-B8F8-7EEFADE8E03A res:1440x900 color_depth:8 scaling:on origin:(2560,540) degree:0"'
 alias disp_work='displayplacer "id:1BA0828D-9B05-4E07-31EA-3B78385DD065 res:2560x1440 hz:60 color_depth:8 scaling:off origin:(0,0) degree:0" "id:111A152E-C39C-C6F7-B8F8-7EEFADE8E03A res:1440x900 color_depth:8 scaling:on origin:(-1440,540) degree:0"'
 alias pb64='awk '\''{ printf("%s%.*s", $0, length($0) % 4, "==") }'\'''
+
+# Vim alias that handles <filename>:<line>:<column>
+function v() {
+  local file="$@"
+
+  if [[ $file =~ ":" ]]; then
+    file=$(sed -E 's/:([^:]+)(:[^:]+)?/ +:\1/' <<< "$@")
+  fi
+
+  # Evaluate the filename, to make it prettier when showing job title
+  eval vim $file
+}
 
 # Use fzf to search for command arguments and replace the command line
 function replace_command() {
