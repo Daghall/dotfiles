@@ -91,13 +91,13 @@ function replace_command() {
 }
 bind -x '"\C-n": replace_command'
 
-# Run a command when certain files are uppdated
+# Run a command when certain files are updated
 function test_watch() {
   clear;
   echo -e "👀 \e[1mWatching... \e[0;30m‟Quis custodiet ipsos custodes?”\e[0m";
   "$@"
   local dirs=$(fd . -t d --max-depth 1 -E logs -E public -E node_modules -E tmp -E npm-review.dSYM/);
-  fswatch $dirs -e .*\.log$ --event Updated --one-per-batch | xargs -I _ "$@";
+  fswatch index.js $dirs -e .*\.log$ --event Updated --one-per-batch | xargs -I _ "$@";
 }
 
 # Release message
