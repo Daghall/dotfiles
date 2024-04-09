@@ -340,7 +340,7 @@ function gpr() {
       sed 's/\r//g' | \
       gawk -F'\t' ' \
         function parse_hex(input) { \
-          while (match(input, /0x[0-9a-f][0-9a-f]/)) { \
+          while (match(tolower(input), /0x[0-9a-f][0-9a-f]/)) { \
             hex = substr(input, RSTART, RLENGTH); \
             sub(hex, strtonum(hex), input) \
           } \
