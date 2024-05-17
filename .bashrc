@@ -148,7 +148,19 @@ alias gds='git -c delta.side-by-side=true di'
 alias gdis='git dis'
 alias gdss='git -c delta.side-by-side=true dis'
 alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" -e "/HEAD/d" | sort -u | fzf --cycle  --prompt "checkout branch: ")'
-alias g='cd ~/git/$(ls ~/git | fzf --cycle --prompt "select git project: ")'
+
+# Change directory to git repository
+
+function g() {
+  local arg="$1"
+  cd ~/git/$(ls ~/git | \
+    fzf \
+      --cycle \
+      --prompt "select git project: "\
+      --select-1 \
+      --query="$1"
+  )
+}
 
 # Tig
 alias tigm='tig --max-parents=3 --graph'
