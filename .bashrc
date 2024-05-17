@@ -464,6 +464,50 @@ function gists() {
   ;
 }
 
+# Put the current and previous jobs last
+function _sort_jobs {
+  awk '
+  {
+    if ($1 ~ /-$/) {
+      prev = $0
+    } else if ($1 ~ /\+$/) {
+      curr = $0
+    } else {
+      a[length(a) +1] = $0
+    }
+  }
+
+  END {
+    while (i++ < length(a)) {
+      print a[i]
+    };
+    if (length(prev) > 0) {
+      printf("%s\n", prev)
+    }
+    if (length(curr) > 0) {
+      printf("%s\n", curr)
+    }
+  }' -
+}
+
+# List, fuzzyfind and bring background jobs to foreground
+function list_jobs() {
+  local job_line=$(jobs | _sort_jobs | fzf -0 -1 --tac)
+  local exit_code=$?
+  local job_id=$(sed -E "s/\[([0-9]+).*/\1/" <<< $job_line)
+
+  if [[ "$job_id" -eq "" && $exit_code -eq 0 ]]; then
+    echo "No background jobs"
+    return 0
+  fi
+
+  if [[ $exit_code -eq 0 ]]; then
+    eval fg $job_id
+  else
+    return exit_code
+  fi
+}
+bind -x '"\C-f": list_jobs'
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
