@@ -23,7 +23,7 @@ shopt -s expand_aliases
 # Aliases
 alias grep='grep --color=auto'
 alias less='less -R'
-alias vimresume='vim $(git status -s | egrep "^( ?A |[ M]M )" | awk '\''{ print $NF }'\'' | xargs)'
+alias vimresume='eval vim $(git status -s | egrep "^( ?A |[ M]M )" | awk '\''{ print $NF }'\'' | xargs)'
 alias vimqf='vim -q <($(history -p !!)) +cw'
 alias ls='ls -G'
 alias ll='ls -l'
