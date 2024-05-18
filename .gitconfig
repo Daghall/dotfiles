@@ -55,3 +55,5 @@
 	verbose = true
 [advice]
 	detachedHead = false
+[rebase]
+	autoStash = true
