@@ -341,6 +341,7 @@ endfunction
 
 " Toggle relative row numbers {{{1
 nnoremap <C-n> :set relativenumber!<CR>
+vnoremap <C-n> <ESC> :set relativenumber!<CR> :norm gv<CR>
 
 " Remember English keyboard layout {{{1
 nnoremap Ö :echo "⚠️  Keyboard layout ⚠️"<CR>
