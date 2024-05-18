@@ -55,5 +55,7 @@
 	verbose = true
 [advice]
 	detachedHead = false
+[interactive]
+	diffFilter = delta --color-only
 [rebase]
 	autoStash = true
