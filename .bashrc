@@ -227,7 +227,7 @@ function kpwd () {
 
 # GitHub pull-request TUI
 function gpr() {
-  local git_origin=$(git config --local remote.origin.url | sed -e 's/[^:]*://' -e 's/\.git$//')
+  local git_origin=$(git config --local remote.origin.url | sed -e 's/[^:]*://' -e 's/\.git$//' | tr -d "\n")
 
   local state_template='
     {{- $state := "" -}}
@@ -389,7 +389,7 @@ function gpr() {
       END { \
         gsub(/\047/, \"\047\042\047\042\047\", body); \
         body = \"~/scripts/glow.sh <<< \047\" body \"\047\"; \
-        comments = \"gh api /repos/$git_origin/pulls/{1}/comments --jq \047if (length > 0) then .[] | \042\033[32m\134(.user.login)\033[0m\n\134(.body)\n\042 else \042–\042 end\047\";
+        comments = \"~/scripts/github-pr-comments.js $git_origin {1}\";
         system(body); \
         printf(\"\n\033[33mComments\033[0m\n\n\"); \
         system(comments); \
