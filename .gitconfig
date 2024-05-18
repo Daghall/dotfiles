@@ -28,12 +28,17 @@
 [branch "master"]
 	mergeoptions = --no-ff --no-commit
 	diffoptions = --no-prefix
+[branch "main"]
+	mergeoptions = --no-ff --no-commit
+	diffoptions = --no-prefix
 [color]
 	ui = auto
 [diff]
 	mnemonicprefix = true
+	renames = copies
 [rerere]
 	enabled = true
+	autoUpdate = true
 [core]
 	pager = delta
 [delta]
