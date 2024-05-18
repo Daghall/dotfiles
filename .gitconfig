@@ -53,3 +53,5 @@
   plus-non-emph-style = "syntax #346234"
 [commit]
 	verbose = true
+[advice]
+	detachedHead = false
