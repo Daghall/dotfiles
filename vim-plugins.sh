@@ -81,3 +81,6 @@ git clone git@github.com:liuchengxu/vista.vim.git
 
 print "Quick-Scope"
 git clone https://github.com/unblevable/quick-scope
+
+print "Copilot"
+git clone git@github.com:github/copilot.vim.git
