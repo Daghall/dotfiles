@@ -4,6 +4,7 @@
 [push]
 	default = current
 	followTags = true
+	useForceIfIncludes = true
 [alias]
 	jump = !~/scripts/git-jump.sh
 	an = add -N
