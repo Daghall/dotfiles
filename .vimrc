@@ -211,7 +211,7 @@ inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
 
 " Completion: force refres (<C-@> is ctrl-space in Vim 8) {{{1
-imap <C-@> <Plug>(asyncomplete_force_refresh)
+imap <C-Space> <Plug>(asyncomplete_force_refresh)
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,noselect,preview
 
