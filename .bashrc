@@ -174,8 +174,20 @@ function co() {
     return;
   fi
   local hash=$1;
-  local repo=$(git config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1);
+  local repo=$(git_branch);
   open "https://github.com/$repo/commit/$hash";
+}
+
+# Open branch on GitHub
+function cb() {
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  local repo=$(git_branch)
+  open "https://github.com/$repo/tree/$branch";
+}
+
+# Print git branch
+function git_branch() {
+  git config --get remote.origin.url | cut -d":" -f2 | cut -d"." -f1
 }
 
 # Tar helpers
