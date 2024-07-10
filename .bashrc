@@ -147,10 +147,24 @@ alias gdiw='git diff -- ":!package-lock.json"'
 alias gds='git -c delta.side-by-side=true di'
 alias gdis='git dis'
 alias gdss='git -c delta.side-by-side=true dis'
-alias gb='git checkout $(git branch -a | sed -e "/origin\/master/d" -e "/\*/d" -e "s#remotes/origin/##" -e "/HEAD/d" | sort -u | fzf --cycle  --prompt "checkout branch: ")'
+
+# Change git branch with fuzzy finding
+function gb() {
+  local branch=$(
+    git branch -a | \
+    sed -E \
+      -e "/\*/d"  \
+      -e "#origin/master#d"  \
+      -e "s#remotes/(origin|upstream)/##"  \
+      -e "/HEAD/d" | \
+    sort -u | \
+    awk '{ print $1 }'| \
+    fzf --cycle  --prompt "checkout branch: "
+  );
+  git checkout $branch
+}
 
 # Change directory to git repository
-
 function g() {
   local arg="$1"
   cd ~/git/$(ls ~/git | \
