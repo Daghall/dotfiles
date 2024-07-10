@@ -123,6 +123,27 @@ let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 nnoremap <silent> <Leader>e :SyntasticCheck<CR> :Errors<CR> :lopen<CR> :let w:quickfix_title = "Syntastic check"<CR> :lfirst<CR>
 
 
+" Jump to next/previous - or first - error {{{1
+nmap [e :call Lnext()<CR>
+nmap ]e :call Lprev()<CR>
+
+function Lnext()
+  try
+    lnext
+  catch
+    lfirst
+    endtry
+endfunction
+
+function Lprev()
+  try
+    lprevious
+  catch
+    lfirst
+    endtry
+endfunction
+
+
 " Comments {{{1
 autocmd FileType javascript setlocal commentstring=//\ %s
 autocmd FileType javascriptreact setlocal commentstring={/*\ %s\ */}
