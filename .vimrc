@@ -449,7 +449,7 @@ nnoremap <leader>CC :normal viw<CR> :s/\%V./\l&/g<CR> `< :s/\%V_\(.\)/\u\1/g<CR>
 nnoremap <leader>CS :normal viw<CR> :s/\%V[A-Z]/_&/g<CR> `< :s//\U&/g<CR> `< :noh<CR>
 
 " Split JavaScript object to multiple lines {{{1
-command SplitJS s/[{,]/&\r/g | s/}/\r&/g | noh
+command SplitJS s/[{,]/&\r/g | execute "normal V$F}%<ESC>" | '<,'>s/}/\r}/g | noh
 
 " Open all TODOs in the quickfix window {{{1
 set grepprg=ag\ --nogroup\ --nocolor
