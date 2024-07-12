@@ -27,5 +27,14 @@ ts2date() {
 
 # Debug logging
 DEBUG_LOG() {
-  [[ ! -z $DEBUG ]] && echo "$@"
+  if [[ ! -z $DEBUG ]]; then
+    case $DEBUG in
+      1 )
+        echo "$@"
+        ;;
+      2 )
+        echo -e "\e[37m$@\e[0m"
+        ;;
+    esac
+  fi
 }
