@@ -333,7 +333,7 @@ set foldtext=Folding()
 
 function Folding()
   let line = getline(v:foldstart)
-  if line =~# "\\v\s(Scenario|describe|context|it|Given|When|Then|And|But)[.(]"
+  if line =~# "\\v\\s(Scenario|describe|context|it|Given|When|Then|And|But)[.(]"
     let line = substitute(line, "([\"'`]", ": ", "")
     let line = substitute(line, "[\"'`],.*", "", "")
     return line
