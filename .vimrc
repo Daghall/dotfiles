@@ -305,7 +305,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 imap <silent><script><expr> <S-Tab> copilot#Accept()
 imap <C-L> <Plug>(copilot-accept-word)
 let g:copilot_no_tab_map = v:true
-let g:copilot_node_command = "~/.nvm/versions/node/v20.8.0/bin/node"
+let g:copilot_node_command = "~/.nvm/versions/node/v20.16.0/bin/node"
 let g:copilot_workspace_folders = ["~/git/"]
 
 "}}}
