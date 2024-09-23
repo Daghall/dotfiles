@@ -43,6 +43,9 @@ bind main a :set main-options = --max-parents=1 --author="%(prompt Filter on aut
 # Interactive rebase from selected commit
 bind main R >git rebase -i %(commit)~
 
+# Undo a commit (apply its reverse diff)
+bind main U !sh -c "~/scripts/git-undo.sh %(commit)"
+
 # Check out branch of the selected main view item
 bind main C >git checkout %(branch)
 
