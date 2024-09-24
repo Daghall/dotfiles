@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 
-// The /reviews route returns ALL comments, but the body property is the
+// The /reviews route returns ALL* comments, but the body property is the
 // empty string on reviews.
 //
 // The /comments route returns the review comments with the body property
@@ -16,6 +16,10 @@
 // aggregate them by commentId (which is the hunk_id) for the reviews. They
 // are sorted by date, so the first with a commentId is the parent. All other
 // comments with the same commentId are added as children.
+//
+// * Sometimes, PR comments are not available through the `gh api … /reviews`
+// command, so we need to use the `gh pr view` command as a fallback, because
+// that one does not always return anything. Ugh.
 
 const {exec} = require("child_process");
 const args = process.argv.slice(2);
@@ -26,11 +30,17 @@ if (!repo || !prNumber) {
   process.exit(1); // eslint-disable-line no-process-exit
 }
 
-const apiUrl = `gh api /repos/${repo}/pulls/${prNumber}/`;
+const commentsCommand = `gh api /repos/${repo}/pulls/${prNumber}/comments`;
+const reviewCommentsCommand = `gh api /repos/${repo}/pulls/${prNumber}/reviews`;
+const alternativeCommentsCommand = `gh pr view ${prNumber} --json comments`;
 
 (async () => {
-  const comments = await fetchData("comments").catch(errorHandler);
-  const reviews = await fetchData("reviews").catch(errorHandler);
+  const comments = await fetchData(commentsCommand).catch(errorHandler);
+  let altComments = await fetchData(alternativeCommentsCommand).catch(errorHandler);
+
+  if (altComments.length === 0) {
+    altComments = await fetchData(reviewCommentsCommand).catch(errorHandler);
+  }
 
   const aggregatedComments = comments
     .reduce((acc, item) => {
@@ -45,7 +55,7 @@ const apiUrl = `gh api /repos/${repo}/pulls/${prNumber}/`;
       return acc;
     }, {});
 
-  const allData = [...Object.values(aggregatedComments), ...reviews]
+  const allData = [...Object.values(aggregatedComments), ...altComments]
     .sort((a, b) => new Date(a.date) - new Date(b.date));
 
   if (allData.length === 0) {
@@ -88,19 +98,18 @@ function printComment(comment, index = 0, isChild = false) {
   process.stdout.write(`${trailer}\n`);
 }
 
-function fetchData(route) {
-  const url = `${apiUrl}${route}`;
-  debug("Fetching data from", url);
+function fetchData(command) {
+  debug("Fetching data from", command);
 
   return new Promise((resolve, reject) => {
-    exec(url, (error, stdout) => {
+    exec(command, (error, stdout) => {
       if (error) return reject(error);
 
       try {
         const data = JSON.parse(stdout);
         debug({data});
 
-        const mappedData = data.map(commentMapper);
+        const mappedData = (data.comments || data).map(commentMapper);
         debug({mappedData});
 
         const filteredData = mappedData.filter((item) => item.body);
@@ -116,17 +125,17 @@ function fetchData(route) {
 
 function commentMapper(comment) {
   return {
-    userId: comment.user.login,
+    userId: (comment.user || comment.author).login,
     commentId: comment.diff_hunk || comment.id,
     body: comment.body,
-    date: comment.created_at || comment.submitted_at,
+    date: comment.created_at || comment.createdAt || comment.submitted_at,
   };
 }
 
-function debug(...args2) {
+function debug(...argv) {
   if (process.env.DEBUG === "1") {
     process.stderr.write("\x1b[32mDEBUG\x1b[0m ");
-    for (const arg of args2) {
+    for (const arg of argv) {
       process.stderr.write(`${JSON.stringify(arg).replace(/(^"|"$)/g, "") } `);
     }
     process.stderr.write("\n");
