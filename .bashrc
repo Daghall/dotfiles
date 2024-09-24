@@ -106,7 +106,7 @@ function test_watch() {
 function dm() {
   local project=$(basename $(pwd))
   local message=$(pbpaste | sed -E -e 's/[]/\n– /g' -e 's/^/– /')
-  printf "Team: Core\nProduct: %s\n%s" "$project" "$message" | pbcopy
+  printf "Team: Core GTV\nProduct: %s\n%s" "$project" "$message" | pbcopy
 }
 
 # Generate a UUID
