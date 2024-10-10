@@ -419,10 +419,6 @@ function ToggleBoolean()
   call setpos(".", cursor_pos)
 endfunction
 
-" Center search hits on screen {{{1
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
 " Surround {{{1
 nnoremap gs( lbi(<ESC>ea)<ESC>
 nnoremap gs) lbi(<ESC>ea)<ESC>
@@ -557,8 +553,26 @@ nnoremap <silent> <Leader>TT :terminal ++close<CR>
 nnoremap <silent> <Leader>Tn :terminal ++close node<CR>
 
 " Search for the visually selected string {{{1
-vnoremap * "oy/\V<C-R>o<CR>
-vnoremap # "oy?\V<C-R>o<CR>
+function VisualSearch(search_direction)
+  let v_register = @v
+
+  normal! gv"vy
+
+  let @/ = '\V' . substitute(escape(@v, '/\'), '\n', '\\n', 'g')
+
+  call search(@/, a:search_direction == "?" ? "b" : "")
+
+  let @v = v_register
+endfunction
+
+" - v:searchforward is reset when exiting a function, so it needs to be
+"   manually set when searching backwards
+" - The cursor is moved to column 0, so we search forward to get it in the
+"   first column of the match (hence the "n" and "N", respectively)
+"   This also sets v:hlsearch to 1 (which is also reset when exiting functions)
+vnoremap * :call VisualSearch("/")<CR>\|n
+vnoremap # :call VisualSearch("?")<CR>\|:let v:searchforward = 0<CR>\|N
+
 
 
 " F-KEYS BINDINGS {{{1
