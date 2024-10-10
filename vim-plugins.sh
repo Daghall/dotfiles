@@ -63,7 +63,10 @@ git clone https://github.com/tpope/vim-fugitive.git
 vim -u NONE -c "helptags vim-fugitive/doc" -c q
 
 print "Markdown preview"
-git clone git@github.com:iamcco/markdown-preview.vim.git
+git clone git@github.com:iamcco/markdown-preview.nvim.git
+cd ~/.vim/bundle/markdown-preview.nvim/app
+npm install
+cd -
 
 print "Vimspector"
 git clone git@github.com:puremourning/vimspector.git
