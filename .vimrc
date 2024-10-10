@@ -28,6 +28,7 @@ set tabpagemax=50
 set updatetime=100
 set showcmd
 set virtualedit=block
+set shortmess-=S
 syntax enable
 colorscheme desert
 highlight Search ctermbg=Yellow
