@@ -183,6 +183,7 @@ command! -bang -nargs=* Agi
 
 " LSP {{{1
 nnoremap <silent> K :LspHover<CR>
+autocmd FileType vim nnoremap <silent> <buffer> K :help <CR>
 nnoremap <silent> gd :LspDefinition<CR>
 nnoremap <silent> gD :LspPeekDefinition<CR>
 nnoremap <silent> <Leader>R :LspRename<CR>
