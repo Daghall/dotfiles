@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function print {
-  echo -e "\n ===> $1"
+  echo -e "\n \x1b[33m $1 \x1b[0m"
 }
 
 print "Pathogen plugin handler"
