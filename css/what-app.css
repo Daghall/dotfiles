@@ -1,0 +1,24 @@
+* {
+  --icon-ack: green !important;
+  --chatlist-icon: lightgray !important;
+  --bubble-meta-icon: lightgray !important;
+}
+
+[aria-label=' Read '] {
+    color: green !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    --icon-ack: limegreen !important;
+  }
+
+  [aria-label=' Read '] {
+      color: limegreen !important;
+  }
+
+  [aria-label=' Deliverd '] {
+      color: lightgray !important;
+  }
+}
+
