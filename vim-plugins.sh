@@ -1,89 +1,124 @@
 #!/bin/bash
 
+install_dir=~/.vim/bundle
+color_headline="34"
+color_default="33"
+
+
 function print {
-  echo -e "\n \x1b[33m $1 \x1b[0m"
+  local terminal_width=$(tput cols)
+  local string_width=$(($terminal_width - 2))
+  local color=${2:-$color_default}
+  printf "\n\x1b[%d;7m %-*s\x1b[0m\n" $color $string_width "$1"
 }
 
-print "Pathogen plugin handler"
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+function clone {
+# last argument is the directory name
+  local dir=${2:-$(basename $1 .git)}
 
-cd ~/.vim/bundle
+  if [[ -d "$install_dir/$dir" ]]; then
+    printf "\x1b[3;30m$dir\x1b[0m is already installed\n"
+    return 1
+  fi
+
+  git clone --depth=1 $@
+  echo ""
+
+  return 0
+}
+
+
+if [[ -d $install_dir ]]; then
+  cd $install_dir
+else
+  echo "Could not find install directory"
+  exit 1
+fi
+
+
+print "Pathogen plugin handler"
+if [[ -f ~/.vim/autoload/pathogen.vim ]]; then
+  printf "\x1b[3;30mPathogen\x1b[0m is already installed\n"
+else
+  mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+    curl -LSso ~/.vim/autoload/pathogen.vim git@tpo.pe/pathogen.vim
+fi
+
 
 ## SYNTAX
-
-print "SYNTAX:"
+print "S Y N T A X" $color_headline
 
 print "Mustache/Handlebars"
-git clone git://github.com/mustache/vim-mustache-handlebars.git mustache
+clone git@github.com:mustache/vim-mustache-handlebars.git mustache
 
 print "Stylus"
-git clone git://github.com/wavded/vim-stylus.git
+clone git@github.com:wavded/vim-stylus.git
 
 print "Jinja"
-git clone git://github.com/lepture/vim-jinja.git
+clone git@github.com:lepture/vim-jinja.git
 
 print "JavaScript"
-git clone https://github.com/jelera/vim-javascript-syntax.git
+clone git@github.com:jelera/vim-javascript-syntax.git
 
 print "Terraform"
-git clone git@github.com:hashivim/vim-terraform.git
+clone git@github.com:hashivim/vim-terraform.git
 
 print "Bash"
-git clone git@github.com:kovetskiy/vim-bash.git
+clone git@github.com:kovetskiy/vim-bash.git
 
 
 ## PLUGINS
-
-print "PLUGINS"
+print "P L U G I N S" $color_headline
 
 print "Ranger"
-git clone git@github.com:francoiscabrol/ranger.vim.git
+clone git@github.com:francoiscabrol/ranger.vim.git
 
 print "SnipMate"
-git clone https://github.com/tomtom/tlib_vim.git
-git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
-git clone https://github.com/garbas/vim-snipmate.git
-git clone https://github.com/honza/vim-snippets.git
+clone git@github.com:tomtom/tlib_vim.git
+clone git@github.com:MarcWeber/vim-addon-mw-utils.git
+clone git@github.com:garbas/vim-snipmate.git
+clone git@github.com:honza/vim-snippets.git
 
 print "Commentary"
-git clone https://github.com/tpope/vim-commentary
+clone git@github.com:tpope/vim-commentary
 
 print "Git gutter"
-git clone git://github.com/airblade/vim-gitgutter.git
+clone git@github.com:airblade/vim-gitgutter.git
 
 print "Syntastic"
-git clone --depth=1 https://github.com/vim-syntastic/syntastic.git
+clone git@github.com:vim-syntastic/syntastic.git
 
 print "FZF.vim"
-git clone git@github.com:junegunn/fzf.vim.git
+clone git@github.com:junegunn/fzf.vim.git
 
 print "Fugitive"
-git clone https://github.com/tpope/vim-fugitive.git
+clone git@github.com:tpope/vim-fugitive.git
 vim -u NONE -c "helptags vim-fugitive/doc" -c q
 
 print "Markdown preview"
-git clone git@github.com:iamcco/markdown-preview.nvim.git
-cd ~/.vim/bundle/markdown-preview.nvim/app
-npm install
-cd -
+clone git@github.com:iamcco/markdown-preview.nvim.git
+if [[ $? -eq 0 ]]; then
+  cd "$install_dir/markdown-preview.nvim/app"
+  npm install
+  cd -
+fi
 
 print "Vimspector"
-git clone git@github.com:puremourning/vimspector.git
+clone git@github.com:puremourning/vimspector.git
 
 print "Language Server"
-git clone git@github.com:prabirshrestha/vim-lsp.git
-git clone git@github.com:mattn/vim-lsp-settings.git
-git clone git@github.com:prabirshrestha/asyncomplete.vim.git
-git clone git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
-git clone git@github.com:preservim/vim-markdown.git
+clone git@github.com:prabirshrestha/vim-lsp.git
+clone git@github.com:mattn/vim-lsp-settings.git
+clone git@github.com:prabirshrestha/asyncomplete.vim.git
+clone git@github.com:prabirshrestha/asyncomplete-lsp.vim.git
+clone git@github.com:preservim/vim-markdown.git
 
 print "Vista"
 brew list universal-ctags > /dev/null || brew install universal-ctags
-git clone git@github.com:liuchengxu/vista.vim.git
+clone git@github.com:liuchengxu/vista.vim.git
 
 print "Quick-Scope"
-git clone https://github.com/unblevable/quick-scope
+clone git@github.com:unblevable/quick-scope
 
 print "Copilot"
-git clone git@github.com:github/copilot.vim.git
+clone git@github.com:github/copilot.vim.git
