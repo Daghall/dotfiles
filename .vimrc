@@ -309,6 +309,7 @@ imap <C-L> <Plug>(copilot-accept-word)
 let g:copilot_no_tab_map = v:true
 let g:copilot_node_command = "~/.nvm/versions/node/v20.17.0/bin/node"
 let g:copilot_workspace_folders = ["~/git/"]
+vnoremap <silent><S-Tab> :Copilot panel<CR>
 
 "}}}
 
