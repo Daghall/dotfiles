@@ -96,7 +96,7 @@ color "CommitDate: "  240       default         # Gray out committer info
 
 # Increase/decrease diff context
 bind generic - :toggle diff-context -1
-bind generic + :toggle diff-context +1
+bind generic = :toggle diff-context +1
 
 # Reference:
 #   !	Run the command in the foreground with output shown.
