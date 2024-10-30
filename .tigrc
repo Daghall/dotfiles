@@ -61,6 +61,9 @@ set main-view-commit-title-refs = false
 set main-view-commit-title-graph = no
 set main-options = --max-parents=1
 
+# Use mnemonic (ish) prefixes in the diff view (uses `git show` internally)
+set diff-options = --src-prefix=c/ --dst-prefix=w/
+
 # Show merges
 bind main M :set main-options = --max-parents=3
 
