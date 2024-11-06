@@ -328,6 +328,9 @@ function Complete_git_jump(ArgLead, CmdLine, CursorPos)
   return ""
 endfunction
 
+" Previous jump list entry {{{1
+nnoremap <silent> <S-Tab> <C-o>
+
 " Folding {{{1
 set foldcolumn=3
 let foldinglevelstart=99
