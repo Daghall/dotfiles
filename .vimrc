@@ -178,6 +178,8 @@ command! -bang -nargs=* Ag
 command! -bang -nargs=* Agi
   \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4 --tac --cycle'}, 'right:50%', '?'), <bang>1)
 
+noremap <silent> <Leader>G :Ag <CR>
+
 
 " LSP {{{1
 nnoremap <silent> K :LspHover<CR>
