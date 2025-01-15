@@ -123,8 +123,8 @@ nnoremap <silent> <Leader>e :SyntasticCheck<CR> :Errors<CR> :lopen<CR> :let w:qu
 
 
 " Jump to next/previous - or first - error {{{1
-nmap [e :call Lnext()<CR>
-nmap ]e :call Lprev()<CR>
+nmap ]e :call Lnext()<CR>
+nmap [e :call Lprev()<CR>
 
 function Lnext()
   try
@@ -138,7 +138,7 @@ function Lprev()
   try
     lprevious
   catch
-    lfirst
+    llast
     endtry
 endfunction
 
