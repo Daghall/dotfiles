@@ -353,6 +353,17 @@ nnoremap <silent> <Leader>ff :call FoldFunctions()<CR>
 nnoremap <silent> <Leader>fs :call FoldScenarios()<CR>
 nnoremap <silent> <Leader>fc :call FoldClass()<CR>
 
+abbreviate <expr> clf ConsoleLogLine()
+
+function ConsoleLogLine() 
+  let line_number = line(".")
+  let prefix = get(b:, "vista_nearest_method_or_function")
+  if prefix == ""
+    let prefix = @%
+  endif
+  return "console.log(\"" . prefix . ":" . line_number . "\"); // eslint-disable-line no-console"
+endfunction
+
 function FoldFunctions()
   execute "normal zE"
   g/\<function\>/ :normal $zf%za
