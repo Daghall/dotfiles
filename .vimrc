@@ -121,6 +121,13 @@ let g:syntastic_check_on_wq = 0
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 nnoremap <silent> <Leader>e :SyntasticCheck<CR> :Errors<CR> :lopen<CR> :let w:quickfix_title = "Syntastic check"<CR> :lfirst<CR>
 
+" Context.vim {{{1
+highlight Context ctermbg=239 cterm=none
+let g:context_highlight_tag = '<hide>'
+let g:context_highlight_border = '<hide>'
+let g:context_highlight_normal = 'Context'
+let g:Context_border_indent = { -> [0, 0] }
+
 
 " Jump to next/previous - or first - error {{{1
 nmap ]e :call Lnext()<CR>

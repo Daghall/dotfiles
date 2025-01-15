@@ -122,3 +122,6 @@ clone git@github.com:unblevable/quick-scope
 
 print "Copilot"
 clone git@github.com:github/copilot.vim.git
+
+print "Context"
+clone git@github.com:wellle/context.vim.git
