@@ -3,7 +3,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
 export PAGER=less
-export BAT_THEME=desert
+export BAT_THEME=daghall
 export LS_COLORS="*.readline-colored-completion-prefix=1;31"
 export TLDR_AUTO_UPDATE_DISABLED=1
 

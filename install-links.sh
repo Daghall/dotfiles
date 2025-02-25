@@ -15,6 +15,7 @@ for file_destination in \
   .config/gh/config.yml \
   .config/gh/hosts.yml \
   .config/karabiner/karabiner.json \
+  .config/bat/themes/daghall.tmTheme \
   scripts \
 ; do
 
