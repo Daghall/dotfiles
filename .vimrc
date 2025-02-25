@@ -30,8 +30,7 @@ set showcmd
 set virtualedit=block
 set shortmess-=S
 syntax enable
-colorscheme desert
-highlight Search ctermbg=Yellow
+colorscheme daghall
 filetype plugin on
 
 
@@ -45,8 +44,6 @@ highlight DiffText     ctermfg=Yellow    ctermbg=Black
 " Cursor line {{{1
 set cursorline
 set cursorlineopt=both
-highlight CursorLine ctermbg=237 cterm=none
-highlight CursorLineNr ctermbg=237 cterm=bold ctermfg=yellow
 
 " Status line {{{1
 set laststatus=2

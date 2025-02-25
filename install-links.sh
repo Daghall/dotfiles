@@ -10,6 +10,7 @@ for file_destination in \
   .tigrc \
   .inputrc \
   .vim/bundle/vimspector/configurations/macos/_all/vimspector.json \
+  .vim/colors/daghall.vim \
   .config/ranger/rc.conf \
   .config/gh/config.yml \
   .config/gh/hosts.yml \
