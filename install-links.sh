@@ -18,21 +18,32 @@ for file_destination in \
 
   if [[ "$file_destination" =~ ^\.config/ ]]; then
     filename=$(cut -d / -f2- <<< "$file_destination")
+    dir="$HOME/$(dirname $file_destination)"
   else
     filename=$(basename $file_destination | sed 's#__#/#g')
+    dir="."
   fi
 
   DEBUG_LOG "  $filename → ~/$file_destination"
+  DEBUG_LOG "  directory: $dir"
 
-  printf "Linking %s" $filename
-  ln -s $(pwd)/$filename ~/$file_destination 2>/dev/null
+  if [[ ! -d "$dir" ]]; then
+    printf "Creating directory %s " $dir
+    mkdir -p "$dir"
 
-  if [[ $? -ne 0 ]]; then
-    if [[ -f ~/$file_destination ]]; then
-      printf " (already exists)"
+    ec=$?
+    if [[ $ec -ne 0 ]]; then
+      printf "(ERROR: %d)" $ec
     else
-      printf " (ERROR)"
+      printf "(done)"
     fi
   fi
-  printf "\n"
+
+
+  if [[ ! -f ~/$file_destination && ! -d ~/$file_destination ]]; then
+    printf "Linking %s\n" $filename
+    ln -s $(pwd)/$filename ~/$file_destination 2>/dev/null
+  else
+    printf "Skipping %s\n" $file_destination
+  fi
 done
