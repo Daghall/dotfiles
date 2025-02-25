@@ -14,6 +14,7 @@ for file_destination in \
   .config/gh/config.yml \
   .config/gh/hosts.yml \
   .config/karabiner/karabiner.json \
+  scripts \
 ; do
 
   if [[ "$file_destination" =~ ^\.config/ ]]; then
