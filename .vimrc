@@ -412,6 +412,8 @@ function ToggleBoolean()
   \  "off": "on",
   \  "true": "false",
   \  "false": "true",
+  \  "let": "const",
+  \  "const": "let",
   \}
   let cursor_pos = getpos(".")
   let under_cursor = expand("<cword>")
@@ -421,7 +423,7 @@ function ToggleBoolean()
   call add(cursor_pos, col("."))
 
   if !has_key(l:toggleHash, under_cursor)
-      echo "Cannot toggle '" .. under_cursor .. "'"
+    echo "Cannot toggle '" .. under_cursor .. "'"
     return
   endif
 
