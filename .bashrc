@@ -568,7 +568,7 @@ export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 
 
 # Fuzzy finder
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+ eval "$(fzf --bash)"
 export FZF_CTRL_T_COMMAND='fd --hidden --follow --exclude .git --exclude node_modules'
 
 # Print URL in a more readable way
