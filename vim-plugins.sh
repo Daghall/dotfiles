@@ -1,6 +1,8 @@
 #!/bin/bash
 
 install_dir=~/.vim/bundle
+swap_dir=~/.vim/swapfiles
+backup_dir=~/.vim/backups
 color_headline="34"
 color_default="33"
 
@@ -28,13 +30,14 @@ function clone {
 }
 
 
-if [[ -d $install_dir ]]; then
-  cd $install_dir
-else
-  echo "Could not find install directory"
-  exit 1
+if [[ ! -d $install_dir ]]; then
+  echo "Could not find install directory, creating it at $install_dir"
+  mkdir -p $install_dir
+  mkdir $swap_dir
+  mkdir $backup_dir
 fi
 
+cd $install_dir
 
 print "Pathogen plugin handler"
 if [[ -f ~/.vim/autoload/pathogen.vim ]]; then
