@@ -80,7 +80,7 @@ print "SnipMate"
 clone git@github.com:tomtom/tlib_vim.git
 clone git@github.com:MarcWeber/vim-addon-mw-utils.git
 clone git@github.com:garbas/vim-snipmate.git
-clone git@github.com:honza/vim-snippets.git
+clone git@github.com:daghall/vim-snippets.git
 
 print "Commentary"
 clone git@github.com:tpope/vim-commentary
