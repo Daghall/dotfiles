@@ -360,17 +360,6 @@ nnoremap <silent> <Leader>ff :call FoldFunctions()<CR>
 nnoremap <silent> <Leader>fs :call FoldScenarios()<CR>
 nnoremap <silent> <Leader>fc :call FoldClass()<CR>
 
-abbreviate <expr> clf ConsoleLogLine()
-
-function ConsoleLogLine() 
-  let line_number = line(".")
-  let prefix = get(b:, "vista_nearest_method_or_function")
-  if prefix == ""
-    let prefix = @%
-  endif
-  return "console.log(\"" . prefix . ":" . line_number . "\"); // eslint-disable-line no-console"
-endfunction
-
 function FoldFunctions()
   execute "normal zE"
   g/\<function\>/ :normal $zf%za
@@ -378,7 +367,8 @@ endfunction
 
 function FoldScenarios()
   execute "normal zE"
-  g/\v\s(Scenario|describe)[.(]/ :normal zf%
+  g/\v\s(Scenario)[.(]/ :normal zf%
+  g/\v\s(describe)[.(]/ :normal zf%
 endfunction
 
 function FoldClass()
@@ -386,6 +376,18 @@ function FoldClass()
   g/\v^\s+(async )?[a-z0-9#_]+\([^)]*\) \{/ :normal $zf%
   silent g/ static.*{$/ :normal $zf%
   :nohlsearch
+endfunction
+
+" Console log line {{{1
+abbreviate <expr> clf ConsoleLogLine()
+
+function ConsoleLogLine()
+  let line_number = line(".")
+  let prefix = get(b:, "vista_nearest_method_or_function")
+  if prefix == ""
+    let prefix = @%
+  endif
+  return "console.log(\"" . prefix . ":" . line_number . "\"); // eslint-disable-line no-console"
 endfunction
 
 " Toggle relative row numbers {{{1
