@@ -59,5 +59,6 @@
 	diffFilter = delta --color-only
 [rebase]
 	autoStash = true
+	abbreviateCommands = true
 [status]
 	showUntrackedFiles = all
