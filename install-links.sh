@@ -9,6 +9,7 @@ for file_destination in \
   .gitconfig \
   .tigrc \
   .inputrc \
+  .glow.json \
   .vim/bundle/vimspector/configurations/macos/_all/vimspector.json \
   .vim/colors/daghall.vim \
   .config/ranger/rc.conf \
