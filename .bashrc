@@ -49,6 +49,7 @@ alias tri='for dir in $(find terraform -name "*.hcl" | xargs dirname); do rm -rf
 alias rtf='~/scripts/run-till-fail.sh'
 alias runstats='~/scripts/run-stats.sh'
 alias reset='\reset; s'
+alias r='reset'
 alias glow='~/scripts/glow.sh'
 alias strip_colors='sed -E '\''s/\x1b\[[0-9]{1,3}(;[0-9]{1,3})*m//g'\'''
 alias disp_home='displayplacer "id:A80222CB-3967-759E-4FE4-1C33EBAD8040 res:2560x1440 hz:60 color_depth:8 scaling:off origin:(0,0) degree:0" "id:111A152E-C39C-C6F7-B8F8-7EEFADE8E03A res:1440x900 color_depth:8 scaling:on origin:(2560,540) degree:0"'
