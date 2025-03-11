@@ -119,6 +119,7 @@ clone git@github.com:preservim/vim-markdown.git
 print "Vista"
 brew list universal-ctags > /dev/null || brew install universal-ctags
 clone git@github.com:liuchengxu/vista.vim.git
+sed -i "" -E 's/('\''default'\'': )"[^"]*"/\1\"\\u2022"/'  ~/.vim/bundle/vista.vim/autoload/vista/renderer.vim
 
 print "Quick-Scope"
 clone git@github.com:unblevable/quick-scope
