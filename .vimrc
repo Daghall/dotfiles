@@ -359,6 +359,7 @@ endfunction
 nnoremap <silent> <Leader>ff :call FoldFunctions()<CR>
 nnoremap <silent> <Leader>fs :call FoldScenarios()<CR>
 nnoremap <silent> <Leader>fc :call FoldClass()<CR>
+nnoremap <silent> <Leader>fg :call FoldGWT()<CR>
 
 function FoldFunctions()
   execute "normal zE"
@@ -375,6 +376,12 @@ function FoldClass()
   execute "normal zE"
   g/\v^\s+(async )?[a-z0-9#_]+\([^)]*\) \{/ :normal $zf%
   silent g/ static.*{$/ :normal $zf%
+  :nohlsearch
+endfunction
+
+function FoldGWT()
+  execute "normal zE"
+  g/\v  (Given|When|Then|And|But)/ :normal V$%jzf
   :nohlsearch
 endfunction
 
