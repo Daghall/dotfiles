@@ -356,6 +356,10 @@ function Folding()
   return line
 endfunction
 
+" Open/close folds with h/l if at the beginning of the line
+nnoremap <expr> h col('.') == 1 ? 'zc' : 'h'
+nnoremap <silent><expr> l (col('.') == 1 && foldclosed('.') != -1) ? 'zo' : ':silent! execute "normal! zol"<CR>'
+
 nnoremap <silent> <Leader>ff :call FoldFunctions()<CR>
 nnoremap <silent> <Leader>fs :call FoldScenarios()<CR>
 nnoremap <silent> <Leader>fc :call FoldClass()<CR>
