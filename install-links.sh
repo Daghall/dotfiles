@@ -19,6 +19,7 @@ for file_destination in \
   .config/bat/themes/daghall.tmTheme \
   .config/btop/btop.conf \
   scripts \
+  bin \
 ; do
 
   if [[ "$file_destination" =~ ^\.config/ ]]; then

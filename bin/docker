@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [[ $1 == "compose" ]]; then
+  shift;
+  docker-compose "$@"
+else
+  /opt/homebrew/bin/docker "$@"
+fi
