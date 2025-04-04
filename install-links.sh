@@ -53,3 +53,26 @@ for file_destination in \
     printf "Skipping %s\n" $file_destination
   fi
 done
+
+# SSH config handling
+if [[ ! -d ~/.ssh ]]; then
+  echo "Creating SSH directory"
+  mkdir ~/.ssh
+  chmod 700 ~/.ssh
+fi
+
+if [[ ! -f ~/.ssh/config ]]; then
+  echo "Creating SSH config file"
+  touch ~/.ssh/config
+  chmod 644 ~/.ssh/config
+fi
+
+INCLUDE_LINE="Include $(pwd)/.ssh/config"
+if ! grep -Fxq "$INCLUDE_LINE" ~/.ssh/config; then
+  echo "Adding SSH config include line"
+  # Use vim to add the line to the end of the file, to make it POSIX compliant,
+  # since it may lack a trailing newline. I'm looking at you, Colima...
+  vim +":normal Go$INCLUDE_LINE" ~/.ssh/config +wq
+else
+  echo "Skipping SSH config"
+fi
