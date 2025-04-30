@@ -85,7 +85,12 @@ function replace_command() {
         printf "\e[34mtest/e2e\e[0m not found\n"
         return
       fi
-      READLINE_LINE="npm run test:e2e -- -g \"$(grep -r Feature test/e2e/ | cut -d\" -f2 | fzf --prompt 'run e2e test: ')\""
+      local suite=$(grep -r Feature test/e2e/ | cut -d\" -f2 | fzf --prompt 'run e2e test: ')
+      if [[ "$suite" != "" ]]; then
+        READLINE_LINE="npm run test:e2e -- -g \"Feature: $suite Scenario:\""
+      else
+        READLINE_LINE="npm run test:e2e -- -g \"\""
+      fi
       ;;
   esac
 
