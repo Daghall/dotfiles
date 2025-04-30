@@ -148,6 +148,7 @@ alias gdiw='git diff -- ":!package-lock.json"'
 alias gds='git -c delta.side-by-side=true di'
 alias gdis='git dis'
 alias gdss='git -c delta.side-by-side=true dis'
+alias gic='git clean -n | awk '\''{ print $NF }'\'' | fzf --multi --reverse --height=-1 | xargs rm'
 
 # Change git branch with fuzzy finding
 function gb() {
