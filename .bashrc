@@ -98,6 +98,15 @@ function replace_command() {
 }
 bind -x '"\C-n": replace_command'
 
+# Run tests via `make` or `npm`
+function t() {
+  if [[ -e Makefile ]]; then
+    make test
+  else
+    npm test
+  fi
+}
+
 # Run a command when certain files are updated
 function test_watch() {
   clear;
