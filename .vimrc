@@ -117,6 +117,22 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 nnoremap <silent> <Leader>e :SyntasticCheck<CR> :Errors<CR> :lopen<CR> :let w:quickfix_title = "Syntastic check"<CR> :lfirst<CR>
+" Stack trace quickfix {{{1
+command! StackTrace call StackTraceQuickFix()
+
+function! StackTraceQuickFix()
+  let l:title = system("pbpaste | grep -v at | head -1 | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'")
+
+  if empty(l:title)
+    let l:title = "Stack trace"
+  else
+    let l:title = substitute(l:title, '\n', '', 'g')
+  endif
+
+  execute 'cexpr system("pbpaste | grep at | sed -e ''s/.*(//'' -e ''s/).*//''")'
+  copen
+  let w:quickfix_title = l:title
+endfunction
 
 " Context.vim {{{1
 highlight Context ctermbg=239 cterm=none
