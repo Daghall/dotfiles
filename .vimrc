@@ -29,6 +29,7 @@ set updatetime=100
 set showcmd
 set virtualedit=block
 set shortmess-=S
+set formatoptions-=o
 syntax enable
 colorscheme daghall
 filetype plugin on
