@@ -88,8 +88,8 @@ clone git@github.com:tpope/vim-commentary
 print "Git gutter"
 clone git@github.com:airblade/vim-gitgutter.git
 
-print "Syntastic"
-clone git@github.com:vim-syntastic/syntastic.git
+print "ALE (Asynchronous Lint Engine)"
+git clone https://github.com/dense-analysis/ale
 
 print "FZF.vim"
 clone git@github.com:junegunn/fzf.vim.git

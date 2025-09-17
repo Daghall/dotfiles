@@ -94,16 +94,46 @@ execute pathogen#infect()
 let g:snipMate = { 'snippet_version' : 1 }
 
 
-" Syntastic {{{1
-let g:syntastic_javascript_checkers = ["eslint"]
-let g:syntastic_javascript_eslint_exec = "eslint_d"
-let g:syntastic_javascript_eslint_args = ['--fix']
-let g:syntastic_javascriptreact_checkers = ["javascript/eslint"]
-let g:syntastic_javascriptreact_eslint_exec = "eslint_d"
-let g:syntastic_javascriptreact_eslint_args = ["--fix"]
-let g:syntastic_cpp_compiler_options = " -std=c++11 -stdlib=libc++ -Wall"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_stl_format = " ⛔️ :%F (%t)"
+" Linting {{{1
+
+function! LinterStatus() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:first_error_line = ale#statusline#FirstProblem(bufnr(''), 0)
+  let l:list = getloclist(0)
+  let first_error_line = len(l:list) > 0 && has_key(l:list[0], 'lnum') ? l:list[0].lnum : ''
+  let l:all_errors = l:counts.error + l:counts.style_error
+
+  return l:counts.total == 0 ? '' : printf(
+  \   ' ⛔️ :%d (%s)',
+  \   l:first_error_line,
+  \   all_errors
+  \)
+endfunction
+
+
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_eslint_change_directory = 0
+let g:ale_cpp_cc_options = "-std=c++17 -Wall"
+let g:ale_fix_on_save = 1
+let g:ale_virtualtext_cursor = 'disabled'
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+\   'cpp': ['clang++'],
+\   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
+\   'typescript': ['eslint'],
+\   'typescriptreact': ['eslint'],
+\   'json': ['jq'],
+\}
+let g:ale_fixers = {
+\   'cpp': ['clang-format'],
+\   'javascript': ['eslint'],
+\   'javascriptreact': ['eslint'],
+\   'typescript': ['eslint'],
+\   'typescriptreact': ['eslint'],
+\   'json': ['jq'],
+\}
+
 autocmd VimEnter *.js,*.cjs,*.mjs,*.jsx checktime
 autocmd BufWritePost *.js,*.cjs,*.mjs,*.jsx checktime
 autocmd CursorHold *.js,*.cjs,*.mjs,*.jsx checktime
@@ -111,14 +141,11 @@ autocmd BufWritePre *.js,*.cjs,*.mjs,*.jsx call execute('LspCodeActionSync sourc
 nnoremap <silent> <Leader>f :checktime<CR>
 set autoread
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{LinterStatus()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-nnoremap <silent> <Leader>e :SyntasticCheck<CR> :Errors<CR> :lopen<CR> :let w:quickfix_title = "Syntastic check"<CR> :lfirst<CR>
+nnoremap <silent> <Leader>e :ALEPopulateLocList<CR> :lopen<CR> :let w:quickfix_title = "Lint results"<CR> :lfirst<CR>
+
 " Stack trace quickfix {{{1
 command! StackTrace call StackTraceQuickFix()
 
@@ -239,8 +266,8 @@ let g:lsp_settings = {
 \ }
 
 " Logging
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
 
 " vim-markdown {{{1
 let g:vim_markdown_folding_disabled = 1
