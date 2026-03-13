@@ -101,6 +101,9 @@ color "CommitDate: "  240       default         # Gray out committer info
 bind generic - :toggle diff-context -1
 bind generic = :toggle diff-context +1
 
+# Better searching
+set ignore-case = smart-case
+
 # Reference:
 #   !	Run the command in the foreground with output shown.
 #   @	Run the command in the background with no output.
