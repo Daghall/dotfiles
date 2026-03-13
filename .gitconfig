@@ -26,6 +26,7 @@
 	puff = pull --ff
 	pure = pull --rebase
 	uncommit = reset HEAD~ --soft
+	undiff = "!f() { git diff \"${1:-HEAD}\" \"${1:-HEAD}\"^; }; f"
 [branch "master"]
 	mergeoptions = --no-ff --no-commit
 	diffoptions = --no-prefix
@@ -55,6 +56,7 @@
 	verbose = true
 [advice]
 	detachedHead = false
+	defaultBranchName = false
 [interactive]
 	diffFilter = delta --color-only
 [rebase]
