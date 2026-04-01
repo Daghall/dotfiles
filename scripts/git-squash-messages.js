@@ -6,7 +6,7 @@ const { execSync } = require("child_process");
 const branch = process.argv[2] || "master";
 
 try {
-  const commits = execSync(`git log --oneline --left-right ...${branch}`, {stdio: "pipe"})
+  const commits = execSync(`git log --oneline --left-right ${branch}.. | tac`, {stdio: "pipe"})
     .toString()
     .split("\n")
     .filter((line) => !!line)
