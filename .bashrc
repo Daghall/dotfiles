@@ -285,6 +285,7 @@ function gpr() {
   local list_template='
     {{- range . -}}
       '$state_template'
+      {{- .updatedAt}}{{"\t"}}
       {{- .number -}}{{"\t"}}
       {{- $state -}}{{"\t"}}
       {{- .title}}{{"\t"}}
@@ -326,6 +327,8 @@ function gpr() {
       --state $state \
       --json number,title,isDraft,mergeable,state,reviewDecision,headRefName,updatedAt \
       --template '$list_template' | \
+      sort -r | \
+      sed 's/^[^	]*\t//' | \
       gawk -F '\t' ' \
       { \
         for (i = 1; i <= NF; ++i) { \
