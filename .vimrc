@@ -289,6 +289,15 @@ let g:lsp_settings = {
 \         "ignoredCodes": [80001, 7016]
 \       }
 \     }
+\   },
+\   "vscode-css-language-server": {
+\     "workspace_config": {
+\       "scss": {
+\         "lint": {
+\           "unknownAtRules": "ignore"
+\         }
+\       }
+\     }
 \   }
 \ }
 
