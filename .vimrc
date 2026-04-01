@@ -74,7 +74,6 @@ set statusline+=\
 
 autocmd BufWinEnter,BufReadPost,BufWritePost quickfix setlocal statusline=%2*\ %Y\ %1*%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}%=\%4*%q\ %1*%(%5l/%-4L%)\ %2*%4P\ 
 
-
 " Follow the leader {{{1
 let mapleader = " "
 
@@ -126,10 +125,24 @@ function! LinterStatus() abort
 endfunction
 
 
-let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_eslint_change_directory = 0
+" Custom linting rules that always applies
+let ale_custom_eslint_options = '--rule "indent:[2,2,{\"SwitchCase\":1}]" --rule "no-multi-spaces:2"'
+
+for ft in ['javascript', 'typescript', 'javascriptreact', 'typescriptreact']
+  let g:ale_{ft}_eslint_executable = 'eslint_d'
+  let g:ale_{ft}_eslint_change_directory = 0
+  let g:ale_{ft}_eslint_options = ale_custom_eslint_options
+endfor
+
+" C++
 let g:ale_cpp_cc_options = "-std=c++17 -Wall"
-let g:ale_fix_on_save = 1
+
+" Tell ALE how to find the root of a project
+let g:ale_root_patterns = [
+\   '.git',
+\   'package.json',
+\]
+
 let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_fix_on_save = 1
 let g:ale_linters = {
@@ -141,7 +154,6 @@ let g:ale_linters = {
 \   'json': ['jq'],
 \}
 let g:ale_fixers = {
-\   'cpp': ['clang-format'],
 \   'javascript': ['eslint'],
 \   'javascriptreact': ['eslint'],
 \   'typescript': ['eslint'],
@@ -149,10 +161,10 @@ let g:ale_fixers = {
 \   'json': ['jq'],
 \}
 
-autocmd VimEnter *.js,*.cjs,*.mjs,*.jsx checktime
-autocmd BufWritePost *.js,*.cjs,*.mjs,*.jsx checktime
-autocmd CursorHold *.js,*.cjs,*.mjs,*.jsx checktime
-autocmd BufWritePre *.js,*.cjs,*.mjs,*.jsx call execute('LspCodeActionSync source.fixAll.ts')
+autocmd VimEnter *.js,*.ts,*.jsx,*.tsx,*.cjs,*.mjs checktime
+autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,*.cjs,*.mjs checktime
+autocmd CursorHold *.js,*.ts,*.jsx,*.tsx,*.cjs,*.mjs checktime
+autocmd BufWritePre *.js,*.ts,*.jsx,*.tsx,*.cjs,*.mjs call execute('LspCodeActionSync source.fixAll.ts')
 nnoremap <silent> <Leader>f :checktime<CR>
 set autoread
 set statusline+=%#warningmsg#
