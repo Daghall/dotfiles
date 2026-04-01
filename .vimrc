@@ -634,7 +634,7 @@ let project = system("pwd | cut -d \/ -f1-5 | tr '\n' '/'")
 let &path=".,".project."app/views/,".project."views/"
 
 " Fuzzy find relative path from current file to another, and print {{{1
-nnoremap <silent> <Leader>i :silent :execute "!grealpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.jsx?$' \| fzf) \| sed -E  -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
+nnoremap <silent> <Leader>i :silent :execute "!grealpath --relative-to " . shellescape(expand("%:h")) ." $(fd '.[jt]sx?$' \| fzf) \| sed -E  -e 's,^([^.]),./\\1,' \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
 
 " Fuzzy find config node from `exp-config {{{1
 nnoremap <silent> <Leader>I :silent :execute "!node ~/scripts/exp-config.js " . getcwd() . " \| fzf \| xargs printf \| pbcopy"<CR> :normal "*P<CR> :redraw!<CR>
