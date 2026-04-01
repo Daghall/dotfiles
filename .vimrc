@@ -877,3 +877,11 @@ if version >= 700
   set nofsync
 endif
 set viminfo='25,\"50,n~/.viminfo
+
+" Lyrics {{{1
+augroup mybrackets
+  autocmd!
+  autocmd FileType * syntax match BracketLine /^\[[^]]*\]$/
+  autocmd FileType * highlight BracketLine ctermfg=Red guifg=#ff0000
+augroup END
+
