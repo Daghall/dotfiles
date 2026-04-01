@@ -14,7 +14,7 @@ while [[ $new_filename != "" ]]; do
   last_commit=$(git log --format="%h" --follow -- $new_filename | head -1)
   DEBUG_LOG "Last commit: $last_commit"
 
-  new_filename=$(git show $last_commit | grep -A1 "rename from $filename" | tail -1 | awk '{ print $NF }')
+  new_filename=$(GIT_PAGER=less git show $last_commit | grep -A1 "rename from $filename" | tail -1 | awk '{ print $NF }')
   if [[ $new_filename != "" ]]; then
     DEBUG_LOG "Renamed $filename => $new_filename"
     filename=$new_filename
