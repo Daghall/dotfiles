@@ -29,12 +29,16 @@ set updatetime=100
 set showcmd
 set virtualedit=block
 set shortmess-=S
-set formatoptions-=o
 set formatoptions+=j
 syntax enable
 colorscheme daghall
 filetype plugin on
 
+"`o` is set in a lot of filetype plugins, disable it globally
+augroup FixFormatOptions
+  autocmd!
+  autocmd BufEnter * setlocal formatoptions-=o
+augroup END
 
 " Colors for vimdiff {{{1
 highlight DiffAdd      ctermfg=Green     ctermbg=NONE
