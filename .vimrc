@@ -65,7 +65,7 @@ set statusline+=%H          " Help buffer flag
 set statusline+=%W          " Preview window flag
 set statusline+=\ %3*%{NearestMethodOrFunction()}
 set statusline+=%=          " Separation between left and right alignment
-set statusline+=\ %F     " Full path of file in the buffer
+set statusline+=\ %F        " Full path of file in the buffer
 set statusline+=\ %4*\ %y   " File type
 set statusline+=\ %1*\ %5l: " Row
 set statusline+=%-4c        " Column
@@ -106,12 +106,23 @@ function! LinterStatus() abort
   let l:list = getloclist(0)
   let first_error_line = len(l:list) > 0 && has_key(l:list[0], 'lnum') ? l:list[0].lnum : ''
   let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_warnings = l:counts.warning + l:counts.style_warning
 
-  return l:counts.total == 0 ? '' : printf(
-  \   ' ⛔️ :%d (%s)',
-  \   l:first_error_line,
-  \   all_errors
-  \)
+  let l:status_string = ''
+
+  if (l:all_warnings > 0)
+    let l:status_string .= ' ⚠️  (' . l:all_warnings . ')'
+  endif
+
+  if (l:all_errors > 0)
+    let l:status_string .= ' ⛔️ (' . l:all_errors . ')'
+  endif
+
+  if l:counts.total > 0
+    let l:status_string .= ' :' . l:first_error_line . ' '
+  endif
+
+  return l:status_string
 endfunction
 
 
