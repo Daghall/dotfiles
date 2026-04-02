@@ -173,6 +173,11 @@ set statusline+=%*
 
 nnoremap <silent> <Leader>e :ALEPopulateLocList<CR> :lopen<CR> :let w:quickfix_title = "Lint results"<CR> :lfirst<CR>
 
+" Run Prettier on the visually selected lines
+" The --stdin-filepath option is needed for Prettier to know which parser to
+" use, by checking the file extension
+command! -range Prettier <line1>,<line2>:!npx prettier --stdin-filepath foo.'%:e'
+
 " Stack trace quickfix {{{1
 command! StackTrace call StackTraceQuickFix()
 
