@@ -553,6 +553,7 @@ nnoremap gs/ lbi/<ESC>ea/<ESC>
 nnoremap gs_ lbi_<ESC>ea_<ESC>
 nnoremap gs* lbi*<ESC>ea*<ESC>
 nnoremap gs` lbi`<ESC>ea`<ESC>
+nnoremap gs<space> lbi <ESC>ea <ESC>
 vnoremap gs( :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
 vnoremap gs) :s/\%V.*\%V./(&)/<CR>`< :noh<CR>
 vnoremap gs{ :s/\%V.*\%V./{&}/<CR>`< :noh<CR>
@@ -565,6 +566,7 @@ vnoremap gs/ :s/\%V.*\%V.//&//<CR>`< :noh<CR>
 vnoremap gs_ :s/\%V.*\%V./_&_/<CR>`< :noh<CR>
 vnoremap gs* :s/\%V.*\%V./*&*/<CR>`< :noh<CR>
 vnoremap gs` :s/\%V.*\%V./`&`/<CR>`< :noh<CR>
+vnoremap gs<space> :s/\%V.*\%V./`&`/<CR>`< :noh<CR>
 
 " Un-surround {{{1
 nnoremap gsd( lF(xf)x
@@ -579,6 +581,7 @@ nnoremap gsd/ hf/xF/x
 nnoremap gsd_ hf_xF_x
 nnoremap gsd* hf*xF*x
 nnoremap gsd` hf`xF`x
+nnoremap gsd<space> hf xF x
 
 vnoremap gsd :s/\%V.\(.*\)\%V./\1/<CR>`< :noh<CR>
 
