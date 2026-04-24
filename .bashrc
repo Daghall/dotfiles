@@ -185,7 +185,7 @@ function gb() {
 # Change directory to git repository
 function g() {
   local arg="$1"
-  cd ~/git/$(ls ~/git | \
+  cd ~/git/$((ls -1 ~/git; find ~/git/gists/ -type d -maxdepth 1 -mindepth 1 | cut -d/ -f5-) | grep -v '^gists$' | \
     fzf \
       --cycle \
       --prompt "select git project: "\
