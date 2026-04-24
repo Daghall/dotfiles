@@ -58,6 +58,7 @@ alias disp_work='displayplacer "id:1BA0828D-9B05-4E07-31EA-3B78385DD065 res:2560
 alias pb64='awk '\''{ printf("%s%.*s", $0, length($0) % 4, "==") }'\'''
 alias ivanti='ps ax | grep Ivanti | awk '\''{print $1}'\'' | sudo xargs kill -KILL'
 alias sudo='sudo '
+alias cdr='SKIP_NVM=1 cd $(node ~/scripts/git-project-root.js) && printf "\e[32m%s\e[0m\n" $(pwd | sed -e "s#/Users/$(whoami)#~#")'
 
 # Vim alias that handles <filename>:<line>:<column>
 function v() {
@@ -564,7 +565,7 @@ function cd {
   builtin cd "$@"
 
   # Execute "nvm use" if ".nvmrc" is found when entering directory
-  if [ $? -eq 0 ] && [ -f ".nvmrc" ]; then
+  if [[ $? -eq 0  &&  -f ".nvmrc" && SKIP_NVM -ne 1 ]]; then
     # Use --latest-npm because the NPM version affects package-lock.json, so if we
     # lock the Node.js version with NVM we should try to lock NPM too, and this
     # option sort of does that: "After installing, attempt to upgrade to the latest
