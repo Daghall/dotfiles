@@ -106,7 +106,7 @@ function t() {
   if [[ -e Makefile ]]; then
     make test
   else
-    npm test
+    npm test -- $@
   fi
 }
 
