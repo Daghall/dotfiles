@@ -403,6 +403,11 @@ vnoremap <silent><S-Tab> :Copilot panel<CR>
 
 "}}}
 
+" Cucumber {{{1
+let g:no_cucumber_maps = 1
+
+" }}}
+
 " MISCELLANEOUS
 
 " Git jump {{{1

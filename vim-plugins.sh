@@ -129,3 +129,6 @@ clone git@github.com:github/copilot.vim.git
 
 print "Context"
 clone git@github.com:wellle/context.vim.git
+
+print "Cucumber"
+clone git@github.com:tpope/vim-cucumber.git
