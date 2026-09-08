@@ -18,6 +18,7 @@ for file_destination in \
   .config/karabiner/karabiner.json \
   .config/bat/themes/daghall.tmTheme \
   .config/btop/btop.conf \
+  .config/bettercmdtab/config.json \
   scripts \
   bin \
 ; do
@@ -39,9 +40,9 @@ for file_destination in \
 
     ec=$?
     if [[ $ec -ne 0 ]]; then
-      printf "(ERROR: %d)" $ec
+      printf "(ERROR: %d)\n" $ec
     else
-      printf "(done)"
+      printf "(done)\n"
     fi
   fi
 

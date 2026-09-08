@@ -1,0 +1,42 @@
+{
+  "$schema" : "schema.json",
+  "appExceptions" : [
+    {
+      "bundleID" : "com.apple.finder",
+      "hide" : "whenNoWindows",
+      "ignore" : "never"
+    }
+  ],
+  "applicationsOnly" : false,
+  "boldSelectedLabel" : true,
+  "experimentalInstantSpaceSwitch" : true,
+  "experimentalUnreadBadges" : false,
+  "fontFace" : "system",
+  "gridMaxColumns" : 0,
+  "hapticOnCommit" : false,
+  "hoverActionsEnabled" : true,
+  "instantSpaceSwitch" : true,
+  "layoutMode" : "windowPreview",
+  "letterHintsEnabled" : false,
+  "listWidthPercent" : 100,
+  "nextScopedShortcutID" : 1,
+  "panelAppearance" : "system",
+  "panelCornerRadius" : -1,
+  "panelOpacity" : 100,
+  "panelScalePercent" : 75,
+  "previewTitleAlignment" : "leading",
+  "scopedShortcutList" : [
+
+  ],
+  "searchDismissMode" : "stayOpen",
+  "searchIncludesLaunchableApps" : false,
+  "showApplicationNames" : true,
+  "showUnreadBadges" : false,
+  "showWindowStatusIcons" : true,
+  "showWindowTitleLabel" : true,
+  "sinkHiddenApps" : false,
+  "sinkMinimizedWindows" : false,
+  "sortOrder" : "mruWindows",
+  "stayOpenOnRelease" : false,
+  "vimNavigationEnabled" : true
+}
