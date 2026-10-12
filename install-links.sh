@@ -7,6 +7,7 @@ for file_destination in \
   .bash_profile \
   .vimrc \
   .gitconfig \
+  .gitconfig-bn \
   .tigrc \
   .inputrc \
   .glow.json \

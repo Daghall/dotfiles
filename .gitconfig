@@ -69,3 +69,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[includeIf "hasconfig:remote.*.url:git@github.com:BonnierNews/**"]
+  path = ~/.gitconfig-bn
