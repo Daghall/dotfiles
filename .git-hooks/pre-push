@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ ${SKIP_PRE_PUSH:-0} == 1 ]]; then
+  exit 0
+fi
+
+if ! git diff --quiet ||
+  ! git diff --cached --quiet ||
+  [[ -n $(git ls-files --others --exclude-standard) ]]; then
+  printf '\x1b[33;1m⚠️ Warning - There are uncommitted changes ⚠️\n'
+  printf '\n\x1b[0mTo override, run \x1b[32mSKIP_PRE_PUSH=1 !!\x1b[0\n' >&2
+  exit 1
+fi

@@ -43,6 +43,7 @@
 	autoUpdate = true
 [core]
 	pager = delta
+	hooksPath = /Users/markus.daghall/.git-hooks
 [delta]
   line-numbers = true
   navigate = true

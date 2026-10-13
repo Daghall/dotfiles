@@ -2,12 +2,21 @@
 
 source ./scripts/bash_functions.sh
 
+function check_success() {
+  if [[ $1 -ne 0 ]]; then
+    printf "(ERROR: %d)\n" $ec
+  else
+    printf "(done)\n"
+  fi
+}
+
 for file_destination in \
   .bashrc \
   .bash_profile \
   .vimrc \
   .gitconfig \
   .gitconfig-bn \
+  .git-hooks/pre-push \
   .tigrc \
   .inputrc \
   .glow.json \
@@ -24,8 +33,8 @@ for file_destination in \
   bin \
 ; do
 
-  if [[ "$file_destination" =~ ^\.config/ ]]; then
-    filename=$(cut -d / -f2- <<< "$file_destination")
+  if [[ "$file_destination" =~ / ]]; then
+    filename=${file_destination/.config\//}
     dir="$HOME/$(dirname $file_destination)"
   else
     filename=$(basename $file_destination | sed 's#__#/#g')
@@ -40,17 +49,16 @@ for file_destination in \
     mkdir -p "$dir"
 
     ec=$?
-    if [[ $ec -ne 0 ]]; then
-      printf "(ERROR: %d)\n" $ec
-    else
-      printf "(done)\n"
-    fi
+    check_success $ec
   fi
 
 
-  if [[ ! -f ~/$file_destination && ! -d ~/$file_destination ]]; then
-    printf "Linking %s\n" $filename
+  if [[ ! -L "$HOME/$file_destination" ]]; then
+    printf "Linking %s " $filename
     ln -s $(pwd)/$filename ~/$file_destination 2>/dev/null
+
+    ec=$?
+    check_success $ec
   else
     printf "Skipping %s\n" $file_destination
   fi
