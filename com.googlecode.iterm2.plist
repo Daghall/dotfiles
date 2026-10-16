@@ -2,10 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AIFeatureFunctionCalling</key>
+	<true/>
+	<key>AIFeatureHostedCodeInterpeter</key>
+	<true/>
+	<key>AIFeatureHostedFileSearch</key>
+	<true/>
+	<key>AIFeatureHostedWebSearch</key>
+	<true/>
+	<key>AIFeatureStreamingResponses</key>
+	<true/>
+	<key>AITermAPI</key>
+	<integer>2</integer>
+	<key>AIVectorStore</key>
+	<integer>0</integer>
 	<key>AboutToPasteTabsWithCancel</key>
 	<true/>
 	<key>AboutToPasteTabsWithCancel_selection</key>
 	<integer>0</integer>
+	<key>AiMaxTokens</key>
+	<integer>400000</integer>
+	<key>AiModel</key>
+	<string>gpt-5.2</string>
+	<key>AiResponseMaxTokens</key>
+	<integer>128000</integer>
+	<key>AitermURL</key>
+	<string>https://api.openai.com/v1/responses</string>
 	<key>AlternateMouseScroll</key>
 	<true/>
 	<key>BadgeMaxHeightFraction</key>
@@ -14,14 +36,35 @@
 	<real>0.5</real>
 	<key>BadgeTopMargin</key>
 	<integer>2</integer>
+	<key>CodeReviewSavedPrompts</key>
+	<data>
+	W3sidGV4dCI6IlJldmlldyB0aGUgcGVuZGluZyBjaGFuZ2VzIGluIHRoaXMgcmVwby4g
+	RmxhZyBpc3N1ZXMgYSBjYXJlZnVsIG1haW50YWluZXIgd291bGQgYmxvY2sgb24gYmVm
+	b3JlIG1lcmdlLCBpbiByb3VnaGx5IHRoaXMgb3JkZXI6XG4gIDEuIENvcnJlY3RuZXNz
+	IOKAlCBsb2dpYyBlcnJvcnMsIGJyb2tlbiBpbnZhcmlhbnRzLCBtaXNzZWQgZWRnZSBj
+	YXNlcywgb2ZmLWJ5LW9uZSwgcmFjZXMsIGxpZmV0aW1lXC9tZW1vcnkgYnVncywgZXJy
+	b3IgcGF0aHMgdGhhdCBzd2FsbG93IGZhaWx1cmVzLlxuICAyLiBTZWN1cml0eSDigJQg
+	aW5qZWN0aW9uLCBhdXRoblwvYXV0aHogbWlzdGFrZXMsIHNlY3JldCBoYW5kbGluZywg
+	dW5zYWZlIGRlc2VyaWFsaXphdGlvbiwgdW5zYWZlIGRlZmF1bHRzLCBUT0NUT1UuXG4g
+	IDMuIFJlbGlhYmlsaXR5ICYgcGVyZm9ybWFuY2Ug4oCUIGJsb2NraW5nIHRoZSB3cm9u
+	ZyB0aHJlYWQsIHVuYm91bmRlZCByZXNvdXJjZSB1c2UsIGFjY2lkZW50YWwgTyhOwrIp
+	LCByZXRyaWVzIHdpdGhvdXQgYmFja29mZiwgc2lsZW50IGZhaWx1cmUgcGF0aHMuXG4g
+	IDQuIENvbnRyYWN0IHJpc2sg4oCUIGJlaGF2aW9yIGNoYW5nZXMgY2FsbGVycyByZWx5
+	IG9uLCBzaWxlbnRseSBjaGFuZ2VkIGRlZmF1bHRzLCBicm9rZW4gYmFja3dhcmQgY29t
+	cGF0aWJpbGl0eSwgbWlzc2luZyBtaWdyYXRpb25zLlxuXG5Gb3IgZWFjaCBmaW5kaW5n
+	IGNpdGUgYGZpbGU6bGluZWAsIGV4cGxhaW4gKndoeSogaXQgaXMgd3JvbmcgKG5vdCB3
+	aGF0IHRoZSBjb2RlIGRvZXMpLCBhbmQgcHJvcG9zZSBhIGNvbmNyZXRlIGZpeCB3aGVu
+	IG9uZSBpcyBvYnZpb3VzLiBCZSBjYWxpYnJhdGVkOiBpZiBhIGZpbmRpbmcgaXMgbm90
+	IGhpZ2gtY29uZmlkZW5jZSwgc2F5IHNvIG9yIHNraXAgaXQuIFZlcmlmeSBjbGFpbXMg
+	YWdhaW5zdCB0aGUgYWN0dWFsIGNvZGUgcmF0aGVyIHRoYW4gaW5mZXJyaW5nIGZyb20g
+	bmFtZXMuXG5cblNraXAgcHVyZSBzdHlsZSwgZm9ybWF0dGluZywgbmFtaW5nLCBhbmQg
+	YW55dGhpbmcgYSBsaW50ZXIgb3IgQ0kgYWxyZWFkeSBlbmZvcmNlcy5cblxuSWYgeW91
+	IGZpbmQgbm90aGluZyB3b3J0aCBmaXhpbmcsIHNheSBzbyBwbGFpbmx5LiIsIm5hbWUi
+	OiJEZWZhdWx0IiwidXVpZCI6IjVCODcyQzIzLTI1MTgtNDk0MS1CMzc0LTRBNDQ5NDJE
+	RTdEMSJ9XQ==
+	</data>
 	<key>Command</key>
 	<string></string>
-	<key>Coprocess MRU</key>
-	<array>
-		<string>echo vim /Users/markus.daghall/git/masturla/node_modules/eslint/lib/eslint/eslint.js +349</string>
-		<string>echo vim /Users/markus.daghall/git/exp-metrics/node_modules/@google-cloud/opentelemetry-resource-util/build/src/index.js +181</string>
-		<string>echo vim /Users/markus.daghall/git/exp-metrics/node_modules/eslint-plugin-n/lib/util/get-typescript-extension-map.js +43</string>
-	</array>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Desert</key>
@@ -243,6 +286,8 @@
 	<false/>
 	<key>DoubleClickPerformsSmartSelection</key>
 	<false/>
+	<key>EnableAPIServer</key>
+	<true/>
 	<key>EnableDivisionView</key>
 	<true/>
 	<key>EnableProxyIcon</key>
@@ -394,6 +439,8 @@
 			<string></string>
 		</dict>
 	</dict>
+	<key>HTMLTabTitles</key>
+	<false/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HideActivityIndicator</key>
@@ -1772,7 +1819,52 @@
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
-			<array/>
+			<array>
+				<dict>
+					<key>action</key>
+					<string>iTermEnterWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+					</dict>
+					<key>matchType</key>
+					<integer>113</integer>
+					<key>parameter</key>
+					<string>builtin.claudeCode</string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermExitWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+						<key>leaderOnly</key>
+						<true/>
+					</dict>
+					<key>matchType</key>
+					<integer>114</integer>
+					<key>parameter</key>
+					<string></string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+			</array>
 			<key>Unlimited Scrollback</key>
 			<true/>
 			<key>Use Bold Font</key>
@@ -1848,24 +1940,65 @@
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.23933276099769341</real>
+	<key>StatusBarPosition</key>
+	<integer>0</integer>
 	<key>StretchTabsToFillBar</key>
 	<false/>
 	<key>TabStyle</key>
 	<integer>3</integer>
 	<key>TabStyleWithAutomaticOption</key>
-	<integer>1</integer>
+	<integer>5</integer>
+	<key>TabsHaveCloseButton</key>
+	<false/>
+	<key>ToolbeltTools</key>
+	<array>
+		<string>Profiles</string>
+	</array>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>
 	<false/>
+	<key>UseSequoiaStyleTabs</key>
+	<true/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>WindowNumber</key>
 	<false/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>Workgroups</key>
+	<data>
+	W3sibmFtZSI6IkNsYXVkZSBDb2RlIiwidW5pcXVlSWRlbnRpZmllciI6ImJ1aWx0aW4u
+	Y2xhdWRlQ29kZSIsInNlc3Npb25zIjpbeyJ1cmxTdHJpbmciOiIiLCJjb21tYW5kIjoi
+	IiwibW9kZSI6InJlZ3VsYXIiLCJwZXJGaWxlQ29tbWFuZCI6IiIsInVuaXF1ZUlkZW50
+	aWZpZXIiOiJidWlsdGluLmNsYXVkZUNvZGUubWFpbiIsInRvb2xiYXJJdGVtcyI6W3si
+	a2luZCI6Im1vZGVTd2l0Y2hlciJ9LHsia2luZCI6ImdpdFN0YXR1cyJ9LHsia2luZCI6
+	ImF1dG9SZXF1ZXN0UmV2aWV3V2hlbklkbGUifV0sImtpbmQiOnsia2luZCI6InJvb3Qi
+	fSwiZGlzcGxheU5hbWUiOiJDaGF0In0seyJ1cmxTdHJpbmciOiIiLCJjb21tYW5kIjoi
+	Z2l0IGRpZmZ0b29sIC15IC14IHZpbWRpZmYgXFwoZ2l0QmFzZSkiLCJtb2RlIjoiZGlm
+	ZiIsInBhcmVudElEIjoiYnVpbHRpbi5jbGF1ZGVDb2RlLm1haW4iLCJwZXJGaWxlQ29t
+	bWFuZCI6ImdpdCBkaWZmdG9vbCAteSAteCB2aW1kaWZmIFxcKGdpdEJhc2UpIC0tIFxc
+	KGZpbGUpIiwidW5pcXVlSWRlbnRpZmllciI6ImJ1aWx0aW4uY2xhdWRlQ29kZS5kaWZm
+	IiwidG9vbGJhckl0ZW1zIjpbeyJraW5kIjoibW9kZVN3aXRjaGVyIn0seyJraW5kIjoi
+	Y2hhbmdlZEZpbGVTZWxlY3RvciJ9LHsia2luZCI6ImdpdEJhc2VTZWxlY3RvciJ9LHsi
+	Zm9yd2FyZFNob3J0Y3V0Ijp7InNlcmlhbGl6ZWQiOiIweGY3MDMtMHgzNDAwMDAtMHg3
+	YyJ9LCJraW5kIjoibmF2aWdhdGlvbiIsInJlbG9hZFNob3J0Y3V0Ijp7InNlcmlhbGl6
+	ZWQiOiIweDcyLTB4MTAwMDAwLTB4ZiJ9LCJiYWNrU2hvcnRjdXQiOnsic2VyaWFsaXpl
+	ZCI6IjB4ZjcwMi0weDM0MDAwMC0weDdiIn19XSwia2luZCI6eyJraW5kIjoicGVlciJ9
+	LCJkaXNwbGF5TmFtZSI6IkRpZmYifSx7InVybFN0cmluZyI6IiIsImNvbW1hbmQiOiJj
+	bGF1ZGUgXFwoY29kZVJldmlld1Byb21wdCkgLS1hcHBlbmQtc3lzdGVtLXByb21wdC1m
+	aWxlICdcXChjb2RlUmV2aWV3U3lzdGVtUHJvbXB0RmlsZSknIC0tc2V0dGluZ3MgJ1xc
+	KGl0ZXJtMi5hcHBCdW5kbGVQYXRoKVwvQ29udGVudHNcL1Jlc291cmNlc1wvY29kZS1y
+	ZXZpZXctc2V0dGluZ3MudHh0JyIsIm1vZGUiOiJjb2RlUmV2aWV3IiwicGFyZW50SUQi
+	OiJidWlsdGluLmNsYXVkZUNvZGUubWFpbiIsInBlckZpbGVDb21tYW5kIjoiIiwidW5p
+	cXVlSWRlbnRpZmllciI6ImJ1aWx0aW4uY2xhdWRlQ29kZS5yZXZpZXciLCJ0b29sYmFy
+	SXRlbXMiOlt7ImtpbmQiOiJtb2RlU3dpdGNoZXIifSx7ImtpbmQiOiJyZWxvYWQiLCJz
+	aG9ydGN1dCI6eyJzZXJpYWxpemVkIjoiMHg3Mi0weDEwMDAwMC0weGYifX0seyJraW5k
+	IjoiYXV0b1NlbmRDbGlwcGluZ3NXaGVuSWRsZSJ9XSwia2luZCI6eyJraW5kIjoicGVl
+	ciJ9LCJkaXNwbGF5TmFtZSI6IkNvZGUgUmV2aWV3In1dfV0=
+	</data>
 	<key>findMode_iTerm</key>
-	<integer>0</integer>
+	<integer>2</integer>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
