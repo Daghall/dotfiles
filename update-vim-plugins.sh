@@ -14,7 +14,7 @@ for plugin in $plugins; do
   if [[ $exit -eq 0 ]]; then
     git checkout $branch
     git fetch
-    git log --oneline --left-right ..origin/$branch
+    git --no-pager log --oneline --left-right ..origin/$branch
     git pull --ff
     exit=$?
   fi
