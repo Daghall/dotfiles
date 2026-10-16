@@ -51,6 +51,40 @@ highlight DiffText     ctermfg=Yellow    ctermbg=Black
 set cursorline
 set cursorlineopt=both
 
+
+" Color column {{{1
+let g:cc_rules = {
+  \ 'gitcommit': '50,70',
+  \ 'markdown': 80,
+  \ 'javascript': 100,
+  \ 'typescript': 100,
+  \ 'javascriptreact': 100,
+  \ 'typescriptreact': 100,
+\}
+
+function! SetColorColumn()
+    let l:ft = &filetype
+    let l:cc = 0
+
+    if has_key(g:cc_rules, l:ft)
+      let l:cc = g:cc_rules[l:ft]
+    endif
+
+    " Only set color column if wide enough
+    if &columns > l:cc + 10
+      let &colorcolumn=l:cc
+    else
+      setlocal colorcolumn=0
+    endif
+endfunction
+
+augroup ColorColumnDynamic
+  autocmd!
+  autocmd FileType * call SetColorColumn()
+  autocmd VimEnter,VimResized * call SetColorColumn()
+augroup END
+
+
 " Status line {{{1
 set laststatus=2
 autocmd VimEnter * highlight User1 ctermfg=15 ctermbg=242
